@@ -5,17 +5,23 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 只保护 /admin 和 /history 路由
-  if (!pathname.startsWith('/admin') && !pathname.startsWith('/history')) {
+  // 登录页和认证 API 允许匿名访问
+  if (
+    pathname.startsWith('/auth/login') ||
+    pathname.startsWith('/api/auth/')
+  ) {
     return NextResponse.next();
   }
 
   const supabase = createServerSupabase();
   const { data: { session } } = await supabase.auth.getSession();
 
+  // 未登录，重定向到登录页
   if (!session) {
     const loginUrl = new URL('/auth/login', request.url);
-    loginUrl.searchParams.set('redirect', pathname);
+    if (pathname !== '/') {
+      loginUrl.searchParams.set('redirect', pathname);
+    }
     return NextResponse.redirect(loginUrl);
   }
 
@@ -36,5 +42,13 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/history/:path*']
+  matcher: [
+    /*
+     * 匹配所有路径，排除：
+     * - _next/static (静态文件)
+     * - _next/image (图片优化)
+     * - favicon.ico (网站图标)
+     */
+    '/((?!_next/static|_next/image|favicon.ico).*)',
+  ],
 };
