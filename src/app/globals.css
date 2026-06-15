@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #b8860b;
+  --gold-light: #d4a017;
+  --surface-950: #0a0a14;
+  --surface-900: #0f0f1e;
+  --surface-800: #141428;
+  --surface-700: #1a1a2e;
+  --text-primary: #e0d6c8;
+  --text-secondary: #a89880;
+  --text-muted: #6b5e4a;
+  --border-subtle: #2a2a3a;
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+@layer base {
+  body {
+    @apply bg-surface-950 text-text-primary font-sans antialiased;
+  }
+
+  h1 { @apply text-2xl font-serif font-bold tracking-wide; }
+  h2 { @apply text-xl font-serif font-bold text-gold-500; }
+  h3 { @apply text-lg font-serif font-semibold; }
+  h4 { @apply text-base font-serif font-semibold text-gold-500 mt-6 mb-3; }
+
+  a {
+    @apply text-gold-500 hover:text-gold-400 transition-colors duration-300;
+  }
+
+  table {
+    @apply w-full text-sm;
+  }
+  thead { @apply bg-surface-800; }
+  th { @apply p-3 text-left text-xs uppercase tracking-wider text-text-muted; }
+  td { @apply p-3 border-t border-border-subtle text-text-secondary; }
+  tr:hover td { @apply bg-surface-800 bg-opacity-50; }
+
+  ul, ol { @apply pl-6 space-y-2 my-3; }
+  li { @apply text-text-secondary leading-relaxed; }
+
+  strong { @apply text-gold-500 font-semibold; }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface-800 bg-opacity-60 border border-border-subtle rounded-lg p-6 mb-5;
+  }
+  .section-header {
+    @apply mb-6;
+  }
+  .section-header h2 {
+    @apply text-2xl mb-2;
+  }
+  .desc {
+    @apply text-text-muted text-sm;
+  }
+  .badge {
+    @apply inline-block px-2 py-0.5 rounded text-xs font-semibold;
+  }
+  .badge-gold {
+    @apply bg-gold-500 bg-opacity-15 text-gold-400;
+  }
+  .badge-cyan {
+    @apply bg-cyan-900 bg-opacity-30 text-cyan-400;
+  }
+  .table-wrap {
+    @apply overflow-x-auto my-4 rounded-lg border border-border-subtle;
+  }
+
+  /* 侧边栏 */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 text-text-secondary text-sm rounded-md transition-all duration-300 cursor-pointer;
+  }
+  .sidebar-link:hover {
+    @apply bg-surface-800 text-text-primary;
+  }
+  .sidebar-link.active {
+    @apply bg-gold-500 bg-opacity-10 text-gold-400 border-l-2 border-gold-500;
+  }
+
+  /* 按钮 */
+  .btn-primary {
+    @apply bg-gold-500 hover:bg-gold-600 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300;
+  }
+  .btn-outline {
+    @apply border border-gold-500 text-gold-400 hover:bg-gold-500 hover:bg-opacity-10 px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300;
+  }
+  .btn-danger {
+    @apply bg-red-700 hover:bg-red-800 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300;
+  }
+
+  /* 术语卡片 */
+  .term-card {
+    @apply bg-surface-800 bg-opacity-50 border border-border-subtle rounded-lg mb-3 overflow-hidden transition-all duration-300;
+  }
+  .term-card:hover {
+    @apply bg-opacity-70;
+  }
+  .term-header {
+    @apply flex items-center justify-between p-4 cursor-pointer select-none hover:bg-surface-700 transition-colors;
+  }
+  .term-body {
+    @apply hidden px-4 pb-4 space-y-3;
+  }
+  .term-card.open .term-body {
+    @apply block;
+  }
+  .term-card.open .term-header {
+    @apply border-b border-border-subtle;
+  }
+
+  /* 预测卡片 */
+  .pred-card {
+    @apply bg-surface-800 bg-opacity-60 border border-border-subtle rounded-lg mb-5 overflow-hidden;
+  }
+  .pred-card-header {
+    @apply p-4 bg-gold-500 bg-opacity-5 border-b border-border-subtle flex items-center gap-3;
+  }
+  .pred-card-body {
+    @apply hidden p-4;
+  }
+  .pred-card.open .pred-card-body {
+    @apply block;
+  }
+  .pred-toggle {
+    @apply flex justify-between items-center p-3 cursor-pointer text-text-secondary text-sm border-t border-border-subtle hover:bg-surface-800 transition-colors;
+  }
+  .dim-num {
+    @apply w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm text-white flex-shrink-0;
+    background: linear-gradient(135deg, var(--gold), #9a6d0a);
+  }
+
+  /* 仪表盘 */
+  .dash-row {
+    @apply flex items-center gap-3 mb-3;
+  }
+  .dash-bar-wrap {
+    @apply flex-1 h-2.5 bg-surface-700 rounded-full overflow-hidden;
+  }
+  .dash-bar-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+
+  /* 状态栏 */
+  .statusbar {
+    @apply fixed bottom-0 left-0 right-0 h-9 bg-surface-800 border-t border-border-subtle flex items-center justify-between px-5 text-xs text-text-muted z-50;
+  }
+  .status-dot {
+    @apply inline-block w-1.5 h-1.5 bg-cyan-500 rounded-full mr-1.5;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  /* 汉堡菜单 */
+  .mobile-toggle {
+    @apply hidden fixed top-3 left-3 z-50 w-9 h-9 bg-surface-800 border border-border-subtle rounded text-text-primary text-lg items-center justify-center cursor-pointer;
+  }
+
+  /* 搜索 */
+  .search-input {
+    @apply w-full bg-surface-900 border border-border-subtle rounded-lg px-4 py-2.5 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-gold-500 transition-colors;
+  }
+
+  /* 输入框 */
+  .input-field {
+    @apply w-full bg-surface-900 border border-border-subtle rounded-lg px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-gold-500 transition-colors;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 4px #b8860b, 0 0 8px #b8860b; }
+  100% { text-shadow: 0 0 8px #b8860b, 0 0 16px #b8860b, 0 0 24px #b8860b; }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@media (max-width: 768px) {
+  .mobile-toggle { @apply flex; }
+  .sidebar {
+    @apply fixed top-0 left-0 bottom-0 z-40 w-64 transform -translate-x-full transition-transform duration-300 bg-surface-900 border-r border-border-subtle overflow-y-auto;
+  }
+  .sidebar.open {
+    @apply translate-x-0;
+  }
+  .main-content {
+    @apply pt-14 px-4;
+  }
+  .card-grid {
+    @apply grid-cols-1;
+  }
+  .dash-row { @apply gap-2; }
+}
