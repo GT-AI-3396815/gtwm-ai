@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabase';
 import { EXTERNAL_LINKS } from '@/lib/data';
 
 export default function GenerateSection() {
@@ -11,8 +10,6 @@ export default function GenerateSection() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
-
-  const supabase = createClient();
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;

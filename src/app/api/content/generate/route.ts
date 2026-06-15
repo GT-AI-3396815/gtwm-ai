@@ -1,15 +1,8 @@
 import { NextResponse } from 'next/server';
-import { createServerSupabase, createServiceRoleSupabase } from '@/lib/supabase-server';
+import { createServiceRoleSupabase } from '@/lib/supabase-server';
 
 export async function POST(request: Request) {
   try {
-    const supabase = createServerSupabase();
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (!session) {
-      return NextResponse.json({ error: '未登录' }, { status: 401 });
-    }
-
     const { prompt, category } = await request.json();
     if (!prompt || !category) {
       return NextResponse.json({ error: '参数不完整' }, { status: 400 });
@@ -55,7 +48,7 @@ export async function POST(request: Request) {
     const { error: insertError } = await serviceSupabase
       .from('generated_content')
       .insert({
-        user_id: session.user.id,
+        user_id: 'anonymous',
         prompt: prompt.trim(),
         category,
         result,

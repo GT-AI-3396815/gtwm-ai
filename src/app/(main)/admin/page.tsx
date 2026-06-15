@@ -1,8 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase';
 
 interface User {
   id: string;
@@ -15,16 +13,6 @@ export default function AdminPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const router = useRouter();
-  const supabase = createClient();
-
-  const checkAuth = useCallback(async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) { router.push('/auth/login?redirect=/admin'); return false; }
-    const { data: profile } = await supabase.from('profiles').select('role').eq('id', session.user.id).single();
-    if (!profile || profile.role !== 'admin') { router.push('/'); return false; }
-    return true;
-  }, [supabase, router]);
 
   const fetchUsers = useCallback(async () => {
     setLoading(true);
@@ -40,8 +28,8 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    checkAuth().then(ok => { if (ok) fetchUsers(); });
-  }, [checkAuth, fetchUsers]);
+    fetchUsers();
+  }, [fetchUsers]);
 
   const updateUserRole = async (userId: string, role: string) => {
     try {

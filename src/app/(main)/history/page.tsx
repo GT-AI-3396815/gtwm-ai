@@ -1,8 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase';
 
 interface ContentItem {
   id: string;
@@ -17,14 +15,6 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
-  const router = useRouter();
-  const supabase = createClient();
-
-  const checkAuth = useCallback(async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) { router.push('/auth/login?redirect=/history'); return false; }
-    return true;
-  }, [supabase, router]);
 
   const fetchHistory = useCallback(async () => {
     setLoading(true);
@@ -39,8 +29,8 @@ export default function HistoryPage() {
   }, []);
 
   useEffect(() => {
-    checkAuth().then(ok => { if (ok) fetchHistory(); });
-  }, [checkAuth, fetchHistory]);
+    fetchHistory();
+  }, [fetchHistory]);
 
   const toggleExpand = (id: string) => {
     setExpanded(prev => {

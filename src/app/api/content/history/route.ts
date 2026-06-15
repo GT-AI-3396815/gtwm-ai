@@ -1,19 +1,12 @@
 import { NextResponse } from 'next/server';
-import { createServerSupabase } from '@/lib/supabase-server';
+import { createServiceRoleSupabase } from '@/lib/supabase-server';
 
 export async function GET() {
   try {
-    const supabase = createServerSupabase();
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (!session) {
-      return NextResponse.json({ error: '未登录' }, { status: 401 });
-    }
-
+    const supabase = createServiceRoleSupabase();
     const { data: items, error } = await supabase
       .from('generated_content')
       .select('id, prompt, category, result, created_at')
-      .eq('user_id', session.user.id)
       .order('created_at', { ascending: false })
       .limit(50);
 
