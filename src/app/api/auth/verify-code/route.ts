@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceRoleSupabase } from '@/lib/supabase-server';
+import crypto from 'crypto';
 
 export async function POST(request: Request) {
   try {
@@ -33,25 +34,36 @@ export async function POST(request: Request) {
       .update({ used: true })
       .eq('id', record.id);
 
+    // 生成随机密码用于登录
+    const password = crypto.randomBytes(16).toString('hex');
+
     // 创建/查找用户
     const { data: { user }, error: signError } = await supabase.auth.admin.createUser({
       phone: phone,
       phone_confirm: true,
+      password: password,
     });
 
-    // 如果已存在则查找
     let authUser = user;
-    if (signError && signError.message.includes('already')) {
-      const { data: existing } = await supabase.auth.admin.listUsers();
-      const found = existing?.users?.find((u) => u.phone === phone);
-      if (found) authUser = found;
+    if (signError) {
+      if (signError.message.includes('already')) {
+        const { data: existing } = await supabase.auth.admin.listUsers();
+        const found = existing?.users?.find((u) => u.phone === phone);
+        if (found) {
+          authUser = found;
+          await supabase.auth.admin.updateUserById(found.id, { password });
+        }
+      } else {
+        console.error('Create user error:', signError);
+        return NextResponse.json({ error: '用户创建失败' }, { status: 500 });
+      }
     }
 
     if (!authUser) {
       return NextResponse.json({ error: '用户创建失败' }, { status: 500 });
     }
 
-    // 如果提供了邀请码，绑定使用
+    // 绑定邀请码
     if (record.invite_code) {
       await supabase
         .from('invite_codes')
@@ -63,7 +75,8 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       phone,
-      user_id: authUser.id
+      user_id: authUser.id,
+      password,
     });
   } catch (error) {
     console.error('Verify code error:', error);

@@ -50,10 +50,12 @@ function LoginForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || '验证失败');
 
-      await supabase.auth.setSession({
-        access_token: data.session.access_token,
-        refresh_token: data.session.refresh_token,
+      // 用 API 返回的密码登录以创建 Supabase session
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        phone: phone.trim(),
+        password: data.password,
       });
+      if (signInError) throw new Error(signInError.message);
 
       const redirect = searchParams.get('redirect') || '/';
       router.push(redirect);
