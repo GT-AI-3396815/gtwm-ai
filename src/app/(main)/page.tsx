@@ -3,9 +3,7 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import WorldviewSection from '@/components/WorldviewSection';
-import DictionarySection from '@/components/DictionarySection';
 import GenerateSection from '@/components/GenerateSection';
-import PredictionSection from '@/components/PredictionSection';
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -13,12 +11,8 @@ function HomeContent() {
 
   const renderSection = () => {
     switch (section) {
-      case 'dictionary':
-        return <DictionarySection />;
       case 'generate':
         return <GenerateSection />;
-      case 'prediction':
-        return <PredictionSection />;
       default:
         return <WorldviewSection />;
     }

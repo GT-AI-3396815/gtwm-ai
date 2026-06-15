@@ -7,10 +7,8 @@ import { EXTERNAL_LINKS } from '@/lib/data';
 
 const NAV_ITEMS = [
   { id: 'worldview', label: '宇宙观', icon: '◈', href: '/?section=worldview' },
-  { id: 'dictionary', label: '术语词典', icon: '◉', href: '/?section=dictionary' },
   { id: 'generate', label: '内容生成', icon: '✧', external: EXTERNAL_LINKS.generate },
   { id: 'ip', label: 'IP打造', icon: '★', external: EXTERNAL_LINKS.ip },
-  { id: 'prediction', label: '未来预测', icon: '☼', href: '/?section=prediction' },
   { id: 'talent', label: '天赋测试', icon: '♆', external: EXTERNAL_LINKS.talent },
   { id: 'decode', label: '光体解码', icon: '☽', external: EXTERNAL_LINKS.decode },
   { id: 'sound', label: '光体音流', icon: '♫', external: EXTERNAL_LINKS.sound },
