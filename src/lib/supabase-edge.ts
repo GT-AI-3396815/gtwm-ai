@@ -1,5 +1,6 @@
 // ============================================
-// Supabase 服务端客户端（Server Components / API Routes）
+// Supabase Edge 兼容客户端（Middleware / Server Components）
+// 仅依赖 @supabase/ssr，可安全在 Edge Runtime 运行
 // ============================================
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
@@ -25,16 +26,3 @@ export function createServerSupabase() {
     }
   );
 }
-
-// Service role client（绕过 RLS，仅用于 API Routes）
-import { createClient as createSupabaseClient } from '@supabase/supabase-js';
-
-export function createServiceClient() {
-  return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
-}
-
-// 别名，保持 API Routes 中名称一致
-export const createServiceRoleSupabase = createServiceClient;

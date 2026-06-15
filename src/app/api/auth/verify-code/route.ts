@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     let authUser = user;
     if (signError && signError.message.includes('already')) {
       const { data: existing } = await supabase.auth.admin.listUsers();
-      const found = existing?.users?.find((u: { phone: string }) => u.phone === phone);
+      const found = existing?.users?.find((u) => u.phone === phone);
       if (found) authUser = found;
     }
 
@@ -58,23 +58,6 @@ export async function POST(request: Request) {
         .update({ is_used: true, used_by: phone })
         .eq('code', record.invite_code)
         .eq('is_used', false);
-    }
-
-    // 生成 JWT session
-    const { data: tokenData, error: tokenError } = await supabase.auth.admin.generateLink({
-      type: 'signup',
-      phone: phone,
-    });
-
-    // 使用 signInWithPassword 的替代方案：直接用 admin API 签发 session
-    const { data: sessionData, error: sessionError } = await supabase.auth.admin.createUser({
-      phone,
-      phone_confirm: true,
-      user_metadata: { login_at: new Date().toISOString() },
-    });
-
-    if (sessionError && !sessionError.message.includes('already')) {
-      return NextResponse.json({ error: '登录失败' }, { status: 500 });
     }
 
     return NextResponse.json({
