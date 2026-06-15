@@ -15,14 +15,23 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '密码至少6位' }, { status: 400 });
     }
 
+    // 邀请码必填
+    if (!invite_code || !invite_code.trim()) {
+      return NextResponse.json({ error: '请输入邀请码' }, { status: 400 });
+    }
+
+    const trimmedCode = invite_code.trim();
+    const isUniversalCode = trimmedCode === 'gts3396815';
+    let needBindInvite = false;
+
     const supabase = createServiceRoleSupabase();
 
-    // 如果提供了邀请码，验证有效性
-    if (invite_code) {
+    // 非通用邀请码走数据库验证
+    if (!isUniversalCode) {
       const { data: invite } = await supabase
         .from('invite_codes')
         .select('id, is_used')
-        .eq('code', invite_code.trim())
+        .eq('code', trimmedCode)
         .single();
 
       if (!invite) {
@@ -31,6 +40,7 @@ export async function POST(request: Request) {
       if (invite.is_used) {
         return NextResponse.json({ error: '邀请码已被使用' }, { status: 400 });
       }
+      needBindInvite = true;
     }
 
     // 创建用户
@@ -52,12 +62,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '注册失败，请稍后重试' }, { status: 500 });
     }
 
-    // 绑定邀请码
-    if (invite_code) {
+    // 仅非通用邀请码需要绑定
+    if (needBindInvite) {
       await supabase
         .from('invite_codes')
         .update({ is_used: true, used_by: phone.trim() })
-        .eq('code', invite_code.trim())
+        .eq('code', trimmedCode)
         .eq('is_used', false);
     }
 

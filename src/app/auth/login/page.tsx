@@ -15,6 +15,7 @@ function LoginForm() {
   // 注册字段
   const [regPhone, setRegPhone] = useState('');
   const [regPassword, setRegPassword] = useState('');
+  const [regPasswordConfirm, setRegPasswordConfirm] = useState('');
   const [inviteCode, setInviteCode] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -204,19 +205,30 @@ function LoginForm() {
               />
             </div>
             <div>
-              <label className="text-sm text-text-muted block mb-1">邀请码（选填）</label>
+              <label className="text-sm text-text-muted block mb-1">确认密码</label>
+              <input
+                type="password"
+                value={regPasswordConfirm}
+                onChange={(e) => setRegPasswordConfirm(e.target.value)}
+                placeholder="再次输入密码"
+                className="input-field"
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <label className="text-sm text-text-muted block mb-1">邀请码 <span className="text-red-400">*</span></label>
               <input
                 type="text"
                 value={inviteCode}
                 onChange={(e) => setInviteCode(e.target.value.trim())}
-                placeholder="如有邀请码请在此输入"
+                placeholder="输入邀请码"
                 className="input-field"
                 disabled={loading}
               />
             </div>
             <button
               type="submit"
-              disabled={loading || !regPhone || !regPassword}
+              disabled={loading || !regPhone || !regPassword || !regPasswordConfirm || !inviteCode}
               className="btn-primary w-full disabled:opacity-50"
             >
               {loading ? '注册中...' : '注册'}
