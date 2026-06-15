@@ -43,11 +43,19 @@ export async function POST(request: Request) {
       needBindInvite = true;
     }
 
-    // 创建用户
+    // 手机号转 E.164 格式（Supabase Admin API 要求）
+    const e164Phone = phone.trim().startsWith('+') ? phone.trim() : `+86${phone.trim()}`;
+
+    // 生成虚拟邮箱，走 email 注册通道（绕过 phone provider 未启用问题）
+    const virtualEmail = `${e164Phone.replace('+', '')}@phone.local`;
+
+    // 创建用户（同时走 email + phone 双通道）
     const { data, error: createError } = await supabase.auth.admin.createUser({
-      phone: phone.trim(),
-      phone_confirm: true,
+      email: virtualEmail,
+      email_confirm: true,
       password,
+      phone: e164Phone,
+      user_metadata: { phone: e164Phone },
     });
 
     if (createError) {
@@ -55,7 +63,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: '该手机号已注册' }, { status: 409 });
       }
       console.error('Create user error:', createError);
-      return NextResponse.json({ error: '注册失败，请稍后重试' }, { status: 500 });
+      return NextResponse.json({ error: `注册失败: ${createError.message}` }, { status: 500 });
     }
 
     if (!data?.user) {
