@@ -13,6 +13,7 @@ function LoginForm() {
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(0);
   const [inviteCode, setInviteCode] = useState('');
+  const [devCode, setDevCode] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
@@ -30,6 +31,7 @@ function LoginForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || '发送失败');
       setSent(true);
+      if (data.dev_code) setDevCode(data.dev_code);
       setCountdown(60);
       const timer = setInterval(() => setCountdown(prev => { if (prev <= 1) { clearInterval(timer); return 0; } return prev - 1; }), 1000);
     } catch (err: unknown) {
@@ -116,6 +118,11 @@ function LoginForm() {
                   className="input-field"
                 />
               </div>
+              {devCode && (
+                <div className="p-2 bg-yellow-900 bg-opacity-20 border border-yellow-800 rounded-lg text-yellow-400 text-sm text-center">
+                  验证码：<span className="font-mono font-bold text-lg tracking-wider">{devCode}</span>
+                </div>
+              )}
               <button onClick={verifyCode} disabled={loading || code.length !== 6} className="btn-primary w-full disabled:opacity-50">
                 {loading ? '验证中...' : '登录 / 注册'}
               </button>
