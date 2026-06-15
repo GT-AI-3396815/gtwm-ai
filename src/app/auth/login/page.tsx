@@ -39,8 +39,10 @@ function LoginForm() {
 
     setLoading(true);
     try {
+      // 手机号转虚拟邮箱登录（与注册通道保持一致）
+      const loginEmail = `${loginPhone.trim()}@phone.example.com`;
       const { error: signInError } = await supabase.auth.signInWithPassword({
-        phone: loginPhone.trim(),
+        email: loginEmail,
         password: loginPassword,
       });
       if (signInError) {
@@ -77,27 +79,56 @@ function LoginForm() {
       return;
     }
 
+    // 邀请码校验：通用码 gts3396815 直接放行，其他码暂未接入数据库验证
+    const trimmedCode = inviteCode.trim();
+    if (!trimmedCode) {
+      setError('请输入邀请码');
+      return;
+    }
+    if (trimmedCode !== 'gts3396815') {
+      setError('邀请码无效');
+      return;
+    }
+
     setLoading(true);
     try {
-      // 调用注册 API
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phone: regPhone.trim(),
-          password: regPassword,
-          invite_code: inviteCode.trim() || undefined,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || '注册失败');
+      // 手机号转虚拟邮箱，走 Supabase email 注册通道
+      const virtualEmail = `${regPhone.trim()}@phone.example.com`;
 
-      // 注册成功后自动登录
+      // 前端直调 Supabase signUp（ANON KEY，不依赖 service_role）
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email: virtualEmail,
+        password: regPassword,
+        options: {
+          data: { phone: regPhone.trim() },
+        },
+      });
+
+      if (signUpError) {
+        if (signUpError.message.toLowerCase().includes('already')) {
+          throw new Error('该手机号已注册');
+        }
+        throw new Error(signUpError.message);
+      }
+
+      // 注册成功后尝试自动登录
+      if (data.session) {
+        // 邮箱确认已关闭 → 直接登录成功
+        const redirect = searchParams.get('redirect') || '/';
+        router.push(redirect);
+        router.refresh();
+        return;
+      }
+
+      // 邮箱确认开启 → 尝试密码登录
       const { error: signInError } = await supabase.auth.signInWithPassword({
-        phone: regPhone.trim(),
+        email: virtualEmail,
         password: regPassword,
       });
-      if (signInError) throw new Error(signInError.message);
+
+      if (signInError) {
+        throw new Error('注册成功！由于邮箱确认已开启，请联系管理员手动确认您的账号。');
+      }
 
       const redirect = searchParams.get('redirect') || '/';
       router.push(redirect);
