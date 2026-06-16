@@ -18,15 +18,40 @@ export default function GenerateSection() {
     setSaved(false);
 
     try {
-      const res = await fetch('/api/content/generate', {
+      const apiKey = process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY;
+      const model = process.env.NEXT_PUBLIC_DEEPSEEK_MODEL || 'deepseek-chat';
+
+      if (!apiKey) throw new Error('API Key 未配置');
+
+      const systemPrompt = `你是光体文明的智能创作助手。你基于光体文明的世界观体系进行内容创作。
+光体文明核心理念：以光为介质、以意识为结构的高维存在形式。人类是潜能光体，需要通过意识觉醒实现升维。
+请在以下类别中创作：${category}。保持简洁有深度的风格，200-500字。`;
+
+      const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: prompt.trim(), category })
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: prompt.trim() }
+          ],
+          temperature: 0.7,
+          max_tokens: 1024,
+        }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || '生成失败');
-      setResult(data.result);
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`API 错误(${res.status}): ${errText.slice(0, 200)}`);
+      }
+
+      const dsData = await res.json();
+      const content = dsData.choices?.[0]?.message?.content || '生成结果为空';
+      setResult(content);
       setSaved(true);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : '生成失败';
