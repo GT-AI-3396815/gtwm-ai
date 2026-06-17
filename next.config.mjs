@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/lightbody-website',
+  basePath: '/gtwm-ai',
   images: {
     unoptimized: true,
     remotePatterns: [
