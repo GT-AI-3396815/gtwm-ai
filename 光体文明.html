@@ -377,7 +377,7 @@ function renderWorldview(){
 }
 
 function renderDictionary(){
-  var h='<div class="section-header"><h2>术语词典</h2><p class="desc">12个核心术语，构成光体文明认知体系的语义基座</p></div>';
+  var h='<div class="section-header"><h2>术语词典</h2><p class="desc">33个核心术语，构成光体文明认知体系的语义基座</p></div>';
   h+='<div class="card"><div class="search-bar"><input type="text" id="dictSearch" placeholder="搜索术语..." oninput="filterDictionary()"></div><div class="filter-row"><button class="filter-btn active" onclick="filterByLetter(\'all\',this)">全部</button>';
   var letters=[];DATA.dictionary.forEach(function(t){if(letters.indexOf(t.letter)<0)letters.push(t.letter)});letters.sort();
   letters.forEach(function(l){h+='<button class="filter-btn" onclick="filterByLetter(\''+l+'\',this)">'+l+'</button>'});
