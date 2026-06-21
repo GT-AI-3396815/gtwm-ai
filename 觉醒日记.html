@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>觉醒日记 · 2027地球扬升实录</title>
+<style>
+/* ===== FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-dark: #0d0a07;
+  --bg-medium: #1a1410;
+  --bg-light: #2a2218;
+  --gold: #c9a96e;
+  --gold-light: #e8d5a3;
+  --gold-dark: #8b6914;
+  --text-primary: #d4c5a9;
+  --text-muted: #8a7b65;
+  --text-dim: #5a4d3a;
+  --accent: #8b4513;
+  --candle: #ff8c42;
+  --candle-glow: rgba(255,140,66,0.15);
+  --parchment: #f4e4c1;
+  --parchment-dark: #e8d5a3;
+  --border-ornate: #6b5b3a;
+  --shadow-deep: rgba(0,0,0,0.6);
+}
+
+/* ===== BASE ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ===== AMBIENT BACKGROUND ===== */
+.ambient-layer {
+  position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
+}
+.ambient-bg {
+  position: absolute; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(ellipse at 50% 30%, #1a1410 0%, #0d0a07 60%, #050302 100%);
+}
+/* Candle light effect */
+.candle-light {
+  position: absolute; top: -15%; left: 50%; transform: translateX(-50%);
+  width: 60vw; height: 80vh;
+  background: radial-gradient(ellipse at 50% 20%, rgba(255,140,66,0.08) 0%, rgba(255,140,66,0.03) 40%, transparent 70%);
+  animation: flicker 4s ease-in-out infinite alternate;
+}
+@keyframes flicker {
+  0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  25% { opacity: 0.7; transform: translateX(-50%) scale(1.02); }
+  50% { opacity: 0.45; transform: translateX(-50%) scale(0.98); }
+  75% { opacity: 0.65; transform: translateX(-50%) scale(1.01); }
+  100% { opacity: 0.55; transform: translateX(-50%) scale(1); }
+}
+
+/* Floating particles (dust motes in candlelight) */
+.mote {
+  position: absolute; width: 2px; height: 2px; background: var(--gold-light);
+  border-radius: 50%; animation: float-up linear infinite; opacity: 0;
+}
+@keyframes float-up {
+  0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(50vh) translateX(30px) scale(1); opacity: 0.3; }
+  90% { opacity: 0; }
+  100% { transform: translateY(-10vh) translateX(-20px) scale(0); opacity: 0; }
+}
+
+/* ===== STUDY ROOM FRAME ===== */
+.study-room {
+  position: relative; z-index: 1;
+  max-width: 1000px; margin: 0 auto; padding: 20px;
+}
+/* Bookshelf side decoration */
+.bookshelf-left, .bookshelf-right {
+  position: fixed; top:0; width: 60px; height: 100%; z-index: 0;
+  background: linear-gradient(90deg, #1a1410 0%, #15100c 50%, transparent 100%);
+  border-right: 2px solid var(--border-ornate);
+}
+.bookshelf-left { left: 0; }
+.bookshelf-right { right: 0; border-right: none; border-left: 2px solid var(--border-ornate);
+  background: linear-gradient(270deg, #1a1410 0%, #15100c 50%, transparent 100%);
+}
+
+/* ===== BOOK CONTAINER ===== */
+.book-container {
+  position: relative; z-index: 1;
+  margin: 40px auto; max-width: 860px;
+  background: linear-gradient(135deg, #3d2b1a 0%, #2a1f14 30%, #1a1410 60%, #2a1f14 100%);
+  border-radius: 4px 12px 12px 4px;
+  box-shadow:
+    0 0 0 2px #5a3d20,
+    0 0 0 6px #2a1f14,
+    0 0 0 8px #6b4c2a,
+    8px 8px 30px rgba(0,0,0,0.7),
+    -4px 4px 20px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+/* Leather binding spine */
+.book-spine {
+  position: absolute; left:0; top:0; width: 8px; height:100%;
+  background: linear-gradient(90deg, #4a3020, #3d2518, #4a3020);
+  border-right: 1px solid #6b4c2a;
+  z-index: 2;
+}
+
+/* Cover page */
+.book-cover {
+  position: relative; padding: 60px 50px; text-align: center;
+  background: linear-gradient(180deg, #2a1f14 0%, #3d2b1a 30%, #1a1410 100%);
+  border-bottom: 3px double var(--gold-dark);
+  min-height: 80vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+}
+.cover-ornament-top, .cover-ornament-bottom {
+  font-family: 'Cinzel', serif;
+  color: var(--gold-dark); font-size: 1.2rem; letter-spacing: 0.3em;
+}
+.cover-title {
+  font-family: 'Cinzel', 'ZCOOL XiaoWei', serif;
+  font-size: 2.6rem; font-weight: 900; color: var(--gold-light);
+  text-shadow: 0 2px 8px var(--candle-glow), 0 0 30px rgba(201,169,110,0.3);
+  letter-spacing: 0.15em; line-height: 1.4; margin: 30px 0;
+}
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-size: 1.3rem; color: var(--gold); font-style: italic;
+  letter-spacing: 0.2em; margin-bottom: 20px;
+}
+.cover-divider {
+  width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 25px auto;
+}
+.cover-author {
+  font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+  font-size: 1.5rem; color: var(--text-primary); margin-top: 15px;
+}
+.cover-date {
+  font-size: 1rem; color: var(--text-muted); margin-top: 10px; letter-spacing: 0.3em;
+}
+.cover-quote {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-size: 1.1rem; color: var(--text-dim); font-style: italic;
+  margin-top: 40px; line-height: 1.8;
+  border-top: 1px solid var(--border-ornate);
+  border-bottom: 1px solid var(--border-ornate);
+  padding: 20px 0; max-width: 500px;
+}
+.cover-stamp {
+  font-family: 'Cinzel', serif;
+  display: inline-block; border: 2px solid var(--gold-dark);
+  padding: 10px 30px; margin-top: 30px;
+  color: var(--gold-dark); font-size: 0.8rem;
+  letter-spacing: 0.4em; transform: rotate(-3deg);
+}
+
+/* ===== PAGE STYLING ===== */
+.page {
+  position: relative;
+  background: linear-gradient(180deg,
+    rgba(244,228,193,0.12) 0%,
+    rgba(232,213,163,0.08) 50%,
+    rgba(244,228,193,0.1) 100%);
+  padding: 50px 55px;
+  border-bottom: 1px solid rgba(107,91,58,0.3);
+  transition: all 0.3s ease;
+}
+.page:last-child { border-bottom: none; }
+
+/* Parchment texture overlay */
+.page::before {
+  content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,105,20,0.03) 2px, rgba(139,105,20,0.03) 4px),
+    radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.05) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+.page > * { position: relative; z-index: 1; }
+
+/* Ornamental corner decorations */
+.page::after {
+  content: '✦'; position: absolute; bottom: 20px; right: 30px;
+  font-size: 0.8rem; color: var(--text-dim); opacity: 0.3;
+}
+
+/* === Page types === */
+.page-toc { background: linear-gradient(180deg, rgba(244,228,193,0.14) 0%, rgba(232,213,163,0.1) 100%); }
+.page-foreword { font-style: italic; }
+.page-entry { padding: 40px 55px; }
+.page-entry-detailed { padding: 35px 50px; }
+
+/* ===== HEADERS ===== */
+.entry-header {
+  text-align: center; margin-bottom: 25px;
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+  padding-bottom: 20px;
+}
+.entry-day {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--gold-light); letter-spacing: 0.1em;
+}
+.entry-title-text {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-size: 1.3rem; color: var(--gold); font-style: italic;
+  margin-top: 5px;
+}
+.entry-meta {
+  display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;
+}
+.entry-meta span { opacity: 0.8; }
+
+.month-header {
+  text-align: center; margin-bottom: 30px;
+}
+.month-name {
+  font-family: 'Cinzel', 'ZCOOL XiaoWei', serif;
+  font-size: 2rem; font-weight: 900; color: var(--gold-light);
+  letter-spacing: 0.15em;
+}
+.month-theme {
+  font-size: 1.1rem; color: var(--gold); margin-top: 5px; font-style: italic;
+}
+
+/* ===== SECTION LABELS ===== */
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem; color: var(--gold-dark);
+  letter-spacing: 0.3em; text-transform: uppercase;
+  margin-bottom: 10px; text-align: center;
+}
+
+/* ===== CONTENT STYLING ===== */
+.content-block { margin-bottom: 20px; line-height: 1.9; }
+.content-block p {
+  text-indent: 2em; margin-bottom: 10px;
+  font-size: 1.05rem; color: var(--text-primary);
+}
+.content-block h3 {
+  font-family: 'Cinzel', 'Noto Serif SC', serif;
+  font-size: 1.15rem; color: var(--gold);
+  margin: 20px 0 10px; text-align: center;
+  letter-spacing: 0.1em;
+}
+.content-block h3::before { content: '◆ '; font-size: 0.7rem; }
+.content-block h3::after { content: ' ◆'; font-size: 0.7rem; }
+
+/* === Special box: 光体师手记 === */
+.light-master-note {
+  background: rgba(201,169,110,0.06);
+  border-left: 3px solid var(--gold-dark);
+  padding: 20px 25px; margin: 20px 0;
+  font-style: italic; position: relative;
+}
+.light-master-note::before {
+  content: '光体师手记'; font-family: 'Cinzel', serif;
+  font-size: 0.7rem; color: var(--gold-dark);
+  letter-spacing: 0.2em; display: block; margin-bottom: 10px;
+}
+
+/* === Special box: 深度疗愈现场 === */
+.healing-scene {
+  background: rgba(139,69,19,0.06);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 3px;
+  padding: 20px 25px; margin: 20px 0;
+  position: relative;
+}
+.healing-scene::before {
+  content: '深度疗愈现场'; font-family: 'Cinzel', serif;
+  font-size: 0.7rem; color: var(--candle);
+  letter-spacing: 0.2em; display: block; margin-bottom: 10px;
+}
+
+/* === Special box: 心解 === */
+.practice-box {
+  background: rgba(244,228,193,0.05);
+  border: 1px dashed rgba(201,169,110,0.25);
+  padding: 20px 25px; margin: 20px 0; position: relative;
+}
+.practice-box::before {
+  content: '心解 · 练习方法'; font-family: 'Cinzel', serif;
+  font-size: 0.7rem; color: var(--gold); letter-spacing: 0.2em;
+  display: block; margin-bottom: 10px;
+}
+.practice-box h4 { color: var(--gold-light); margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem; }
+
+/* === Special box: 心语 === */
+.heart-words {
+  text-align: center; font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+  font-size: 1.2rem; color: var(--gold-light);
+  padding: 25px 40px; margin: 20px 0;
+  border-top: 1px solid rgba(201,169,110,0.2);
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+  line-height: 2;
+}
+
+/* ===== ORNAMENTAL DIVIDER ===== */
+.ornament-divider {
+  text-align: center; margin: 15px 0; color: var(--text-dim);
+  font-size: 0.7rem; letter-spacing: 0.5em;
+}
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem; color: var(--gold-light);
+  text-align: center; letter-spacing: 0.2em;
+  margin-bottom: 30px;
+}
+.toc-list { list-style: none; }
+.toc-month {
+  padding: 12px 15px; margin: 3px 0;
+  border-bottom: 1px dotted rgba(201,169,110,0.15);
+  cursor: pointer; transition: all 0.3s ease;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc-month:hover {
+  background: rgba(201,169,110,0.05);
+  padding-left: 25px;
+}
+.toc-month-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem; color: var(--gold-dark);
+  min-width: 60px;
+}
+.toc-month-name {
+  font-size: 1.1rem; color: var(--text-primary); flex:1;
+}
+.toc-month-pages {
+  font-size: 0.8rem; color: var(--text-dim);
+}
+.toc-month-theme {
+  font-size: 0.8rem; color: var(--text-muted); font-style: italic;
+}
+
+/* ===== DAY LIST (summary pages) ===== */
+.day-list { list-style: none; columns: 2; column-gap: 30px; }
+@media (max-width: 600px) { .day-list { columns: 1; } }
+.day-item {
+  padding: 6px 0; font-size: 0.92rem; color: var(--text-primary);
+  border-bottom: 1px dotted rgba(201,169,110,0.08);
+  cursor: pointer; transition: padding-left 0.3s;
+}
+.day-item:hover { padding-left: 8px; color: var(--gold-light); }
+.day-num {
+  font-family: 'Cinzel', serif;
+  color: var(--gold-dark); font-size: 0.8rem; margin-right: 8px;
+}
+
+/* ===== AFTERWORD ===== */
+.afterword {
+  text-align: center; padding: 40px;
+}
+.afterword h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem; color: var(--gold-light);
+  margin-bottom: 20px; letter-spacing: 0.15em;
+}
+.afterword p {
+  font-size: 1.15rem; line-height: 2; color: var(--text-primary);
+  font-style: italic; max-width: 600px; margin: 0 auto;
+}
+
+/* ===== NAVIGATION ===== */
+.book-nav {
+  position: sticky; top: 0; z-index: 10;
+  background: linear-gradient(180deg, rgba(13,10,7,0.95), rgba(13,10,7,0.85));
+  backdrop-filter: blur(10px);
+  padding: 10px 20px; display: flex; justify-content: space-between;
+  align-items: center; border-bottom: 1px solid var(--border-ornate);
+}
+.nav-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem; color: var(--gold); letter-spacing: 0.15em;
+}
+.nav-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.nav-btn {
+  font-family: 'Cinzel', serif;
+  background: transparent; border: 1px solid var(--border-ornate);
+  color: var(--text-muted); padding: 5px 12px; font-size: 0.75rem;
+  cursor: pointer; transition: all 0.3s; border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: rgba(201,169,110,0.1); color: var(--gold-light);
+  border-color: var(--gold-dark);
+}
+.page-nav {
+  display: flex; justify-content: center; align-items: center;
+  gap: 15px; padding: 20px; border-top: 1px solid rgba(201,169,110,0.1);
+}
+.page-nav-btn {
+  background: rgba(201,169,110,0.08); border: 1px solid var(--border-ornate);
+  color: var(--text-muted); padding: 8px 20px; font-size: 0.85rem;
+  cursor: pointer; transition: all 0.3s; border-radius: 2px;
+  font-family: 'Cinzel', serif;
+}
+.page-nav-btn:hover { background: rgba(201,169,110,0.15); color: var(--gold-light); }
+.page-indicator {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem; color: var(--text-dim);
+}
+
+/* ===== BOOKMARK ===== */
+.bookmark {
+  position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+  z-index: 20; display: flex; flex-direction: column; gap: 4px;
+}
+.bm-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--border-ornate);
+  cursor: pointer; transition: all 0.3s;
+}
+.bm-dot:hover, .bm-dot.active { background: var(--gold); transform: scale(1.5); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .book-container { margin: 10px; border-radius: 2px 8px 8px 2px; }
+  .page { padding: 30px 25px; }
+  .page-entry-detailed { padding: 25px 20px; }
+  .cover-title { font-size: 1.8rem; }
+  .cover-subtitle { font-size: 1rem; }
+  .entry-day { font-size: 1.3rem; }
+  .heart-words { font-size: 1rem; padding: 15px 20px; }
+  .day-list { columns: 1; }
+  .bookmark { right: 5px; }
+  .nav-title { font-size: 0.75rem; }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--border-ornate); border-radius: 3px; }
+
+/* ===== ANIMATION: PAGE TURN ===== */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page { animation: pageIn 0.5s ease-out; }
+
+/* ===== GEOMETRIC CORNER BORDERS ===== */
+.geo-corner {
+  position: absolute; width: 40px; height: 40px; pointer-events: none;
+  border-color: rgba(201,169,110,0.15);
+}
+.geo-corner-tl { top: 15px; left: 15px; border-top:1px solid; border-left:1px solid; }
+.geo-corner-tr { top: 15px; right: 15px; border-top:1px solid; border-right:1px solid; }
+.geo-corner-bl { bottom: 15px; left: 15px; border-bottom:1px solid; border-left:1px solid; }
+.geo-corner-br { bottom: 15px; right: 15px; border-bottom:1px solid; border-right:1px solid; }
+
+/* ===== GLOW ON HOVER ===== */
+.page:hover { background: linear-gradient(180deg, rgba(244,228,193,0.14) 0%, rgba(232,213,163,0.1) 100%); }
+</style>
+</head>
+<body>
+
+<!-- AMBIENT LAYER -->
+<div class="ambient-layer">
+  <div class="ambient-bg"></div>
+  <div class="candle-light"></div>
+</div>
+
+<!-- BOOKSHELF DECORATIONS -->
+<div class="bookshelf-left"></div>
+<div class="bookshelf-right"></div>
+
+<!-- BOOKMARK SIDEBAR -->
+<div class="bookmark" id="bookmarkBar"></div>
+
+<!-- STUDY ROOM -->
+<div class="study-room">
+
+<!-- NAVIGATION BAR -->
+<nav class="book-nav" id="bookNav">
+  <span class="nav-title">觉醒日记</span>
+  <div class="nav-btns">
+    <button class="nav-btn" onclick="scrollToSection('cover')">封面</button>
+    <button class="nav-btn" onclick="scrollToSection('toc')">目录</button>
+    <button class="nav-btn" onclick="scrollToSection('foreword')">序章</button>
+    <button class="nav-btn" onclick="scrollToSection('month1')">一月</button>
+    <button class="nav-btn" onclick="scrollToSection('month2')">二月</button>
+    <button class="nav-btn" onclick="scrollToSection('month12')">十二月</button>
+    <button class="nav-btn" onclick="scrollToSection('afterword')">后记</button>
+  </div>
+</nav>
+
+<!-- BOOK CONTAINER -->
+<div class="book-container">
+<div class="book-spine"></div>
+
+<!-- ===== COVER ===== -->
+<div class="book-cover" id="cover">
+  <div class="cover-ornament-top">✦ ✦ ✦</div>
+  <h1 class="cover-title">觉 醒 日 记</h1>
+  <p class="cover-subtitle">2027 地球扬升实录</p>
+  <div class="cover-divider"></div>
+  <p class="cover-author">记录者：光体师</p>
+  <p class="cover-date">来自 2035 年的回望</p>
+  <div class="cover-quote">
+    "这本《觉醒日记》，是留给全宇宙的地球扬升档案。"
+  </div>
+  <div class="cover-stamp">第一版 · 2027</div>
+  <p style="margin-top:20px;font-size:0.75rem;color:var(--text-dim);">灵性觉醒类文学作品 · 仅供灵性探索与自我成长参考</p>
+</div>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<div class="page page-toc" id="toc">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <h2 class="toc-title">目 录</h2>
+  <ul class="toc-list">
+    <li class="toc-month" onclick="scrollToSection('foreword')">
+      <span class="toc-month-num"></span>
+      <span class="toc-month-name">序章：来自 2035 年的回望</span>
+      <span class="toc-month-pages">1</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month1')">
+      <span class="toc-month-num">一月</span>
+      <span class="toc-month-name">自我与觉醒 —— 找回失落的真我</span>
+      <span class="toc-month-pages">3</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month2')">
+      <span class="toc-month-num">二月</span>
+      <span class="toc-month-name">家庭与血脉 —— 清理业力羁绊</span>
+      <span class="toc-month-pages">15</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month3')">
+      <span class="toc-month-num">三月</span>
+      <span class="toc-month-name">情感与连接 —— 爱的能量流动</span>
+      <span class="toc-month-pages">27</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month4')">
+      <span class="toc-month-num">四月</span>
+      <span class="toc-month-name">事业与创造 —— 显化的法则</span>
+      <span class="toc-month-pages">39</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month5')">
+      <span class="toc-month-num">五月</span>
+      <span class="toc-month-name">财富与资源 —— 丰盛的频率</span>
+      <span class="toc-month-pages">51</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month6')">
+      <span class="toc-month-num">六月</span>
+      <span class="toc-month-name">身体与健康 —— 圣殿的维护</span>
+      <span class="toc-month-pages">63</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month7')">
+      <span class="toc-month-num">七月</span>
+      <span class="toc-month-name">科技与未来 —— 工具与主宰</span>
+      <span class="toc-month-pages">75</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month8')">
+      <span class="toc-month-num">八月</span>
+      <span class="toc-month-name">社会与文化 —— 集体意识的进化</span>
+      <span class="toc-month-pages">87</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month9')">
+      <span class="toc-month-num">九月</span>
+      <span class="toc-month-name">战争与和平 —— 二元对立的超越</span>
+      <span class="toc-month-pages">99</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month10')">
+      <span class="toc-month-num">十月</span>
+      <span class="toc-month-name">环保与自然 —— 盖亚母亲的连接</span>
+      <span class="toc-month-pages">111</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month11')">
+      <span class="toc-month-num">十一月</span>
+      <span class="toc-month-name">生死与轮回 —— 跨越维度的旅行</span>
+      <span class="toc-month-pages">123</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('month12')">
+      <span class="toc-month-num">十二月</span>
+      <span class="toc-month-name">合一与升维 —— 成为地球的光</span>
+      <span class="toc-month-pages">135</span>
+    </li>
+    <li class="toc-month" onclick="scrollToSection('afterword')">
+      <span class="toc-month-num"></span>
+      <span class="toc-month-name">后记 · 文明升维的三大核心启示</span>
+      <span class="toc-month-pages">147</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ===== FOREWORD ===== -->
+<div class="page page-foreword" id="foreword">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">序 章</div>
+  <h2 style="font-family:'Cinzel','Noto Serif SC',serif;font-size:1.5rem;color:var(--gold-light);text-align:center;margin-bottom:25px;letter-spacing:0.1em;">来自 2035 年的回望</h2>
+
+  <div class="content-block">
+    <p>我是"光"，在地球上，人们曾叫我"光体师"。现在是 2035 年，我坐在光体星球的透明悬浮舱中，看着全息影像里那颗蔚蓝的星球——地球。它现在散发着柔和的紫金色光芒，那是文明升维后的特征。但在我的记忆里，2027 年，它曾处在剧烈的阵痛期。</p>
+
+    <p>那一年，旧世界的崩塌与新世界的萌芽同时发生。焦虑、恐惧、迷茫像厚重的雾霾笼罩着人类集体意识。作为光体师，我降临地球，化身为一名隐居城市的能量疗愈师。我的诊室没有药物，只有频率；我的处方没有文字，只有能量的共振。</p>
+
+    <p>我记录下了那 365 天。每一天，我都面对一个渴望光明的灵魂；每一天，都是一次从三维困境向五维智慧的飞跃。</p>
+
+    <p>这本《觉醒日记》，是留给全宇宙的地球扬升档案。</p>
+  </div>
+
+  <div class="ornament-divider">◆ ◇ ◆</div>
+
+  <p style="text-align:center;font-size:0.9rem;color:var(--text-muted);">
+    记录者：光体师（来自 2035 年的回望）<br>
+    地点：地球 · 能量疗愈室<br>
+    时间：2027 年 1 月 1 日 — 12 月 31 日
+  </p>
+</div>
+
+
+<!-- ===== MONTH 1: JANUARY ===== -->
+<div class="page" id="month1">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">一 月</div>
+  <div class="month-header">
+    <h2 class="month-name">自我与觉醒</h2>
+    <p class="month-theme">找回失落的真我</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:5px;">本月重点：身份认同 · 小我机制 · 情绪管理 · 潜意识清理</p>
+  </div>
+
+  <h3 style="text-align:center;color:var(--gold);margin:20px 0;font-family:'Cinzel',serif;letter-spacing:0.15em;">一月日记目录</h3>
+  <ul class="day-list">
+    <li class="day-item" onclick="scrollToSection('day001')"><span class="day-num">001</span>我是谁？——剥离社会标签的我是什么样子</li>
+    <li class="day-item" onclick="scrollToSection('day002')"><span class="day-num">002</span>身体不是我——它只是灵魂在地球的宇航服</li>
+    <li class="day-item" onclick="scrollToSection('day003')"><span class="day-num">003</span>那个叫"小我"的声音——识别头脑中的喋喋不休</li>
+    <li class="day-item" onclick="scrollToSection('day004')"><span class="day-num">004</span>为什么我不快乐？——快乐是本性，不快乐是由于抗拒</li>
+    <li class="day-item" onclick="scrollToSection('day005')"><span class="day-num">005</span>接纳不完美的自己——自我批判是最大的内耗</li>
+    <li class="day-item" onclick="scrollToSection('day006')"><span class="day-num">006</span>假装坚强——面具戴久了，脸会痛</li>
+    <li class="day-item" onclick="scrollToSection('day007')"><span class="day-num">007</span>讨好型人格——把力量交出去的成瘾症</li>
+    <li class="day-item" onclick="scrollToSection('day008')"><span class="day-num">008</span>愤怒的真相——愤怒是守护边界的看门狗</li>
+    <li class="day-item" onclick="scrollToSection('day009')"><span class="day-num">009</span>悲伤的河流——允许眼泪流动，那是灵魂的排毒</li>
+    <li class="day-item" onclick="scrollToSection('day010')"><span class="day-num">010</span>焦虑的解药——焦虑是因为你活在未来，不在当下</li>
+    <li class="day-item" onclick="scrollToSection('day011')"><span class="day-num">011</span>嫉妒的转化——嫉妒在告诉你：你也想要那个</li>
+    <li class="day-item" onclick="scrollToSection('day012')"><span class="day-num">012</span>羞耻感——那个说"我不配"的内在小孩</li>
+    <li class="day-item" onclick="scrollToSection('day013')"><span class="day-num">013</span>拥抱内在小孩——回溯童年，给当年的自己一个拥抱</li>
+    <li class="day-item" onclick="scrollToSection('day014')"><span class="day-num">014</span>潜意识的冰山——你人生的剧本 95%由它编写</li>
+    <li class="day-item" onclick="scrollToSection('day015')"><span class="day-num">015</span>修改信念代码——如何改写"我不够好"的底层程序</li>
+    <li class="day-item"><span class="day-num">016</span>直觉的微声——区分头脑的算计与灵魂的指引</li>
+    <li class="day-item"><span class="day-num">017</span>梦境的启示——梦是高维空间发来的私信</li>
+    <li class="day-item"><span class="day-num">018</span>巧合与共时性——宇宙在向你眨眼睛</li>
+    <li class="day-item"><span class="day-num">019</span>什么是能量？——万物皆振动，频率即命运</li>
+    <li class="day-item"><span class="day-num">020</span>霍金斯能量层级——测量你现在的灵魂电压</li>
+    <li class="day-item"><span class="day-num">021</span>冥想入门——不是放空，而是回家</li>
+    <li class="day-item"><span class="day-num">022</span>呼吸的力量——连接身体与意识的桥梁</li>
+    <li class="day-item"><span class="day-num">023</span>独处的艺术——从寂寞到孤独，再到圆满</li>
+    <li class="day-item"><span class="day-num">024</span>停止受害者模式——拿回你人生的遥控器</li>
+    <li class="day-item"><span class="day-num">025</span>原谅自己——你当时已经尽力了</li>
+    <li class="day-item"><span class="day-num">026</span>你的天赋才华——寻找你做起来会发光的事</li>
+    <li class="day-item"><span class="day-num">027</span>相信的力量——信念创造实相的量子物理学</li>
+    <li class="day-item"><span class="day-num">028</span>什么是觉醒？——不是成仙，是清醒地活着</li>
+    <li class="day-item"><span class="day-num">029</span>观察者视角——跳出画面看电影</li>
+    <li class="day-item"><span class="day-num">030</span>臣服的智慧——顺流而下，不与生命对抗</li>
+    <li class="day-item"><span class="day-num">031</span>哪怕世界黑暗——你要做自己的光</li>
+  </ul>
+</div>
+
+<!-- DAY 001 DETAILED -->
+<div class="page page-entry-detailed" id="day001">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="entry-header">
+    <div class="entry-day">第 001 日</div>
+    <div class="entry-title-text">我是谁？——剥离社会标签的我是什么样子</div>
+    <div class="entry-meta">
+      <span>2027.01.01</span><span>浓雾，能见度极低</span><span>来访者：陈先生，52岁，前上市公司CEO</span>
+    </div>
+  </div>
+
+  <div class="light-master-note">
+    <p>这是我在地球正式工作的第一天，空气中弥漫着一种旧秩序崩塌前的静电味。人类在这个阶段最痛苦的，不是物质的匮乏，而是"身份的丧失"。陈先生推门进来时，他的能量场是灰暗且僵硬的。就像他在地球上穿的那套昂贵却沉重的深色西装一样，他的灵体被厚厚的"标签"包裹得密不透风。</p>
+    <p>他坐下的第一件事，是习惯性地去摸口袋里的名片夹，然后尴尬地意识到，他已经没有名片可以发了。"光体师，"他声音低沉，带着一种深深的挫败感，"我奋斗了三十年，爬到了顶峰。昨天董事会宣布我'荣誉退休'。今天早上醒来，我看着镜子，突然不认识里面那个人了。没有了头衔，没有了秘书的电话，没有了会议，我……我是个废人了。"</p>
+    <p>我在高维视野中看着他。他不是废人，他只是一个"角色扮演中毒"太深的玩家。他的眉心轮被一个巨大的全息投影堵塞，上面写满了："成功人士"、"父亲"、"丈夫"、"强者"。当这些投影被外界强行关掉时，他以为自己消失了。</p>
+  </div>
+
+  <div class="healing-scene">
+    <p>我没有直接安慰他，而是让他闭上眼睛。"陈先生，想象我们正在玩一个剥洋葱的游戏。"我轻声引导，同时调频了室内的能量场，注入了紫色的转化之光。</p>
+    <p>"如果你脱掉这身西装，你是谁？""我是陈伟强。"</p>
+    <p>"如果我不叫你陈伟强，剥去这个名字，你是谁？""我是……一个男人，两个孩子的父亲。"</p>
+    <p>"如果你的孩子长大了，不再需要你定义父亲这个角色，剥去这层关系，你是谁？""我……我是……"他的呼吸开始急促，眉头紧锁，这是小我（Ego）面临解体时的恐慌反应。</p>
+    <p>"如果这一刻，剥去你的身体，你只剩下一团意识漂浮在宇宙中，你还存在吗？"房间里陷入了死寂。陈先生的眼角流下了一滴泪。就在那一瞬间，他能量场外层那些坚硬的壳裂开了一道缝，一道耀眼的、金白色的光从他胸口透了出来。那是他被遗忘已久的灵魂本体。</p>
+    <p>"我感觉到了，"他颤抖着说，"有一种……很轻的东西。虽然我什么都不是了，但我好像……更大了。"</p>
+    <p>这就是觉醒的第一步：从"角色"中醒来，认出你是"扮演者"。</p>
+  </div>
+
+  <div class="practice-box">
+    <h4>练习名称：【"我不是"剥离法】</h4>
+    <p>当你在生活中感到迷茫、自卑或因失去某种身份而痛苦时，请进行这个练习。它能帮你快速回归灵魂的零点。</p>
+    <p><strong>列出标签：</strong>在一张纸上，写下你现在引以为傲或让你焦虑的所有身份（例如：经理、妈妈、胖子、穷人、优等生、病人……）。</p>
+    <p><strong>逐一划掉：</strong>看着每一个词，深呼吸，用笔狠狠划掉它，并大声对自己说："这不是我，这只是我的体验。"</p>
+    <p><strong>寻找观察者：</strong>当纸上全是黑线，问自己："是谁在看着这一切被划掉？"那个看着你哭、看着你笑、看着你成功、看着你失败的那个存在，它是宁静的，不生不灭的。安住在那个"观察者"的感觉里，保持 5 分钟。那就是真正的你——纯粹的觉知。</p>
+  </div>
+
+  <div class="heart-words">
+    你不是你在地球上穿着的那件"衣服"（身份、地位、身体），你是那个穿衣服的"光"。别因为衣服脏了或旧了，就以为自己也毁了。
+  </div>
+</div>
+
+<!-- DAY 002 -->
+<div class="page page-entry-detailed" id="day002">
+  <div class="entry-header">
+    <div class="entry-day">第 002 日</div>
+    <div class="entry-title-text">身体不是我——它只是灵魂在地球的宇航服</div>
+    <div class="entry-meta">
+      <span>2027.01.02</span><span>冰雨，湿冷渗透骨缝</span><span>来访者：丽莎，28岁，因车祸伤疤试图轻生的名模</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在三维地球，人类最大的幻觉之一，就是坚信"我=我的身体"。这种认同感如此强烈，以至于当身体衰老、生病或受损时，人们会感到核心自我被摧毁了。</p>
+    <p>丽莎进来时，戴着巨大的墨镜和口罩，浑身包裹在厚重的大衣里。除了脸颊上一道还未完全愈合的粉色伤疤，她依然美得惊人。但这道不到三厘米的疤痕，在她的意识全息图中，被放大成了一道巨大的裂谷，吞噬了她所有的光芒。</p>
+    <p>"全完了，"她摘下口罩，指着那道伤疤哭泣，"经纪公司解约了，粉丝在网上讨论我毁容了。我不再完美了，我甚至觉得我不再'完整'了。这具身体坏了，我还有什么活着的价值？"</p>
+  </div>
+  <div class="healing-scene">
+    <p>我递给她一杯温热的赫兹水，让她暖暖手。"丽莎，如果你的车被划了一道痕，你会觉得坐在驾驶座里的你也变丑了吗？"她愣了一下："当然不会，那只是车。"</p>
+    <p>"很好。现在，我想让你想象一个场景。你是一名星际宇航员，被派往一个环境非常恶劣的星球——地球。为了在这里生存，你必须穿上一件极其精密的'生物宇航服'。"</p>
+    <p>"这件宇航服在执行任务时被刮伤了一点，作为里面的宇航员，你会因此觉得自己变脏了吗？或者觉得自己死掉了吗？""不会……"她的呼吸平缓了一些，"我会觉得……有点心疼宇航服，但我自己是安全的。"</p>
+    <p>"这就对了。这道疤，只是你这件宇航服上的一个勋章，一个地球探险的印记。真正的你，那个驾驶者，毫发无损，依然光芒万丈。"丽莎摸着自己的脸，泪水依然在流，但那不再是绝望的泪，而是释然的泪。</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"宇航服"维护观想】</h4>
+    <p><strong>触碰练习：</strong>找一个安静的地方坐下，用手拍拍自己的大腿、手臂、肚子。一边拍，一边大声说："这是我的身体，这不是我。"</p>
+    <p><strong>对话致谢：</strong>闭上眼，想象你的灵魂是一团发光的气体，充满了这具皮囊。对你的身体说："亲爱的伙伴，谢谢你承载我在地球上行走。我知道你也会疲惫、会受伤、会变旧，我不怪你，我会好好保养你。"</p>
+    <p><strong>抽离疼痛：</strong>如果身体某处疼痛或不适，不要说"我很痛"，试着改口说："我的宇航服这里亮起了红灯，它的报警系统在响。"</p>
+  </div>
+  <div class="heart-words">
+    不要因为宇航服上的一道划痕，就忘记了里面那个来自星辰的驾驶员是永恒且完美的。好好保养它，但永远不要把它误认为是你自己。
+  </div>
+</div>
+
+<!-- DAY 003 -->
+<div class="page page-entry-detailed" id="day003">
+  <div class="entry-header">
+    <div class="entry-day">第 003 日</div>
+    <div class="entry-title-text">那个叫"小我"的声音——识别头脑中的喋喋不休</div>
+    <div class="entry-meta">
+      <span>2027.01.03</span><span>狂风大作，如同人类头脑中的思维风暴</span><span>来访者：杰克，32岁，深受焦虑症困扰的股票交易员</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>如果说地球是一所学校，那么"大脑"既是人类最强的作弊器，也是最难缠的狱卒。在 2027 年，随着集体频率的提升，低维的恐惧能量正在疯狂反扑。很多人此时并不是在生活，而是在"被念头生活"。</p>
+    <p>杰克进来时，他的眉心轮像是一个快要爆炸的高压锅。他的眼神游离，嘴唇在无意识地轻微蠕动。透过高维视野，我看到的不是一个人，而是两个人。一个是被绑在椅子上瑟瑟发抖的杰克本灵，另一个是一个巨大的、黑色的"影子寄生虫"——那是由于长期的恐惧喂养而过度膨胀的"小我"。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"让我安静一会……求求你让我安静一会。"杰克抱着头，痛苦地呻吟。</p>
+    <p>"杰克，那个在说话的人，是你吗？""当然是我，那是我的脑子在想事情。"</p>
+    <p>"不，那不是你。如果那真的是你，你应该能随时命令它闭嘴，就像你可以命令你的手放下杯子一样。你能让它闭嘴吗？""不能……它根本不听我的。"</p>
+    <p>"所以，这就很有趣了。如果那个声音不听你的，甚至在攻击你，它怎么可能是你？那个声音，就是住在你脑子里的'室友'。它叫小我。它原本的工作是保护你，但现在它失控了，变成了一个为了刷存在感而不断制造恐慌的暴君。你需要做的，不是和它辩论，而是认出它——它只是一个声音，而你是那个'听见声音的人'。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"笨蛋鹦鹉"命名法】</h4>
+    <p>给脑子里的那个声音起一个滑稽的名字。比如"只会学舌的鹦鹉"、"唠叨的苏珊大妈"、"戏精阿强"或"末日广播台"。名字越可笑，它的威慑力就越弱。</p>
+    <p>当焦虑或自我怀疑的念头升起时，立刻在心里按下暂停键。对自己说："哦，快听，'戏精阿强'又开始讲故事了。"用对待一个不懂事的小孩子的态度对它说："谢谢你的提醒啊，阿强，但我现在很忙，你的故事太老套了，退下吧。"然后把注意力重新拉回到当下的呼吸上。</p>
+  </div>
+  <div class="heart-words">
+    你不是那个喋喋不休的声音，你是那个听见声音的寂静。天空从不因为云朵是黑色的就拒绝它们，它只是允许云朵飘过，而自己始终湛蓝。
+  </div>
+</div>
+
+<!-- DAYS 004-006 summarized -->
+<div class="page page-entry-detailed" id="day004">
+  <div class="entry-header">
+    <div class="entry-day">第 004 日</div>
+    <div class="entry-title-text">为什么我不快乐？——快乐是本性，不快乐是由于抗拒</div>
+    <div class="entry-meta">
+      <span>2027.01.04</span><span>连绵阴雨，城市在低声呜咽</span><span>来访者：马克，36岁，拥有"完美生活"的建筑设计师</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在光体星球，正如光本身不需要努力就能发亮一样，"喜悦"是我们存在的基频。但在地球，快乐被当成了一种稀缺的猎物。人类从小被编写了一套奇怪的程序："只有当 X 发生时，我才能快乐。"</p>
+    <p>马克就是这套程序的典型受害者。从三维世界的标准看，他赢麻了：名校毕业、设计大奖、美丽的妻子、市中心的豪宅。但他坐在我面前时，整个人像一张拉满到极限的弓，随时可能崩断。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"马克，你觉得快乐是什么？""快乐？快乐就是事情顺心，就是一切都按照我的计划进行。"</p>
+    <p>"这正是你痛苦的根源。快乐就像水流，它是生命的本质，它一直都在流动。而痛苦，不是水流消失了，而是你在河里筑起了一座大坝。你的每一个'应该是'，就是一块石头。快乐不是你得到的东西，快乐是你停止抗拒当下之后，自然浮现的背景音。"</p>
+    <p>"你是说，我不快乐是因为我在和现实打架？""没错。而且在这场你与现实的战争中，你百分之百会输，因为现实已经发生了。"马克紧绷的肩膀突然垮了下来。</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"是的，我也允许"臣服法】</h4>
+    <p>当不快乐升起时，检查身体。问自己："我在抗拒此时此刻发生的什么？"对着那个让你不爽的现状，在心里说："是的，这一刻就是这样。"深呼吸，对自己说："为了我自己内心的和平，我允许这一切发生。"</p>
+  </div>
+  <div class="heart-words">痛苦=疼痛×抗拒。疼痛是难免的，但痛苦是可选的。当你向这一刻臣服，你就把挡住阳光的抗拒搬走了，快乐这颗太阳原本就在那里。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day005">
+  <div class="entry-header">
+    <div class="entry-day">第 005 日</div>
+    <div class="entry-title-text">接纳不完美的自己——自我批判是最大的内耗</div>
+    <div class="entry-meta">
+      <span>2027.01.05</span><span>干冷，寒风像刀片</span><span>来访者：艾琳娜，24岁，被誉为"天才"的小提琴演奏家</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在光体星球，我们没有"完美"这个概念，只有"完整"。但在地球，"完美主义"成了一种流行病——更准确地说，是一种"精神自身免疫性疾病"。人类的意识如果攻击自己，会导致灵魂枯萎。</p>
+    <p>艾琳娜走进房间时，就像一个破碎的瓷娃娃。在第三乐章，她的小指头滑了一毫米，导致一个音符出现了微不可察的瑕疵。我看不到那个瑕疵，但我看到了她能量场中触目惊心的景象：她的心轮周围布满了黑色的尖刺——她自己用意念幻化成的鞭子，正在疯狂抽打那个内在小孩。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"艾琳娜，如果今天犯那个错误的不是你，而是你最心爱的学生，你会对她说'你是个废物'吗？""当然不会！我会抱抱她，告诉她那只是一瞬间的失误，整场演出依然很美。"</p>
+    <p>"你看，你对别人如此慈悲，却唯独对自己如此残忍。在这个宇宙中，只有神是圆满的。作为人类，'不完美'是你们的出厂设置，也是你们的特权。正是因为有裂痕，光才能照进你封闭的躯壳。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"挚友视角"置换法】</h4>
+    <p>当脑子里的声音说"你怎么这么笨"时，立刻喊"停！"。闭上眼，想象此时此刻站在你面前犯错的，是你这辈子最爱的人。你会说什么？睁开眼，对着镜子，用那种温柔的语气，把相同的话对自己说一遍。</p>
+  </div>
+  <div class="heart-words">这世上没有完美的圆，只有完整的圆。接纳你的阴影与裂痕，因为那是光线进入你灵魂的入口。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day006">
+  <div class="entry-header">
+    <div class="entry-day">第 006 日</div>
+    <div class="entry-title-text">假装坚强——面具戴久了，脸会痛</div>
+    <div class="entry-meta">
+      <span>2027.01.06</span><span>晴朗却极度深寒</span><span>来访者：大卫，40岁，单亲爸爸兼濒临破产的科技创业公司创始人</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在地球文明扬升的前夜，有一种普遍的能量病症叫"硬化"。许多地球人，尤其是男性，被植入了一种名为"坚强"的病毒程序。他们误以为"坚强"等于"没有感觉"、"不流泪"和"独自扛下一切"。</p>
+    <p>大卫走进来时，给人的第一感觉像是一块花岗岩。他的背挺得笔直，西装一丝不苟，脸上挂着无懈可击的职业微笑。但我听到了他身体发出的尖叫声——尤其是他的下颚关节和肩颈部位，那里的能量已经石化。在高维视野中，大卫被困在一套厚重的、生锈的"中世纪盔甲"里。他以为这叫保护，其实这叫窒息。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"大卫，你上次哭是什么时候？""哭？我不记得了。可能是十年前我母亲去世的时候？也没怎么哭。生活不相信眼泪，哭有什么用呢？"</p>
+    <p>"这身盔甲很重吧？你身上这层'我不累、我没事、我可以'的能量盔甲。你不仅是在骗别人，你还在骗自己。你的内在小孩早就已经在盔甲里累瘫了，他在尖叫着求救，但你却捂住他的嘴。"</p>
+    <p>就在我说出"软弱"这个词的瞬间，大卫那像岩石一样的肩膀猛地垮塌了。他蜷缩在椅子上，嚎啕大哭。那不是几分钟的眼泪，那是积压了四十年的洪水。</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"五分钟崩溃"定时卸甲法】</h4>
+    <p>每天设定一个固定的"崩溃时段"。在淋浴时或车库里的5分钟，把身上那套沉重的"超人盔甲"脱下来。张大嘴巴做夸张的鬼脸，用手指深深按揉咬肌。允许自己流泪、发抖或瘫软在地。闹钟响后，深呼吸三次，重新穿上轻盈版的盔甲。区别在于：以前你是被锁在盔甲里，现在你是盔甲的主人。</p>
+  </div>
+  <div class="heart-words">真正的强大，不是像石头一样坚硬（因为石头一敲就碎），而是像水一样柔软。敢于展示脆弱，才是最高级的勇敢。</div>
+</div>
+
+<!-- DAYS 007-015: Continue with content -->
+<div class="page page-entry-detailed" id="day007">
+  <div class="entry-header">
+    <div class="entry-day">第 007 日</div>
+    <div class="entry-title-text">讨好型人格——把力量交出去的成瘾症</div>
+    <div class="entry-meta">
+      <span>2027.01.07</span><span>无风阴天，气压沉闷</span><span>来访者：小雅，26岁，行政助理，"道歉强迫症"</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在地球的三维实相中，有一种看似善良实则自毁的行为模式，被称为"讨好型人格"。在2027年这个焦虑弥漫的时代，讨好者变得更多了，因为人们潜意识里觉得世界不安全，试图通过"顺从"来换取生存空间。</p>
+    <p>小雅进门的一分钟内，说了四次"对不起"。在高维视野中，小雅并不是一个人，而是一个"人形公共 Wi-Fi"。她的能量场是完全敞开的，没有任何密码保护。她的太阳轮暗淡无光，上面插满了来自同事、父母、朋友的能量吸管。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"小雅，你不是想做奴隶，你是想做'好人'。你在潜意识里呐喊：'我已经这么听话了，请不要伤害我；我已经这么有用了，请不要抛弃我。'讨好，是人类在童年时期习得的一种生存策略。当你还是个孩子时，你发现只有顺从父母、让他们高兴，你才是安全的。"</p>
+    <p>"可是，如果我不讨好，他们会生气。""让他们生气好了。你以为你在维护关系，其实你在喂养他们的贪婪，同时在谋杀你自己的灵魂。在这个宇宙中，没有人会尊重一个没有边界的人，就像没有人会珍惜免费派发的传单一样。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"停顿三秒"与"温和拒绝"术】</h4>
+    <p><strong>第一阶段：</strong>无论别人提出什么请求，绝对不立刻答应。话术："我查一下日程，30分钟后回复你。"这30分钟是打破"自动顺从"神经回路的时间。</p>
+    <p><strong>第二阶段：</strong>有条件地接受："我可以帮你做PPT，但我今晚就不能帮你改那个文档了。"</p>
+    <p><strong>第三阶段：</strong>每天出门前，想象一个金色的蛋壳把你罩住。告诉自己："这是我的神圣空间。只有带着爱和尊重的能量才能进入。"</p>
+  </div>
+  <div class="heart-words">你的善良必须带点锋芒，否则那就不是善良，那是软弱。你的"不"，让你的"是"变得价值连城。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day008">
+  <div class="entry-header">
+    <div class="entry-day">第 008 日</div>
+    <div class="entry-title-text">愤怒的真相——愤怒是守护边界的看门狗</div>
+    <div class="entry-meta">
+      <span>2027.01.08</span><span>空气干燥充满静电</span><span>来访者：琳达，45岁，"从未发过火"的修行者</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在2027年的灵性圈子里，流行着一种危险的误解——把"愤怒"视为低级、不洁的情绪。许多人通过压抑愤怒来展示自己的"高频率"，这在心理学上被称为"灵性逃避"。琳达的肝脏区域包裹着一团浓稠的暗红色岩浆，那是成千上万次未被表达的愤怒压缩而成的"能量结石"。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"琳达，如果有人往你家里扔垃圾，你会怎么做？""我会帮他扫掉，并祝福他。"</p>
+    <p>"如果天天扔，甚至开始拆你的房门，打你的孩子呢？""我……我会感化他。"我摇了摇头，在能量场中模拟了一只巨大的藏獒全息影像，放在她面前。"这就是你的愤怒。你以为它是想要咬死人的恶魔，所以你把它锁在地窖里。但事实上，它是你灵魂的一条忠诚的看门狗。愤怒只有一个功能：报警。当你的看门狗叫的时候，你不去检查谁闯进了院子，反而把狗打了一顿，这时候坏人就长驱直入了。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"神圣愤怒"释放与转化术】</h4>
+    <p><strong>枕头法：</strong>拿起枕头用力砸床，或把脸埋在枕头里尖叫。</p>
+    <p><strong>拧毛巾法：</strong>拿一条湿毛巾，用尽全身力气拧干，想象你在拧碎那个压力源。</p>
+    <p><strong>转化行动：</strong>能量释放后，带着这股力量去设立边界——"我不允许你这样对我说话。"</p>
+  </div>
+  <div class="heart-words">不要杀死为你看家护院的狗。愤怒不是仇恨，愤怒是"爱自己"的一种激烈形式。一个不敢愤怒的人，他的"善良"毫无价值。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day009">
+  <div class="entry-header">
+    <div class="entry-day">第 009 日</div>
+    <div class="entry-title-text">悲伤的河流——允许眼泪流动，那是灵魂的排毒</div>
+    <div class="entry-meta">
+      <span>2027.01.09</span><span>绵绵细雨，天空在替城市流泪</span><span>来访者：林医生，34岁，刚经历丧母之痛却"滴水未漏"</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在2027年的地球，效率被视为最高美德。悲伤被看作是一种"降低生产力"的情绪故障，需要被尽快修复。林医生的心轮积聚着海量的、深蓝色的悲伤能量。因为他长期拒绝让这些能量流动，它们已经冻结成了坚硬的冰川。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"你接受了死亡，但你接受'失去'了吗？哭不是为了让逝者复活，是为了让生者活下去。那块压在你胸口的铅板，就是你咽下去的每一滴眼泪。它们是有毒的，如果不排出来，它们会毒害你的身体。"在那股暖流的催化下，这位看过无数生死的医生嚎啕大哭。那场"雨"下了整整半个小时。</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"水疗愈"主动释放仪式】</h4>
+    <p>在浴室里，打开淋浴头，让温热的水流冲刷后颈和背部。播放专门的悲伤歌单。抱着膝盖对自己说："我现在很安全。我允许我悲伤，这代表我曾深深地爱过。"当眼泪流出来时不要擦，想象那是灰色毒素正从体内流出。</p>
+  </div>
+  <div class="heart-words">眼泪不是软弱的证据，而是灵魂的排毒剂。那一颗颗滚落的咸涩液体，是你在融化心中冰封的冬天，为了迎接下一个春天。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day010">
+  <div class="entry-header">
+    <div class="entry-day">第 010 日</div>
+    <div class="entry-title-text">焦虑的解药——焦虑是因为你活在未来，不在当下</div>
+    <div class="entry-meta">
+      <span>2027.01.10</span><span>狂躁干风</span><span>来访者：周先生，29岁，等待融资的创业CEO</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在2027年，一种名为"时间错位症"的瘟疫席卷了地球——这就是"焦虑"。绝大多数人虽然身体坐在椅子上，但意识却跑到了明天、下个月，去与还未发生的灾难搏斗。周先生的身体是一具"空壳"，他的灵魂分裂成无数碎片，散落在各种可怕的未来时间线上。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"停！周，此时此刻，在这个房间里，有人在追杀你吗？""没有。""此时此刻，你的公司破产了吗？""还没有。""此时此刻，你饿吗？冷吗？缺氧吗？""不，我现在还好。"</p>
+    <p>"这就对了。你刚才在进行'精神时间旅行'。焦虑的本质，是虽然你的身体在'现在'，但你的头脑在'未来'。这两者之间的撕裂感，就是焦虑。你试图用现在的能量去解决未来的问题，这在物理法则上是不可能的。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"切断时间线"五感归位法】</h4>
+    <p>大声对自己喊"停！我在穿越时间！"然后五感锚定：看5样东西、触4种质感、听3种声音、嗅2种气味、尝1种味道。深呼吸，对自己说："我现在在这里。此时此刻，我是安全的。我只负责过好这一秒。"</p>
+  </div>
+  <div class="heart-words">生命永远只发生在"现在"。你永远无法在"未来"呼吸。把你的能量从虚幻的明天收回来，当下的负担往往很轻，重的是你背负了整个人生的想象。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day011">
+  <div class="entry-header">
+    <div class="entry-day">第 011 日</div>
+    <div class="entry-title-text">嫉妒的转化——嫉妒在告诉你：你也想要那个</div>
+    <div class="entry-meta">
+      <span>2027.01.11</span><span>酸雨初歇</span><span>来访者：莎拉，30岁，因闺蜜"人生开挂"而自我厌恶</span>
+    </div>
+  </div>
+  <div class="healing-scene">
+    <p>"如果你看到邻居吃榴莲，而你极其讨厌榴莲，你会嫉妒他吗？""不会，我会觉得恶心。"</p>
+    <p>"这就对了。你永远不会嫉妒你不在乎的东西。嫉妒的公式很简单：嫉妒 = 我想要 + 我觉得我得不到。让你痛苦的不是她拥有了幸福，而是你的潜意识在说'因为她拿走了，所以我就没有了'。那个朋友是你的一面镜子。宇宙让她出现在你身边，是为了向你展示可能性。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"我预定了这份礼物"转化术】</h4>
+    <p>诚实地承认："哇，我嫉妒了。"问自己："我具体嫉妒什么？"剥离出核心关键词。看着那个人的照片，在心里对宇宙说："谢谢以此人向我展示这种美好。我也要下单一份同样的体验。"在心里对她说："为你随喜。你有的，我也会有。"</p>
+  </div>
+  <div class="heart-words">嫉妒是宇宙给你发的"购物清单"。当它让你看到别人的美好时，不是在告诉你"你没有"，而是在提醒你"你也可以有"。别把能量浪费在恨别人上，拿来显化你自己吧。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day012">
+  <div class="entry-header">
+    <div class="entry-day">第 012 日</div>
+    <div class="entry-title-text">羞耻感——那个说"我不配"的内在小孩</div>
+    <div class="entry-meta">
+      <span>2027.01.12</span><span>浓重雾霾</span><span>来访者：安娜，29岁，获奖纪录片导演，"冒充者综合征"</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在霍金斯能量层级表中，"羞耻感"的频率是20，是所有负面情绪中能量最低、破坏力最强的一种。内疚说的是"我做错了这事"，而羞耻说的是"我这个人就是个错误"。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"走进那个恶心的感觉里。在那团黑暗的迷雾中，你看到了谁？""一个小女孩……大概五岁。妈妈指着她裙子上的泥点说：'你看你，像个乞丐一样，脏死了，真丢我的脸！'"</p>
+    <p>"那就是羞耻感的源头。羞耻感最怕的解药就是'看见'和'接纳'。羞耻像细菌，只能在黑暗和秘密中繁殖，一旦暴露在光的下面，它就会死亡。现在，作为一个有力量的女性，走过去。抱紧她。告诉她：'裙子脏了没关系，你依然是珍贵的。'"</p>
+  </div>
+  <div class="heart-words">羞耻感是灵魂的监狱，它让你以为自己必须完美才有资格活着。这是一个巨大的谎言。玫瑰不需要证明自己没有刺才配开花。你本身就是光，无论有没有泥点，光辉从未减少。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day013">
+  <div class="entry-header">
+    <div class="entry-day">第 013 日</div>
+    <div class="entry-title-text">拥抱内在小孩——回溯童年，给当年的自己一个拥抱</div>
+    <div class="entry-meta">
+      <span>2027.01.13</span><span>午后暖阳，金色尘埃飞舞</span><span>来访者：雷，38岁，刑警队长，"铁血硬汉"却莫名孤独</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>在时间并非线性的高维视角下，童年并不是"过去"，它是一个平行存在的频率。那个受伤的5岁孩子，依然完整地活在成人的身体里，活在潜意识的地下室中。雷的能量场是一个奇怪的"俄罗斯套娃"结构：最外层坚硬如铁，核心处却蜷缩着一个瑟瑟发抖的蓝色能量团。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"雷，顺着那个心痛的感觉往下走……回到你小时候。""我在幼儿园门口。天黑了，别的孩子都被接走了。铁门锁上了。我觉得爸爸妈妈不要我了。"</p>
+    <p>"现在，请38岁的你——刑警队长雷，穿着警服，带着力量，走进那个画面。蹲在那个小雷面前。告诉他：'我是未来的你。我长大了，我很强壮。对不起，让你等了这么久。爸爸妈妈没来，但我来了。我永远不会抛弃你，这一辈子，我都会陪着你。'"雷嚎啕大哭，那个蓝色能量团终于融化进了他的主体能量中。</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"时空救援"冥想法】</h4>
+    <p>找一个安静的时间，回想一个童年受伤的具体场景。想象现在的你推门进入那个场景。如果有人在伤害孩子，挡在孩子面前制止。抱起他，说出当年你最想听到的话："这不是你的错。""你是安全的。""我好爱你。"牵着他的手，把他带离那个场景，安顿在你的心轮位置。</p>
+  </div>
+  <div class="heart-words">我们终其一生都在等待父母的道歉或认可，但那个电话可能永远不会打来。好消息是，你不再需要那个电话了。现在的你，已经长成了当年那个孩子渴望依靠的大人。去把那个遗落在时间长河里的孩子接回家吧。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day014">
+  <div class="entry-header">
+    <div class="entry-day">第 014 日</div>
+    <div class="entry-title-text">潜意识的冰山——你人生的剧本 95%由它编写</div>
+    <div class="entry-meta">
+      <span>2027.01.14</span><span>幽深蓝调黄昏</span><span>来访者：莫妮卡，33岁，精明律师却陷入"渣男循环"</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>人类的意识结构像是一座漂浮在海面上的冰山。露出水面的显意识仅占 5%；水面下那巨大的95%，是潜意识。莫妮卡的显意识极其清醒，但她的感情生活却像一场早已写好结局的悲剧重播。</p>
+  </div>
+  <div class="healing-scene">
+    <p>"莫妮卡，看这座冰山。坐在冰山顶上的那个小人，是你。你在喊'找个好男人'。但是水面下庞大的冰体——引擎室——设定的是相反的航向。"</p>
+    <p>"让我们潜入水下……回到你小时候。当你父亲在家里时，氛围是怎样的？""爸爸……他很有才华，但他总是把自己关在画室里。如果不顺心，他就会冷暴力。我很想讨好他，让他看我一眼。如果他对我笑一下，我就觉得我是世界上最幸福的人。"</p>
+    <p>"这就是写在你潜意识深处的底层代码：'爱=努力讨好一个冷漠的人'。如果你遇到一个温暖体贴的男人，你的潜意识会觉得'无聊'，因为它不符合你对爱的定义。你在找替身，试图在他们身上完成童年没完成的任务。除非你改写这行代码，否则你换一万个男朋友，结局都是一样的。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"睡前指令"潜意识重写术】</h4>
+    <p>抓住白天反复出现的失败模式，挖出背后的潜意识信念。翻转成正向、现在时的短句。例如："我深深地被温柔、忠诚的伴侣吸引，我也享受这种安全感。"每晚临睡前，在脑海播放那个新代码已实现的画面，带着这个感觉入睡。这就像趁着"守门员"（显意识）睡着了，直接把新的藏宝图塞进了驾驶室。</p>
+  </div>
+  <div class="heart-words">荣格曾说："当你的潜意识没有进入你的意识时，它就是你的命运。"所谓命运，不过是你尚未觉察的潜意识程序。当你把灯光照进地下室，你就拿回了人生的笔。</div>
+</div>
+
+<div class="page page-entry-detailed" id="day015">
+  <div class="entry-header">
+    <div class="entry-day">第 015 日</div>
+    <div class="entry-title-text">修改信念代码——如何改写"我不够好"的底层程序</div>
+    <div class="entry-meta">
+      <span>2027.01.15</span><span>电闪雷鸣暴风雨</span><span>来访者：汤姆，42岁，拥有金钱地位却极度焦虑的"空心人"</span>
+    </div>
+  </div>
+  <div class="light-master-note">
+    <p>人类的大脑是一台超级生物计算机。决定运行结果的，不是硬件（智商或身体），而是后台运行的"信念操作系统"。最常见的核心病毒代码就是："我不够好（I am not good enough）。"</p>
+    <p>汤姆刚拿下年度销售冠军，但他看起来像个即将被送上刑场的囚犯。"我感觉那是假的。每一次升职，我都觉得那是运气。我必须更拼命地工作，否则下一秒他们就会发现我是个无能的骗子。"</p>
+  </div>
+  <div class="healing-scene">
+    <p>"汤姆，你觉得你的价值等于你的业绩吗？"我扫描了他的太阳神经丛——那里有一组像黑色铁丝网一样的能量回路。一段死循环逻辑代码：IF (成就 = HIGH) THEN (自我价值 = EXIST); ELSE (自我价值 = NULL/DELETE)。</p>
+    <p>"这段代码可能是在你很小的时候被写入的。也许是因为你的父亲只在你考了满分时才对你笑。于是你编写了这个程序：'为了被爱，我必须完美。'但现在你已经42岁了，那个旧系统正在烧坏你的CPU。现在我们要进行一次系统重装。"</p>
+  </div>
+  <div class="practice-box">
+    <h4>练习名称：【"病毒查杀与代码重写"三步法】</h4>
+    <p><strong>捕获病毒：</strong>当负面情绪升起时，问自己："我的头脑在对我说什么？"标记它："警报，发现病毒代码。"</p>
+    <p><strong>逻辑格式化：</strong>像程序员一样审视：这是真的吗？你能百分之百确定吗？当你相信这个念头时，你会是什么反应？没有这个念头，你会是什么样的人？</p>
+    <p><strong>输入新代码：</strong>编写高维信念覆盖旧的："我的价值是与生俱来的，不取决于我做了什么。我只要存在，就是圆满的。"用指尖敲击胸口，一边大声念新代码三遍。</p>
+  </div>
+  <div class="heart-words">你不是你的程序，你是那个程序员。不要让那行在你童年时为了生存而胡乱写下的代码，继续统治你的余生。随时按下"Delete"，你配得上一个名为"无条件爱自己"的新系统。</div>
+</div>
+
+<!-- ===== MONTHS 2-12 ===== -->
+
+<!-- FEBRUARY -->
+<div class="page" id="month2">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">二 月</div>
+  <div class="month-header">
+    <h2 class="month-name">家庭与血脉</h2>
+    <p class="month-theme">清理业力羁绊</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：原生家庭 · 亲子关系 · 伴侣冲突 · 家族业力</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">032</span>父母不仅是父母——他们也是受伤的孩子</li>
+    <li class="day-item"><span class="day-num">033</span>母亲的控制欲——脐带虽然剪断，能量索还在</li>
+    <li class="day-item"><span class="day-num">034</span>父亲的缺席——寻找内在的力量支柱</li>
+    <li class="day-item"><span class="day-num">035</span>重男轻女的创伤——女性能量的压抑与释放</li>
+    <li class="day-item"><span class="day-num">036</span>家庭中的"黑羊"——你是家族业力的清理者</li>
+    <li class="day-item"><span class="day-num">037</span>所谓的"孝顺"——顺从不是爱，尊重才是</li>
+    <li class="day-item"><span class="day-num">038</span>与父母和解——不需要他们道歉，是你选择放下</li>
+    <li class="day-item"><span class="day-num">039</span>婚姻是修行的道场——伴侣是你最精准的镜子</li>
+    <li class="day-item"><span class="day-num">040</span>为什么总是吵架？——争吵背后未被满足的需求</li>
+    <li class="day-item"><span class="day-num">041</span>冷暴力的能量场——沉默是最大的攻击</li>
+    <li class="day-item"><span class="day-num">042</span>出轨的灵性解读——向外寻找缺失的爱</li>
+    <li class="day-item"><span class="day-num">043</span>离婚不是失败——契约结束，课程修完</li>
+    <li class="day-item"><span class="day-num">044</span>婆媳关系的本质——两个女人争夺爱的能量流</li>
+    <li class="day-item"><span class="day-num">045</span>灵魂伴侣的真相——不是来宠你的，是来渡你的</li>
+    <li class="day-item"><span class="day-num">046</span>孩子是你的老师——他们比你更接近源头</li>
+    <li class="day-item"><span class="day-num">047</span>放下的智慧——孩子借由你而来，却不属于你</li>
+    <li class="day-item"><span class="day-num">048</span>叛逆期的孩子——他在宣告主权，请你后退</li>
+    <li class="day-item"><span class="day-num">049</span>教育的本质——点燃火焰，而非灌满瓶子</li>
+    <li class="day-item"><span class="day-num">050</span>成绩单不代表价值——别让分数定义灵魂</li>
+    <li class="day-item"><span class="day-num">051</span>多子女家庭——公平不是一样多，是按需给予</li>
+    <li class="day-item"><span class="day-num">052</span>领养家庭——超越血缘的灵魂约定</li>
+    <li class="day-item"><span class="day-num">053</span>家族遗传病——细胞记忆里的创伤代偿</li>
+    <li class="day-item"><span class="day-num">054</span>家族秘密的重担——说出来，光照进去，黑暗消失</li>
+    <li class="day-item"><span class="day-num">055</span>堕胎与流产——未出生灵魂的安抚与送别</li>
+    <li class="day-item"><span class="day-num">056</span>祖先的能量——你身后站着数千人的祝福</li>
+    <li class="day-item"><span class="day-num">057</span>祭祀的意义——跨越维度的爱的链接</li>
+    <li class="day-item"><span class="day-num">058</span>切断负面业力链——不把创伤传给下一代</li>
+    <li class="day-item"><span class="day-num">059</span>家的能量风水——清理堆积物，让爱流动</li>
+  </ul>
+</div>
+
+<!-- MARCH -->
+<div class="page" id="month3">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">三 月</div>
+  <div class="month-header">
+    <h2 class="month-name">情感与连接</h2>
+    <p class="month-theme">爱的能量流动</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：爱情观 · 单身焦虑 · 社交关系 · 无条件的爱</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">060</span>为什么我遇不到真爱？——你爱自己多少，别人就爱你多少</li>
+    <li class="day-item"><span class="day-num">061</span>渣男/渣女回收站——总爱错人是因为潜意识在强迫性重复</li>
+    <li class="day-item"><span class="day-num">062</span>依赖不是爱——那是寄生与索取</li>
+    <li class="day-item"><span class="day-num">063</span>占有欲与嫉妒——这是"小我"在害怕失去</li>
+    <li class="day-item"><span class="day-num">064</span>单身的焦虑——一个人也可以是完整的圆</li>
+    <li class="day-item"><span class="day-num">065</span>催婚的压力——别为了让别人满意而结婚</li>
+    <li class="day-item"><span class="day-num">066</span>暧昧期的博弈——诚实是最高级的策略</li>
+    <li class="day-item"><span class="day-num">067</span>失恋的至暗时刻——旧的不去，新的不来</li>
+    <li class="day-item"><span class="day-num">068</span>前任的意义——感谢他曾陪你走过一程</li>
+    <li class="day-item"><span class="day-num">069</span>社交恐惧症——害怕评判是因为你在评判自己</li>
+    <li class="day-item"><span class="day-num">070</span>讨好型社交——学会说"不"，建立能量边界</li>
+    <li class="day-item"><span class="day-num">071</span>友谊的断舍离——频率不同，不必强融</li>
+    <li class="day-item"><span class="day-num">072</span>闺蜜/兄弟——灵魂家族的成员</li>
+    <li class="day-item"><span class="day-num">073</span>办公室恋情——公私能量场的混淆</li>
+    <li class="day-item"><span class="day-num">074</span>网恋与虚拟情感——灵魂在数据流中的碰撞</li>
+    <li class="day-item"><span class="day-num">075</span>性的神圣性——能量的深度交换与融合</li>
+    <li class="day-item"><span class="day-num">090</span>爱是宇宙的粘合剂——这就是答案</li>
+  </ul>
+</div>
+
+<!-- APRIL -->
+<div class="page" id="month4">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">四 月</div>
+  <div class="month-header">
+    <h2 class="month-name">事业与创造</h2>
+    <p class="month-theme">显化的法则</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：职业规划 · 职场生存 · 创造力 · 天赋使命</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">091</span>工作不仅是谋生——它是你服务世界的管道</li>
+    <li class="day-item"><span class="day-num">095</span>天赋与热情——做让你忘记时间的事</li>
+    <li class="day-item"><span class="day-num">096</span>使命感——你来地球是为了完成什么？</li>
+    <li class="day-item"><span class="day-num">102</span>失败是肥料——没有失败，只有反馈</li>
+    <li class="day-item"><span class="day-num">104</span>灵感下载——如何连接宇宙的创意云端</li>
+    <li class="day-item"><span class="day-num">105</span>心流状态——与道合一的工作方式</li>
+    <li class="day-item"><span class="day-num">118</span>AI时代的职业——做机器做不了的事：爱与创造</li>
+    <li class="day-item"><span class="day-num">120</span>成功的新定义——活出你自己，就是最大的成功</li>
+  </ul>
+</div>
+
+<!-- MAY -->
+<div class="page" id="month5">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">五 月</div>
+  <div class="month-header">
+    <h2 class="month-name">财富与资源</h2>
+    <p class="month-theme">丰盛的频率</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：金钱观 · 债务清理 · 显化法则 · 富足心态</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">121</span>金钱是凝固的能量——它本身是中性的</li>
+    <li class="day-item"><span class="day-num">123</span>匮乏感——穷人思维是由于内心觉得"不够"</li>
+    <li class="day-item"><span class="day-num">124</span>值得感——你配得上世间所有的美好</li>
+    <li class="day-item"><span class="day-num">131</span>财富流动的法则——流出去，才能流进来</li>
+    <li class="day-item"><span class="day-num">133</span>显化法则步骤1——清晰的意图</li>
+    <li class="day-item"><span class="day-num">134</span>显化法则步骤2——强烈的情感（好像已经拥有）</li>
+    <li class="day-item"><span class="day-num">135</span>显化法则步骤3——放手与接收</li>
+    <li class="day-item"><span class="day-num">151</span>宇宙无限丰盛——不用抢，每个人都够用</li>
+  </ul>
+</div>
+
+<!-- JUNE -->
+<div class="page" id="month6">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">六 月</div>
+  <div class="month-header">
+    <h2 class="month-name">身体与健康</h2>
+    <p class="month-theme">圣殿的维护</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：疾病隐喻 · 饮食能量 · 睡眠梦境 · 身体疗愈</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">152</span>身体从不说谎——它是潜意识的显示屏</li>
+    <li class="day-item"><span class="day-num">153</span>疼痛是信使——它在喊：请关注这里！</li>
+    <li class="day-item"><span class="day-num">154</span>癌症的灵性视角——长期压抑的情绪在细胞层面爆发</li>
+    <li class="day-item"><span class="day-num">162</span>食物的频率——吃进阳光，还是吃进痛苦？</li>
+    <li class="day-item"><span class="day-num">168</span>睡眠质量——如何像婴儿一样安睡</li>
+    <li class="day-item"><span class="day-num">170</span>清明梦——在梦中觉醒，训练意识</li>
+    <li class="day-item"><span class="day-num">179</span>自愈力——身体里住着最好的医生</li>
+    <li class="day-item"><span class="day-num">180</span>感恩身体——它为你服务了这么多年，你谢过它吗？</li>
+  </ul>
+</div>
+
+<!-- JULY -->
+<div class="page" id="month7">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">七 月</div>
+  <div class="month-header">
+    <h2 class="month-name">科技与未来</h2>
+    <p class="month-theme">工具与主宰</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：人工智能 · 网络成瘾 · 虚拟现实 · 科技伦理</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">181</span>手机是器官——外挂大脑对人类的异化</li>
+    <li class="day-item"><span class="day-num">186</span>人工智能觉醒——硅基生命会取代碳基生命吗？</li>
+    <li class="day-item"><span class="day-num">187</span>AI与灵魂——机器可以计算，但无法感同身受</li>
+    <li class="day-item"><span class="day-num">194</span>脑机接口——心智的直接互联与隐私消亡</li>
+    <li class="day-item"><span class="day-num">196</span>数字化永生——意识上传是真正的永生吗？</li>
+    <li class="day-item"><span class="day-num">200</span>科技服务于人——别成为工具的奴隶</li>
+    <li class="day-item"><span class="day-num">204</span>区块链精神——去中心化的信任回归</li>
+    <li class="day-item"><span class="day-num">211</span>科技向善——意图决定技术的业力</li>
+  </ul>
+</div>
+
+<!-- AUGUST -->
+<div class="page" id="month8">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">八 月</div>
+  <div class="month-header">
+    <h2 class="month-name">社会与文化</h2>
+    <p class="month-theme">集体意识的进化</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：文化冲突 · 社会现象 · 性别议题 · 集体潜意识</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">212</span>文化的根——寻找你的精神原乡</li>
+    <li class="day-item"><span class="day-num">220</span>性别对立——阴阳失衡的社会显化</li>
+    <li class="day-item"><span class="day-num">221</span>女性主义——不是打倒男性，是恢复阴性力量</li>
+    <li class="day-item"><span class="day-num">222</span>男性困境——不能哭泣的男孩们</li>
+    <li class="day-item"><span class="day-num">227</span>内卷——资源有限认知下的过度竞争</li>
+    <li class="day-item"><span class="day-num">228</span>躺平——无声的抗议与能量的节流</li>
+    <li class="day-item"><span class="day-num">230</span>丧文化——承认痛苦是疗愈的开始</li>
+    <li class="day-item"><span class="day-num">242</span>文明的新纪元——2027是分水岭</li>
+  </ul>
+</div>
+
+<!-- SEPTEMBER -->
+<div class="page" id="month9">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">九 月</div>
+  <div class="month-header">
+    <h2 class="month-name">战争与和平</h2>
+    <p class="month-theme">二元对立的超越</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：冲突根源 · 内在和平 · 对立统一 · 宽恕</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">243</span>战争的起源——我一定要比你强</li>
+    <li class="day-item"><span class="day-num">245</span>宗教冲突——本是同根生，相煎何太急</li>
+    <li class="day-item"><span class="day-num">250</span>每一个士兵都是父亲的孩子——战争没有赢家</li>
+    <li class="day-item"><span class="day-num">254</span>非暴力沟通——观察、感受、需要、请求</li>
+    <li class="day-item"><span class="day-num">255</span>内在的战争——你还在自我攻击吗？</li>
+    <li class="day-item"><span class="day-num">265</span>二元对立——对与错之外，还有一片田野</li>
+    <li class="day-item"><span class="day-num">271</span>爱是终极武器——融化一切坚冰</li>
+    <li class="day-item"><span class="day-num">272</span>2027的转折——从分裂走向融合</li>
+  </ul>
+</div>
+
+<!-- OCTOBER -->
+<div class="page" id="month10">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">十 月</div>
+  <div class="month-header">
+    <h2 class="month-name">环保与自然</h2>
+    <p class="month-theme">盖亚母亲的连接</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：生态危机 · 动物保护 · 气候变化 · 万物有灵</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">273</span>盖亚假说——地球是一个活着的生命体</li>
+    <li class="day-item"><span class="day-num">274</span>气候变暖——地球在发烧，她在排毒</li>
+    <li class="day-item"><span class="day-num">279</span>物种灭绝——图书馆的书正在被烧毁</li>
+    <li class="day-item"><span class="day-num">280</span>动物权利——它们不是食物，是地球公民</li>
+    <li class="day-item"><span class="day-num">283</span>植物沟通——花草树木都有意识</li>
+    <li class="day-item"><span class="day-num">286</span>敬畏自然——人类不是地球的主人，是客旅</li>
+    <li class="day-item"><span class="day-num">301</span>盖亚的扬升——我们与地球母亲一起进化</li>
+    <li class="day-item"><span class="day-num">303</span>你的生态位——在自然界找到你的位置</li>
+  </ul>
+</div>
+
+<!-- NOVEMBER -->
+<div class="page" id="month11">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">十一月</div>
+  <div class="month-header">
+    <h2 class="month-name">生死与轮回</h2>
+    <p class="month-theme">跨越维度的旅行</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：死亡教育 · 灵魂不灭 · 轮回机制 · 生命蓝图</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">304</span>死亡是什么？——脱下一件穿旧的衣服</li>
+    <li class="day-item"><span class="day-num">305</span>为什么怕死？——小我害怕消失，但灵魂知道永恒</li>
+    <li class="day-item"><span class="day-num">306</span>濒死体验——去往光里，再回来的启示</li>
+    <li class="day-item"><span class="day-num">315</span>轮回转世——换个角色，继续游戏</li>
+    <li class="day-item"><span class="day-num">316</span>前世记忆——为什么我对这里似曾相识？</li>
+    <li class="day-item"><span class="day-num">318</span>灵魂蓝图——出生前你自己写的剧本</li>
+    <li class="day-item"><span class="day-num">322</span>活在当下——向死而生，把每天当最后一天</li>
+    <li class="day-item"><span class="day-num">333</span>死亡是最大的幻象——生命永不止息</li>
+  </ul>
+</div>
+
+<!-- DECEMBER -->
+<div class="page" id="month12">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">十二月</div>
+  <div class="month-header">
+    <h2 class="month-name">合一与升维</h2>
+    <p class="month-theme">成为地球的光</p>
+    <p style="font-size:0.8rem;color:var(--text-muted);">本月重点：灵性修行 · 光体激活 · 服务众生 · 新纪元展望</p>
+  </div>
+  <ul class="day-list">
+    <li class="day-item"><span class="day-num">334</span>修行不是逃避——在红尘中炼心</li>
+    <li class="day-item"><span class="day-num">335</span>灵性傲慢——觉得自己比别人"高级"是最大的陷阱</li>
+    <li class="day-item"><span class="day-num">337</span>不要崇拜大师——你是自己的大师</li>
+    <li class="day-item"><span class="day-num">339</span>脉轮系统——人体的七个能量漩涡</li>
+    <li class="day-item"><span class="day-num">347</span>光体激活——梅尔卡巴场的构建</li>
+    <li class="day-item"><span class="day-num">348</span>松果体——灵魂的座席</li>
+    <li class="day-item"><span class="day-num">351</span>星际种子——为了协助地球扬升而来的灵魂</li>
+    <li class="day-item"><span class="day-num">353</span>光之工作者——传播爱与光的管道</li>
+    <li class="day-item"><span class="day-num">357</span>2027年终回顾——关键的一年，你醒了吗？</li>
+    <li class="day-item"><span class="day-num">358</span>地球分频——旧地球与新地球的物理分离</li>
+    <li class="day-item"><span class="day-num">360</span>爱的文明——五维地球的社会蓝图</li>
+    <li class="day-item"><span class="day-num">361</span>给未来的信——写给2035年的自己</li>
+    <li class="day-item"><span class="day-num">364</span>你就是光——点亮自己，照亮世界</li>
+    <li class="day-item"><span class="day-num">365</span>扬升——游戏通关，欢迎回家</li>
+  </ul>
+</div>
+
+<!-- AFTERWORD -->
+<div class="page" id="afterword">
+  <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+  <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  <div class="section-label">后 记</div>
+  <div class="afterword">
+    <h2>文明升维的三大核心启示</h2>
+
+    <div class="content-block" style="text-align:left;margin-top:30px;">
+      <h3>启示一：个体觉醒是文明升维的基本单元</h3>
+      <p>每一颗醒来的人类心灵，都是点亮地球光场的星火。365个来访者，365种人类困境，365次光的输入。当足够多的个体完成从"向外索取"到"向内探索"的转向，集体意识场就会发生不可逆转的频率跃迁。</p>
+
+      <h3>启示二：苦难是伪装的祝福</h3>
+      <p>正如第001日到第365日所展示的——愤怒是看门狗，焦虑是错位的能量，羞耻是等待被接回家的内在小孩。人类所有的负面体验，都是在呼唤你回到"光"的本质。痛苦不是终点，它是觉醒的闹钟。</p>
+
+      <h3>启示三：爱是宇宙的终极粘合剂</h3>
+      <p>从第090日"爱是宇宙的粘合剂"，到第365日"扬升——游戏通关，欢迎回家"。贯穿365天的核心线索只有一个字：爱。对自我的爱，对家庭的爱，对地球的爱，对宇宙的爱。当人类的集体频率提升到爱（500）以上，地球就会自然升维进入五维频率。</p>
+    </div>
+
+    <div class="ornament-divider" style="margin:30px 0;">◆ ◆ ◆</div>
+
+    <div class="heart-words" style="margin-top:20px;">
+      这 365 个问题，涵盖了三维人类可能遇到的几乎所有困境。<br>
+      每一个问题都是一把钥匙，解开心锁，释放内在的光明。<br>
+      当你读完这本日记，2027 年或许已经过去，<br>
+      但觉醒的旅程，永不落幕。
+    </div>
+
+    <div class="cover-stamp" style="display:inline-block;margin-top:30px;transform:rotate(-2deg);">
+      THE AWAKENING CONTINUES
+    </div>
+  </div>
+</div>
+
+
+</div><!-- book-container -->
+</div><!-- study-room -->
+
+<!-- ===== PAGE NAVIGATION ===== -->
+<div class="page-nav" id="pageNav">
+  <button class="page-nav-btn" onclick="prevSection()">← 上一章</button>
+  <span class="page-indicator" id="pageIndicator">封面</span>
+  <button class="page-nav-btn" onclick="nextSection()">下一章 →</button>
+</div>
+
+<script>
+// ===== SCROLL TO SECTION =====
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updatePageIndicator(id);
+    highlightBookmark(id);
+  }
+}
+
+// ===== SECTION ORDER =====
+var sectionOrder = [
+  'cover', 'toc', 'foreword',
+  'month1', 'day001', 'day002', 'day003', 'day004', 'day005', 'day006',
+  'day007', 'day008', 'day009', 'day010', 'day011', 'day012', 'day013', 'day014', 'day015',
+  'month2', 'month3', 'month4', 'month5', 'month6',
+  'month7', 'month8', 'month9', 'month10', 'month11', 'month12',
+  'afterword'
+];
+
+// ===== TRACK CURRENT SECTION =====
+var currentSection = 'cover';
+var observer;
+
+function updatePageIndicator(id) {
+  currentSection = id;
+  var el = document.getElementById('pageIndicator');
+  var labels = {
+    'cover': '封面', 'toc': '目录', 'foreword': '序章',
+    'month1': '一月 · 自我与觉醒', 'day001': '第001日 · 我是谁？',
+    'day002': '第002日 · 身体不是我', 'day003': '第003日 · 小我的声音',
+    'day004': '第004日 · 为什么不快乐', 'day005': '第005日 · 接纳不完美的自己',
+    'day006': '第006日 · 假装坚强', 'day007': '第007日 · 讨好型人格',
+    'day008': '第008日 · 愤怒的真相', 'day009': '第009日 · 悲伤的河流',
+    'day010': '第010日 · 焦虑的解药', 'day011': '第011日 · 嫉妒的转化',
+    'day012': '第012日 · 羞耻感', 'day013': '第013日 · 拥抱内在小孩',
+    'day014': '第014日 · 潜意识的冰山', 'day015': '第015日 · 修改信念代码',
+    'month2': '二月 · 家庭与血脉', 'month3': '三月 · 情感与连接',
+    'month4': '四月 · 事业与创造', 'month5': '五月 · 财富与资源',
+    'month6': '六月 · 身体与健康', 'month7': '七月 · 科技与未来',
+    'month8': '八月 · 社会与文化', 'month9': '九月 · 战争与和平',
+    'month10': '十月 · 环保与自然', 'month11': '十一月 · 生死与轮回',
+    'month12': '十二月 · 合一与升维', 'afterword': '后记'
+  };
+  if (el) el.textContent = labels[id] || id;
+  highlightBookmark(id);
+}
+
+// ===== SCROLL OBSERVER =====
+function initObserver() {
+  observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        updatePageIndicator(entry.target.id);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sectionOrder.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+}
+
+// ===== PREV/NEXT =====
+function prevSection() {
+  var idx = sectionOrder.indexOf(currentSection);
+  if (idx > 0) scrollToSection(sectionOrder[idx - 1]);
+}
+function nextSection() {
+  var idx = sectionOrder.indexOf(currentSection);
+  if (idx >= 0 && idx < sectionOrder.length - 1) scrollToSection(sectionOrder[idx + 1]);
+}
+
+// ===== BOOKMARK DOTS =====
+var bookmarkSections = [
+  'cover', 'toc', 'foreword', 'month1', 'month2', 'month3',
+  'month4', 'month5', 'month6', 'month7', 'month8', 'month9',
+  'month10', 'month11', 'month12', 'afterword'
+];
+
+function buildBookmarks() {
+  var bar = document.getElementById('bookmarkBar');
+  if (!bar) return;
+  var labels = {
+    'cover': '封面', 'toc': '目录', 'foreword': '序章',
+    'month1': '一月', 'month2': '二月', 'month3': '三月', 'month4': '四月',
+    'month5': '五月', 'month6': '六月', 'month7': '七月', 'month8': '八月',
+    'month9': '九月', 'month10': '十月', 'month11': '十一月', 'month12': '十二月',
+    'afterword': '后记'
+  };
+  bookmarkSections.forEach(function(id) {
+    var dot = document.createElement('div');
+    dot.className = 'bm-dot';
+    dot.title = labels[id] || id;
+    dot.onclick = function() { scrollToSection(id); };
+    dot.id = 'bm-' + id;
+    bar.appendChild(dot);
+  });
+}
+
+function highlightBookmark(id) {
+  document.querySelectorAll('.bm-dot').forEach(function(d) { d.classList.remove('active'); });
+  // Find closest bookmark
+  var bmId = id;
+  if (id.startsWith('day')) bmId = 'month1';
+  var dot = document.getElementById('bm-' + bmId);
+  if (dot) dot.classList.add('active');
+}
+
+// ===== DUST MOTES =====
+function createMotes() {
+  var layer = document.querySelector('.ambient-layer');
+  for (var i = 0; i < 30; i++) {
+    var mote = document.createElement('div');
+    mote.className = 'mote';
+    mote.style.left = (5 + Math.random() * 90) + '%';
+    mote.style.animationDuration = (8 + Math.random() * 15) + 's';
+    mote.style.animationDelay = (Math.random() * 12) + 's';
+    layer.appendChild(mote);
+  }
+}
+
+// ===== KEYBOARD NAVIGATION =====
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSection(); }
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextSection(); }
+});
+
+// ===== INIT =====
+initObserver();
+buildBookmarks();
+createMotes();
+updatePageIndicator('cover');
+</script>
+
+</body>
+</html>
