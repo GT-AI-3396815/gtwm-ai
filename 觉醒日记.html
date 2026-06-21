@@ -1498,6 +1498,17 @@ document.addEventListener('keydown', function(e) {
 initObserver();
 buildBookmarks();
 createMotes();
+// ===== HASH / POSTMESSAGE NAVIGATION =====
+if (window.location.hash) {
+  var hashId = window.location.hash.substring(1);
+  setTimeout(function() { scrollToSection(hashId); }, 400);
+}
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'scrollToSection') {
+    scrollToSection(e.data.section);
+  }
+});
+
 updatePageIndicator('cover');
 </script>
 

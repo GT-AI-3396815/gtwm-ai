@@ -31,6 +31,10 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold-light)}
 .nav-item a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius);color:var(--text-secondary);font-size:0.92rem;transition:all var(--transition);cursor:pointer}
 .nav-item a:hover{background:var(--bg-card);color:var(--text-primary)}
 .nav-item a.active{background:var(--bg-card);color:var(--gold);box-shadow:inset 2px 0 0 var(--gold)}
+.sub-arrow{font-size:0.6rem;margin-left:auto;transition:transform var(--transition)} .has-sub.open .sub-arrow{transform:rotate(180deg)}
+.sub-nav{display:none;padding:0;margin:0;list-style:none} .has-sub.open .sub-nav{display:block}
+.sub-nav li a{display:block;padding:6px 14px 6px 52px;font-size:0.8rem;color:var(--text-muted);cursor:pointer;text-decoration:none;transition:all var(--transition);border-radius:4px}
+.sub-nav li a:hover{background:var(--bg-card);color:var(--gold)}
 .nav-icon{font-size:1.1rem;width:22px;text-align:center;flex-shrink:0}
 .freq-indicator{margin:12px 16px 16px;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);display:flex;align-items:center;gap:12px}
 .freq-dot-wrap{position:relative;width:14px;height:14px;flex-shrink:0}
@@ -301,7 +305,7 @@ tr:hover td{background:rgba(123,104,238,0.05)}
     <li class="nav-item"><a href="https://aemiiep3g3yx2.ok.kimi.link/" target="_blank"><span class="nav-icon">&#9835;</span> 光体音流</a></li>
     <li class="nav-item"><a href="https://lvpzqch7fzxw2.ok.kimi.link/" target="_blank"><span class="nav-icon">&#9883;</span> 光体符号库</a></li>
     <li class="nav-item"><a href="https://www.xiaoyuzhoufm.com/podcast/6757ed4fac04b8765834af07" target="_blank"><span class="nav-icon">&#9762;</span> 宇宙观：文明启示录</a></li>
-    <li class="nav-item"><a onclick="switchSection('awakening',this)"><span class="nav-icon">&#128214;</span> 觉醒日记</a></li>
+    <li class="nav-item has-sub"><a onclick="switchSection('awakening',this);toggleSubNav(this)"><span class="nav-icon">&#128214;</span> 觉醒日记 <span class="sub-arrow">&#9660;</span></a><ul class="sub-nav"><li><a onclick="navToMonth('month3')">三月 · 情感与连接</a></li><li><a onclick="navToMonth('month4')">四月 · 事业与创造</a></li><li><a onclick="navToMonth('month5')">五月 · 财富与丰盛</a></li><li><a onclick="navToMonth('month6')">六月 · 身体与圣殿</a></li><li><a onclick="navToMonth('month7')">七月 · 科技与未来</a></li><li><a onclick="navToMonth('month8')">八月 · 集体意识</a></li><li><a onclick="navToMonth('month9')">九月 · 二元超越</a></li><li><a onclick="navToMonth('month10')">十月 · 盖亚连接</a></li><li><a onclick="navToMonth('month11')">十一月 · 生死轮回</a></li></ul></li>
     <li class="nav-item"><a href="https://2nhiufr7yofde.ok.kimi.link/assessment.html" target="_blank"><span class="nav-icon">&#9790;</span> 天赋测试</a></li>
     <li class="nav-item"><a href="https://llwtsscpjckdm.ok.kimi.link/" target="_blank"><span class="nav-icon">&#10025;</span> 内容生成</a></li>
     <li class="nav-item"><a href="https://2nhiufr7yofde.ok.kimi.link/" target="_blank"><span class="nav-icon">&#9733;</span> IP打造</a></li>
@@ -428,6 +432,20 @@ function switchSection(name,el){
   if(name==='prediction')setTimeout(animateDashboard,400);
 }
 
+function toggleSubNav(el){
+  var li=el.parentElement;
+  li.classList.toggle('open');
+}
+function navToMonth(section){
+  switchSection('awakening');
+  setTimeout(function(){
+    var frame=document.getElementById('awakeningFrame');
+    if(frame&&frame.contentWindow){
+      frame.contentWindow.postMessage({type:'scrollToSection',section:section},'*');
+    }
+  },300);
+}
+
 function filterDictionary(){
   var q=(document.getElementById('dictSearch').value||'').toLowerCase();
   document.querySelectorAll('#dictList .term-card').forEach(function(c){
@@ -543,7 +561,7 @@ var currentDimension="civilization";
 function initDimension(){}
 
 function renderAwakening(){
-  return '<div class="section-header"><h2>觉醒日记</h2><p class="desc">2027地球扬升实录 · 光体觉醒之路</p></div><div class="card" style="padding:0;overflow:hidden;height:calc(100vh - 260px);min-height:600px"><iframe src="觉醒日记.html" style="width:100%;height:100%;border:none" title="觉醒日记"></iframe></div>';
+  return '<div class="section-header"><h2>觉醒日记</h2><p class="desc">2027地球扬升实录 · 光体觉醒之路</p></div><div class="card" style="padding:0;overflow:hidden;height:calc(100vh - 260px);min-height:600px"><iframe id="awakeningFrame" src="觉醒日记.html" style="width:100%;height:100%;border:none" title="觉醒日记"></iframe></div>';
 }
 
 function init(){
