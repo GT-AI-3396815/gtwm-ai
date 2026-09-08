@@ -26,7 +26,7 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold-light)}
 @keyframes logo-glow{0%,100%{box-shadow:0 0 24px var(--gold-glow),0 0 48px rgba(184,134,11,0.15)}50%{box-shadow:0 0 36px var(--gold-glow),0 0 72px rgba(184,134,11,0.30)}}
 .sidebar-logo h1{font-size:1.1rem;color:var(--gold);letter-spacing:0.08em}
 .sidebar-logo .sub{font-size:0.7rem;color:var(--text-muted);margin-top:2px}
-.nav-list{flex:1;padding:12px 0;list-style:none}
+.nav-list{flex:1;padding:12px 0;list-style:none;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(184,134,11,.3) transparent}
 .nav-item{padding:0 16px;margin:2px 0}
 .nav-item a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius);color:var(--text-secondary);font-size:0.92rem;transition:all var(--transition);cursor:pointer}
 .nav-item a:hover{background:var(--bg-card);color:var(--text-primary)}
@@ -305,7 +305,7 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .wb-prio.high{background:rgba(220,80,80,.18);color:#e07a7a}
 .wb-prio.mid{background:rgba(184,134,11,.18);color:var(--gold-light)}
 .wb-prio.low{background:rgba(0,188,212,.15);color:var(--cyan)}
-.wb-del{color:var(--text-muted);cursor:pointer;font-size:1rem;padding:0 4px;flex-shrink:0;user-select:none}
+.wb-del{color:var(--text-muted);cursor:pointer;font-size:1.05rem;padding:0 6px;flex-shrink:0;user-select:none}
 .wb-del:hover{color:#e07a7a}
 .wb-proj{margin-bottom:14px}
 .wb-proj:last-child{margin-bottom:0}
@@ -322,6 +322,10 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .wb-tab:hover{color:var(--gold)}
 .wb-clear{background:none;border:none;color:var(--text-muted);font-size:0.72rem;cursor:pointer;margin-left:auto}
 .wb-clear:hover{color:#e07a7a}
+.nav-sep{padding:14px 20px 4px;font-size:0.66rem;letter-spacing:0.25em;color:var(--text-muted);border-top:1px solid var(--border-subtle);margin-top:10px}
+.nav-item.ext a{font-size:0.78rem;padding:6px 14px;gap:8px;color:var(--text-muted)}
+.nav-item.ext a:hover{color:var(--gold)}
+.nav-item.ext .nav-icon{font-size:0.7rem;width:16px;color:rgba(184,134,11,.65)}
 .wb-prog-num{width:48px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--gold);text-align:center;padding:2px 4px;font-size:0.8rem;font-weight:600}
 .wb-prog-num:focus{border-color:var(--gold);outline:none}
 .wb-date{background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--text-secondary);padding:3px 6px;font-size:0.72rem;color-scheme:dark}
@@ -367,8 +371,35 @@ tr:hover td{background:rgba(123,104,238,0.05)}
   </div>
   <ul class="nav-list">
     <li class="nav-item"><a onclick="switchSection('workbench',this)" class="active"><span class="nav-icon">&#9998;</span> 工作台</a></li>
-    <li class="nav-item"><a onclick="switchSection('worldview',this)"><span class="nav-icon">&#9703;</span> 宇宙观</a></li>
+    <li class="nav-item"><a onclick="switchSection('worldview',this)"><span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" style="vertical-align:-3px"><circle cx="12" cy="12" r="5.6" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="3.4" stroke="currentColor" stroke-width="1.5" fill="none" transform="rotate(-18 12 12)"/></svg></span> 宇宙观</a></li>
     <li class="nav-item"><a href="https://gt-ai-3396815.github.io/guangti-channel/" target="_blank" rel="noopener"><span class="nav-icon">&#9733;</span> 光体•星际频道</a></li>
+    <li class="nav-sep">光体矩阵</li>
+    <li class="nav-item ext"><a href="https://guangti-intel.vercel.app" target="_blank" rel="noopener" title="光体情报网"><span class="nav-icon">&#10022;</span> 光体情报网</a></li>
+    <li class="nav-item ext"><a href="http://127.0.0.1:18777/" target="_blank" rel="noopener" title="自动生成"><span class="nav-icon">&#10022;</span> 自动生成</a></li>
+    <li class="nav-item ext"><a href="http://127.0.0.1:5100" target="_blank" rel="noopener" title="光体•艺无界"><span class="nav-icon">&#10022;</span> 光体•艺无界</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-wenwujie/" target="_blank" rel="noopener" title="光体•文无界"><span class="nav-icon">&#10022;</span> 光体•文无界</a></li>
+    <li class="nav-item ext"><a href="http://localhost:8770" target="_blank" rel="noopener" title="光体•视无界"><span class="nav-icon">&#10022;</span> 光体•视无界</a></li>
+    <li class="nav-item ext"><a href="https://guangti-caiwujie.vercel.app/" target="_blank" rel="noopener" title="光体•数无界"><span class="nav-icon">&#10022;</span> 光体•数无界</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-zhiwujie/" target="_blank" rel="noopener" title="光体•智无界"><span class="nav-icon">&#10022;</span> 光体•智无界</a></li>
+    <li class="nav-item ext"><a href="http://localhost:8642" target="_blank" rel="noopener" title="光体•财无界"><span class="nav-icon">&#10022;</span> 光体•财无界</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/mingwujie/" target="_blank" rel="noopener" title="光体•名无界"><span class="nav-icon">&#10022;</span> 光体•名无界</a></li>
+    <li class="nav-item ext"><a href="http://127.0.0.1:8766/" target="_blank" rel="noopener" title="光体•小说创作"><span class="nav-icon">&#10022;</span> 光体•小说创作</a></li>
+    <li class="nav-item ext"><a href="https://15a2dff3a4384c7a90a4b4ad7c84f10d.app.workbuddy.link" target="_blank" rel="noopener" title="光体•出版助手"><span class="nav-icon">&#10022;</span> 光体•出版助手</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/ai-tools/" target="_blank" rel="noopener" title="光体•AI超市"><span class="nav-icon">&#10022;</span> 光体•AI超市</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-ai-website-platform/" target="_blank" rel="noopener" title="网站开发"><span class="nav-icon">&#10022;</span> 网站开发</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-archive/" target="_blank" rel="noopener" title="光体•星际档案馆"><span class="nav-icon">&#10022;</span> 光体•星际档案馆</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-tushuku/" target="_blank" rel="noopener" title="光体•智库"><span class="nav-icon">&#10022;</span> 光体•智库</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-yinliu/" target="_blank" rel="noopener" title="光体•音流"><span class="nav-icon">&#10022;</span> 光体•音流</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-symbol-library/" target="_blank" rel="noopener" title="光体•符号密语"><span class="nav-icon">&#10022;</span> 光体•符号密语</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-talent-assessment/" target="_blank" rel="noopener" title="光体师•天赋能量测评"><span class="nav-icon">&#10022;</span> 光体师•天赋能量测评</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-zhizao/" target="_blank" rel="noopener" title="光体•智造"><span class="nav-icon">&#10022;</span> 光体•智造</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-city/" target="_blank" rel="noopener" title="光体之城"><span class="nav-icon">&#10022;</span> 光体之城</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/guangti-scifi-club/" target="_blank" rel="noopener" title="科幻俱乐部"><span class="nav-icon">&#10022;</span> 科幻俱乐部</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/beiwei30/" target="_blank" rel="noopener" title="觉醒之爱"><span class="nav-icon">&#10022;</span> 觉醒之爱</a></li>
+    <li class="nav-item ext"><a href="http://localhost:3000/" target="_blank" rel="noopener" title="县域智能体"><span class="nav-icon">&#10022;</span> 县域智能体</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/wanshang-club/" target="_blank" rel="noopener" title="玩商俱乐部"><span class="nav-icon">&#10022;</span> 玩商俱乐部</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/lihuo-tachuang/" target="_blank" rel="noopener" title="离火她创营"><span class="nav-icon">&#10022;</span> 离火她创营</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/eternal-voice/" target="_blank" rel="noopener" title="MJ：永恒之声"><span class="nav-icon">&#10022;</span> MJ：永恒之声</a></li>
   </ul>
   <div class="freq-indicator" data-page-node-id="p8qBlp7EGmaG24qbZPHXir">
     <div class="freq-dot-wrap" data-page-node-id="01HdYVqlbFBu92Gz3vz1Kq"><div class="freq-dot" data-page-node-id="BBb6doAPW3k7bbIryzse33"></div><div class="freq-ring" data-page-node-id="XjRzxc84iZXBDNO3o1tdbA"></div></div>
@@ -695,25 +726,25 @@ function renderWorkbench(){
   h+='<div class="wb-stat"><div class="num" id="wbStatGoal">0/0</div><div class="lbl">本周目标完成</div></div>';
   h+='</div>';
   h+='<div class="wb-grid">';
-  h+='<div class="card"><h3>◆ 今日要事</h3><div class="wb-add-row"><input type="text" id="wbTaskInput" placeholder="写下今天最重要的事..." maxlength="60" onkeydown="if(event.key===\'Enter\')wbAddTask()"><select id="wbTaskPrio"><option value="high">高</option><option value="mid" selected>中</option><option value="low">低</option></select><button class="wb-btn" onclick="wbAddTask()">添加</button></div>';
+  h+='<div class="card"><h3>◆ 今日要事<span class="wb-clear" onclick="wbClearTasks()">清空 ×</span></h3><div class="wb-add-row"><input type="text" id="wbTaskInput" placeholder="写下今天最重要的事..." maxlength="60" onkeydown="if(event.key===\'Enter\')wbAddTask()"><select id="wbTaskPrio"><option value="high">高</option><option value="mid" selected>中</option><option value="low">低</option></select><button class="wb-btn" onclick="wbAddTask()">添加</button></div>';
   h+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px"><button class="wb-tab active" id="wbF-all" onclick="wbSetFilter(\'all\')">全部</button><button class="wb-tab" id="wbF-open" onclick="wbSetFilter(\'open\')">进行中</button><button class="wb-tab" id="wbF-done" onclick="wbSetFilter(\'done\')">已完成</button><button class="wb-clear" onclick="wbClearDone()">清除已完成 ×</button></div>';
   h+='<div id="wbTaskList"></div></div>';
-  h+='<div class="card"><h3>◆ 项目推进</h3><div class="wb-add-row"><input type="text" id="wbProjInput" placeholder="项目名称..." maxlength="40" onkeydown="if(event.key===\'Enter\')wbAddProject()"><button class="wb-btn" onclick="wbAddProject()">添加</button></div><div id="wbProjList"></div></div>';
+  h+='<div class="card"><h3>◆ 项目推进<span class="wb-clear" onclick="wbClearProjects()">清空 ×</span></h3><div class="wb-add-row"><input type="text" id="wbProjInput" placeholder="项目名称..." maxlength="40" onkeydown="if(event.key===\'Enter\')wbAddProject()"><button class="wb-btn" onclick="wbAddProject()">添加</button></div><div id="wbProjList"></div></div>';
   h+='</div>';
   h+='<div class="wb-grid">';
-  h+='<div class="card"><h3>◆ 今日日程</h3><div class="wb-add-row"><input type="time" id="wbSchedTime" value="09:00"><input type="text" id="wbSchedInput" placeholder="时段安排，如：写作 / 会议 / 冥想..." maxlength="40" onkeydown="if(event.key===\'Enter\')wbAddSched()"><button class="wb-btn" onclick="wbAddSched()">添加</button></div><div id="wbSchedList"></div></div>';
-  h+='<div class="card"><h3>◆ 本周目标<span class="wb-goal-prog" id="wbGoalProg"></span></h3><div class="wb-add-row"><input type="text" id="wbGoalInput" placeholder="本周要拿到的结果..." maxlength="50" onkeydown="if(event.key===\'Enter\')wbAddGoal()"><button class="wb-btn" onclick="wbAddGoal()">添加</button></div><div id="wbGoalList"></div></div>';
+  h+='<div class="card"><h3>◆ 今日日程<span class="wb-clear" onclick="wbClearSched()">清空 ×</span></h3><div class="wb-add-row"><input type="time" id="wbSchedTime" value="09:00"><input type="text" id="wbSchedInput" placeholder="时段安排，如：写作 / 会议 / 冥想..." maxlength="40" onkeydown="if(event.key===\'Enter\')wbAddSched()"><button class="wb-btn" onclick="wbAddSched()">添加</button></div><div id="wbSchedList"></div></div>';
+  h+='<div class="card"><h3>◆ 本周目标<span class="wb-goal-prog" id="wbGoalProg"></span><span class="wb-clear" onclick="wbClearGoals()">清空 ×</span></h3><div class="wb-add-row"><input type="text" id="wbGoalInput" placeholder="本周要拿到的结果..." maxlength="50" onkeydown="if(event.key===\'Enter\')wbAddGoal()"><button class="wb-btn" onclick="wbAddGoal()">添加</button></div><div id="wbGoalList"></div></div>';
   h+='</div>';
   h+='<div class="wb-grid">';
-  h+='<div class="card"><h3>◆ 习惯打卡<span class="wb-goal-prog" id="wbHabitToday"></span></h3><div class="wb-add-row"><input type="text" id="wbHabitInput" placeholder="新习惯，如：早起 / 冥想 / 阅读..." maxlength="20" onkeydown="if(event.key===\'Enter\')wbAddHabit()"><button class="wb-btn" onclick="wbAddHabit()">添加</button></div><div id="wbHabitTable"></div></div>';
-  h+='<div class="card wb-note"><h3>◆ 随手记 · 今日灵感</h3><textarea id="wbNote" placeholder="灵感、备忘、今日复盘...（自动保存到本机）" oninput="wbNoteChange()"></textarea><div class="wb-saved" id="wbSavedTip"></div></div>';
+  h+='<div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:2rem;margin-bottom:10px">&#128293;</div><h3 style="color:var(--gold)">AI-HOT</h3><p style="color:var(--text-secondary);font-size:0.88rem;max-width:420px;margin:10px auto 20px">AI 热点资讯站——掌握 AI 前沿动态与热点情报，为你的工作台补给弹药。</p><a href="https://aihot.news/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;font-size:0.95rem;padding:12px 36px;background:var(--gold);color:#06060f;border-radius:8px;font-weight:600">&#128293; 前往 AI-HOT &#8594;</a></div>';
+  h+='<div class="card wb-note"><h3>◆ 随手记 · 今日灵感<span class="wb-clear" onclick="wbClearNote()">清空 ×</span></h3><textarea id="wbNote" placeholder="灵感、备忘、今日复盘...（自动保存到本机）" oninput="wbNoteChange()"></textarea><div class="wb-saved" id="wbSavedTip"></div></div>';
   h+='</div>';
   return h;
 }
 function initWorkbench(){
   wbLoad();wbGoalWeekCheck();wbRenderWorkbenchHeader();
   var n=document.getElementById('wbNote');if(n&&WB.note)n.value=WB.note;
-  wbRenderTasks();wbRenderProjects();wbRenderSched();wbRenderGoals();wbRenderHabits();
+  wbRenderTasks();wbRenderProjects();wbRenderSched();wbRenderGoals();
 }
 // ---- 今日要事 ----
 function wbAddTask(){
@@ -809,52 +840,13 @@ function wbRenderGoals(){
   }).join('');}
   wbUpdateStats();
 }
-// ---- 习惯打卡 ----
-function wbAddHabit(){
-  var inp=document.getElementById('wbHabitInput');if(!inp)return;
-  var v=(inp.value||'').trim();if(!v)return;
-  WB.habits.push({id:Date.now(),name:v});
-  inp.value='';wbRenderHabits();wbSave();
-}
-function wbDelHabit(id){WB.habits=WB.habits.filter(function(h){return h.id!=id});wbRenderHabits();wbSave()}
-function wbHabitStreak(hid){
-  var n=0;var t=new Date();
-  for(;;){var k=wbDateKey(t);if(WB.habitLog[k]&&WB.habitLog[k][hid]){n++;t.setDate(t.getDate()-1)}else break}
-  return n;
-}
-function wbHabitToggle(hid,key){
-  var today=wbDateKey(new Date());
-  if(key>today)return;
-  WB.habitLog[key]=WB.habitLog[key]||{};
-  if(WB.habitLog[key][hid])delete WB.habitLog[key][hid];else WB.habitLog[key][hid]=1;
-  wbRenderHabits();wbSave();
-}
-function wbRenderHabits(){
-  var el=document.getElementById('wbHabitTable');if(!el)return;
-  var prog=document.getElementById('wbHabitToday');
-  if(!WB.habits.length){
-    if(prog)prog.textContent='';
-    el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">添加想养成的习惯，每天点亮它 &#10022;</p>';return;
-  }
-  var days=wbWeekDates();var today=wbDateKey(new Date());
-  var names=['一','二','三','四','五','六','日'];
-  var h='<table class="wb-habit-table"><thead><tr><th style="text-align:left">习惯</th>';
-  days.forEach(function(d,i){h+='<th>'+names[i]+'<br><span style="opacity:.6">'+(d.getMonth()+1)+'/'+d.getDate()+'</span></th>'});
-  h+='<th></th></tr></thead><tbody>';
-  var todayDone=0;
-  WB.habits.forEach(function(hb){
-    h+='<tr><td class="wb-habit-name">'+wbEsc(hb.name)+'<span class="wb-streak">连续'+wbHabitStreak(hb.id)+'天</span></td>';
-    days.forEach(function(d){
-      var k=wbDateKey(d);var on=WB.habitLog[k]&&WB.habitLog[k][hb.id];
-      if(on&&k===today)todayDone++;
-      h+='<td><span class="wb-dot'+(on?' on':'')+(k===today?' today':'')+'" onclick="wbHabitToggle('+hb.id+',\''+k+'\')">'+(on?'&#10003;':'&#183;')+'</span></td>';
-    });
-    h+='<td><span class="wb-habit-del" title="删除" onclick="wbDelHabit('+hb.id+')">&#215;</span></td></tr>';
-  });
-  h+='</tbody></table>';
-  el.innerHTML=h;
-  if(prog)prog.textContent='今日 '+todayDone+'/'+WB.habits.length;
-}
+// ---- 模块清空 ----
+function wbClearTasks(){if(!WB.tasks.length)return;if(!confirm('确定清空全部要事吗？'))return;WB.tasks=[];wbRenderTasks();wbSave()}
+function wbClearProjects(){if(!WB.projects.length)return;if(!confirm('确定清空全部项目吗？'))return;WB.projects=[];wbRenderProjects();wbSave()}
+function wbClearSched(){if(!WB.schedule.length)return;if(!confirm('确定清空今日日程吗？'))return;WB.schedule=[];wbRenderSched();wbSave()}
+function wbClearGoals(){if(!WB.goals.length)return;if(!confirm('确定清空本周目标吗？'))return;WB.goals=[];wbRenderGoals();wbSave()}
+function wbClearNote(){if(!WB.note)return;if(!confirm('确定清空随手记吗？'))return;WB.note='';var n=document.getElementById('wbNote');if(n)n.value='';var t=document.getElementById('wbSavedTip');if(t)t.textContent='';wbPersist()}
+
 // ---- 统计 ----
 function wbUpdateStats(){
   var done=0,high=0;
