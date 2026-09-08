@@ -316,6 +316,39 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .wb-note textarea{width:100%;min-height:120px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;padding:12px;color:var(--text-primary);font-size:0.88rem;line-height:1.7;resize:vertical;outline:none;font-family:inherit;box-sizing:border-box}
 .wb-note textarea:focus{border-color:var(--gold)}
 .wb-saved{font-size:0.7rem;color:var(--text-muted);text-align:right;margin-top:6px}
+.wb-goal-prog{float:right;font-size:0.72rem;color:var(--gold-light);font-weight:400;margin-left:8px}
+.wb-tab{background:none;border:1px solid var(--border-subtle);color:var(--text-secondary);border-radius:14px;padding:4px 12px;font-size:0.75rem;cursor:pointer;transition:all var(--transition)}
+.wb-tab.active{border-color:var(--gold);color:var(--gold)}
+.wb-tab:hover{color:var(--gold)}
+.wb-clear{background:none;border:none;color:var(--text-muted);font-size:0.72rem;cursor:pointer;margin-left:auto}
+.wb-clear:hover{color:#e07a7a}
+.wb-prog-num{width:48px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--gold);text-align:center;padding:2px 4px;font-size:0.8rem;font-weight:600}
+.wb-prog-num:focus{border-color:var(--gold);outline:none}
+.wb-date{background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--text-secondary);padding:3px 6px;font-size:0.72rem;color-scheme:dark}
+.wb-date:focus{border-color:var(--gold);outline:none}
+.wb-meta{font-size:0.7rem;color:var(--text-muted)}
+.wb-meta.soon{color:#e07a7a}
+.wb-sched-row{display:flex;align-items:center;gap:8px;padding:7px 4px;border-bottom:1px solid var(--border-subtle)}
+.wb-sched-row:last-child{border-bottom:none}
+.wb-sched-row input[type=time]{background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--text-primary);padding:5px 8px;font-size:0.8rem;color-scheme:dark;flex-shrink:0}
+.wb-sched-row input[type=time]:focus,.wb-sched-row input[type=text]:focus{border-color:var(--gold);outline:none}
+.wb-sched-row input[type=text]{flex:1;min-width:0;background:var(--bg-input);border:1px solid transparent;border-radius:6px;color:var(--text-primary);font-size:0.85rem;padding:5px 8px}
+.wb-goal-item{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid var(--border-subtle)}
+.wb-goal-item:last-child{border-bottom:none}
+.wb-goal-item input[type=checkbox]{accent-color:var(--gold);width:16px;height:16px;cursor:pointer;flex-shrink:0}
+.wb-goal-item span{flex:1;font-size:0.88rem;word-break:break-all;cursor:pointer}
+.wb-goal-item.done span{text-decoration:line-through;color:var(--text-muted)}
+.wb-habit-table{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:8px}
+.wb-habit-table th{color:var(--text-muted);font-weight:500;font-size:0.66rem;padding:6px 2px;text-align:center}
+.wb-habit-table td{padding:7px 2px;text-align:center;border-top:1px solid var(--border-subtle)}
+.wb-habit-name{text-align:left;font-size:0.82rem;word-break:break-all;max-width:120px}
+.wb-streak{font-size:0.66rem;color:var(--gold-light);margin-left:4px}
+.wb-dot{display:inline-block;width:19px;height:19px;line-height:19px;border-radius:50%;border:1px solid var(--border-subtle);color:var(--text-muted);font-size:0.6rem;cursor:pointer;user-select:none;text-align:center}
+.wb-dot:hover{border-color:var(--gold)}
+.wb-dot.on{background:var(--gold);border-color:var(--gold);color:#06060f;font-weight:700}
+.wb-dot.today{box-shadow:0 0 0 1px var(--gold)}
+.wb-habit-del{color:var(--text-muted);cursor:pointer;font-size:0.9rem;user-select:none}
+.wb-habit-del:hover{color:#e07a7a}
 /* ===== 宇宙观内页tabs ===== */
 .wv-tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
 .wv-tab{background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:8px 18px;border-radius:20px;font-size:0.85rem;cursor:pointer;transition:all var(--transition)}
@@ -332,22 +365,10 @@ tr:hover td{background:rgba(123,104,238,0.05)}
     <h1 data-page-node-id="XfFqRUEdrRdPptdMzouYOn">光体文明操作系统</h1>
     <div class="sub" style="margin-top:4px;color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;" data-page-node-id="50ku2GPWPORiJLdecm7MqR">点亮自己，照亮他人</div>
   </div>
-  <ul class="nav-list" data-page-node-id="96MUOrlKHFltukCqabD3Aa">
+  <ul class="nav-list">
     <li class="nav-item"><a onclick="switchSection('workbench',this)" class="active"><span class="nav-icon">&#9998;</span> 工作台</a></li>
-    <li class="nav-item"><a href="https://gt-ai-3396815.github.io/guangti-channel/" target="_blank" rel="noopener"><span class="nav-icon">&#9733;</span> 光体•星际频道</a></li>
     <li class="nav-item"><a onclick="switchSection('worldview',this)"><span class="nav-icon">&#9703;</span> 宇宙观</a></li>
-    
-    
-    <li class="nav-item" data-page-node-id="Y95A7sN1e9w2xgt9nUENx2"><a href="https://zzkvpohstax4u.ok.kimi.link/" target="_blank" data-page-node-id="V3B00L72rZy6ZLaDQZEBPe"><span class="nav-icon" data-page-node-id="Eom9djepBpGDHphPHqhj4k">&#9789;</span> 光体解码</a></li>
-    <li class="nav-item" data-page-node-id="vNBzlAZlnBxs2uR3B6irk1"><a href="https://aemiiep3g3yx2.ok.kimi.link/" target="_blank" data-page-node-id="bU2VjcK1vrNumRiQhjn2md"><span class="nav-icon" data-page-node-id="2s8GU7SvKChJUYzc4BaAty">&#9835;</span> 光体音流</a></li>
-    <li class="nav-item" data-page-node-id="7DtzXdgm8YIYXsQ0bR6f8o"><a href="https://lvpzqch7fzxw2.ok.kimi.link/" target="_blank" data-page-node-id="YrwffUKDF542oFXaKB1IHC"><span class="nav-icon" data-page-node-id="nxnAOoZCnZ8ZgKPPggND12">&#9883;</span> 光体符号库</a></li>
-    
-    
-    <li class="nav-item" data-page-node-id="c98o3HrBIBR45dj7E1PEq1"><a href="https://2nhiufr7yofde.ok.kimi.link/assessment.html" target="_blank" data-page-node-id="pVJiPrGyXL3KEuQW2Ce3lK"><span class="nav-icon" data-page-node-id="sVS57MYIJqiJURmxNJAXqZ">&#9790;</span> 天赋测试</a></li>
-    <li class="nav-item" data-page-node-id="gbPLyTE7jjQfNlT2xSFSu0"><a href="https://llwtsscpjckdm.ok.kimi.link/" target="_blank" data-page-node-id="kIEqE4HH7nBIW8iAAxiPsf"><span class="nav-icon" data-page-node-id="EbGDg3A4WUqoCkz8yeyuOk">&#10025;</span> 内容生成</a></li>
-    
-    
-  
+    <li class="nav-item"><a href="https://gt-ai-3396815.github.io/guangti-channel/" target="_blank" rel="noopener"><span class="nav-icon">&#9733;</span> 光体•星际频道</a></li>
   </ul>
   <div class="freq-indicator" data-page-node-id="p8qBlp7EGmaG24qbZPHXir">
     <div class="freq-dot-wrap" data-page-node-id="01HdYVqlbFBu92Gz3vz1Kq"><div class="freq-dot" data-page-node-id="BBb6doAPW3k7bbIryzse33"></div><div class="freq-ring" data-page-node-id="XjRzxc84iZXBDNO3o1tdbA"></div></div>
@@ -450,11 +471,6 @@ function renderDictionary(){
   h+='</div>';return h;
 }
 
-function renderSmartGen(){
-  var h='<div class="section-header"><h2>内容生成</h2><p class="desc">跳转至 Kimi 智能体进行内容生成</p></div>';
-  h+='<div class="card" style="text-align:center;padding:48px 20px"><div style="font-size:1.2rem;color:var(--gold);margin-bottom:16px">&#10025; Kimi 内容生成智能体</div><p style="color:var(--text-muted);margin-bottom:24px">点击下方按钮，跳转到 Kimi 智能体进行 AI 内容创作</p><a href="https://llwtsscpjckdm.ok.kimi.link/" target="_blank" class="gen-big-btn" style="display:inline-block;text-decoration:none;font-size:1rem;padding:14px 40px;background:var(--gold);color:#fff;border-radius:8px;cursor:pointer;border:none;font-weight:600" rel="noopener">&#10025; 打开 Kimi 智能体</a></div>';
-  return h;
-}
 
 function renderPrediction(){
   var h='<div class="section-header"><div class="prediction-intro"><h2>光体视角 · 人类未来20年发展预测</h2><div class="subtitle">2026 — 2046 · '+PREDICTION_DATA.length+'个维度 · 五个升维节点</div></div></div>';
@@ -478,7 +494,7 @@ function renderPrediction(){
   return h;
 }
 
-// ===== 光体解码 =====
+// ===== 全局交互 =====
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
 function switchSection(name,el){
   document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
@@ -654,33 +670,52 @@ function renderPodcast(){
 }
 
 // ===== 工作台 =====
-var WB={tasks:[],projects:[],note:''};
+var WB={tasks:[],projects:[],note:'',schedule:[],goals:[],habits:[],habitLog:{},goalsWeek:'',taskFilter:'all'};
+var WB_MOTTO=['把今天过成升维路上的一格光阶。','专注一件事，胜过分散十件事。','频率对了，事情就顺了。','今日之事今日毕，光频自然升。','慢慢来，比较快。','先完成，再完美。','心稳，则万事有光。'];
 function wbEsc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function wbLoad(){try{var d=JSON.parse(localStorage.getItem('gtwm_wb')||'{}');WB.tasks=d.tasks||[];WB.projects=d.projects||[];WB.note=d.note||''}catch(e){WB={tasks:[],projects:[],note:''}}}
+function wbLoad(){try{var d=JSON.parse(localStorage.getItem('gtwm_wb')||'{}');WB.tasks=d.tasks||[];WB.projects=d.projects||[];WB.note=d.note||'';WB.schedule=d.schedule||[];WB.goals=d.goals||[];WB.habits=d.habits||[];WB.habitLog=d.habitLog||{};WB.goalsWeek=d.goalsWeek||''}catch(e){WB={tasks:[],projects:[],note:'',schedule:[],goals:[],habits:[],habitLog:{},goalsWeek:'',taskFilter:'all'}}}
 function wbPersist(){try{localStorage.setItem('gtwm_wb',JSON.stringify(WB))}catch(e){}}
+function wbSave(){wbPersist();wbUpdateStats()}
 function wbDateStr(){var n=new Date();return n.getFullYear()+'年'+(n.getMonth()+1)+'月'+n.getDate()+'日 · 星期'+'日一二三四五六'.charAt(n.getDay())}
+function wbGreeting(){var h=new Date().getHours();return h<6?'凌晨好':h<9?'早上好':h<12?'上午好':h<14?'中午好':h<18?'下午好':'晚上好'}
+function wbDateKey(t){return t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)}
+function wbWeekKey(){var n=new Date();var d=(n.getDay()+6)%7;n.setDate(n.getDate()-d);return wbDateKey(n)}
+function wbWeekDates(){var n=new Date();var d=(n.getDay()+6)%7;var out=[];for(var i=0;i<7;i++){out.push(new Date(n.getFullYear(),n.getMonth(),n.getDate()-d+i))}return out}
+function wbRenderWorkbenchHeader(){
+  var d=document.getElementById('wbDate');if(d)d.textContent=wbDateStr();
+  var g=document.getElementById('wbGreet');if(g)g.textContent=wbGreeting();
+  var m=document.getElementById('wbMotto');if(m)m.textContent=WB_MOTTO[Math.floor(Date.now()/86400000)%WB_MOTTO.length];
+}
 function renderWorkbench(){
-  var h='<div class="section-header"><h2>工作台</h2><p class="desc" id="wbDate"></p></div>';
+  var h='<div class="section-header"><h2>工作台</h2><p class="desc"><span id="wbDate"></span> · <span id="wbGreet"></span> · <span id="wbMotto" style="color:var(--gold-light)"></span></p></div>';
   h+='<div class="wb-stats">';
   h+='<div class="wb-stat"><div class="num" id="wbStatDone">0/0</div><div class="lbl">今日要事完成</div></div>';
   h+='<div class="wb-stat"><div class="num" id="wbStatHigh">0</div><div class="lbl">高优先级待办</div></div>';
-  h+='<div class="wb-stat"><div class="num" id="wbStatProj">0</div><div class="lbl">推进中项目</div></div>';
   h+='<div class="wb-stat"><div class="num" id="wbStatAvg">—</div><div class="lbl">项目平均进度</div></div>';
+  h+='<div class="wb-stat"><div class="num" id="wbStatGoal">0/0</div><div class="lbl">本周目标完成</div></div>';
   h+='</div>';
   h+='<div class="wb-grid">';
-  h+='<div class="card"><h3>◆ 今日要事</h3><div class="wb-add-row"><input type="text" id="wbTaskInput" placeholder="写下今天最重要的事..." maxlength="60" onkeydown="if(event.key===\'Enter\')wbAddTask()"><select id="wbTaskPrio"><option value="high">高</option><option value="mid" selected>中</option><option value="low">低</option></select><button class="wb-btn" onclick="wbAddTask()">添加</button></div><div id="wbTaskList"></div></div>';
+  h+='<div class="card"><h3>◆ 今日要事</h3><div class="wb-add-row"><input type="text" id="wbTaskInput" placeholder="写下今天最重要的事..." maxlength="60" onkeydown="if(event.key===\'Enter\')wbAddTask()"><select id="wbTaskPrio"><option value="high">高</option><option value="mid" selected>中</option><option value="low">低</option></select><button class="wb-btn" onclick="wbAddTask()">添加</button></div>';
+  h+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px"><button class="wb-tab active" id="wbF-all" onclick="wbSetFilter(\'all\')">全部</button><button class="wb-tab" id="wbF-open" onclick="wbSetFilter(\'open\')">进行中</button><button class="wb-tab" id="wbF-done" onclick="wbSetFilter(\'done\')">已完成</button><button class="wb-clear" onclick="wbClearDone()">清除已完成 ×</button></div>';
+  h+='<div id="wbTaskList"></div></div>';
   h+='<div class="card"><h3>◆ 项目推进</h3><div class="wb-add-row"><input type="text" id="wbProjInput" placeholder="项目名称..." maxlength="40" onkeydown="if(event.key===\'Enter\')wbAddProject()"><button class="wb-btn" onclick="wbAddProject()">添加</button></div><div id="wbProjList"></div></div>';
   h+='</div>';
+  h+='<div class="wb-grid">';
+  h+='<div class="card"><h3>◆ 今日日程</h3><div class="wb-add-row"><input type="time" id="wbSchedTime" value="09:00"><input type="text" id="wbSchedInput" placeholder="时段安排，如：写作 / 会议 / 冥想..." maxlength="40" onkeydown="if(event.key===\'Enter\')wbAddSched()"><button class="wb-btn" onclick="wbAddSched()">添加</button></div><div id="wbSchedList"></div></div>';
+  h+='<div class="card"><h3>◆ 本周目标<span class="wb-goal-prog" id="wbGoalProg"></span></h3><div class="wb-add-row"><input type="text" id="wbGoalInput" placeholder="本周要拿到的结果..." maxlength="50" onkeydown="if(event.key===\'Enter\')wbAddGoal()"><button class="wb-btn" onclick="wbAddGoal()">添加</button></div><div id="wbGoalList"></div></div>';
+  h+='</div>';
+  h+='<div class="wb-grid">';
+  h+='<div class="card"><h3>◆ 习惯打卡<span class="wb-goal-prog" id="wbHabitToday"></span></h3><div class="wb-add-row"><input type="text" id="wbHabitInput" placeholder="新习惯，如：早起 / 冥想 / 阅读..." maxlength="20" onkeydown="if(event.key===\'Enter\')wbAddHabit()"><button class="wb-btn" onclick="wbAddHabit()">添加</button></div><div id="wbHabitTable"></div></div>';
   h+='<div class="card wb-note"><h3>◆ 随手记 · 今日灵感</h3><textarea id="wbNote" placeholder="灵感、备忘、今日复盘...（自动保存到本机）" oninput="wbNoteChange()"></textarea><div class="wb-saved" id="wbSavedTip"></div></div>';
+  h+='</div>';
   return h;
 }
 function initWorkbench(){
-  wbLoad();
-  var d=document.getElementById('wbDate');if(d)d.textContent=wbDateStr();
+  wbLoad();wbGoalWeekCheck();wbRenderWorkbenchHeader();
   var n=document.getElementById('wbNote');if(n&&WB.note)n.value=WB.note;
-  wbRenderTasks();wbRenderProjects();
+  wbRenderTasks();wbRenderProjects();wbRenderSched();wbRenderGoals();wbRenderHabits();
 }
-function wbSave(){wbPersist();wbUpdateStats()}
+// ---- 今日要事 ----
 function wbAddTask(){
   var inp=document.getElementById('wbTaskInput');if(!inp)return;
   var v=(inp.value||'').trim();if(!v)return;
@@ -689,35 +724,138 @@ function wbAddTask(){
 }
 function wbToggleTask(id){WB.tasks.forEach(function(t){if(t.id==id)t.done=!t.done});wbRenderTasks();wbSave()}
 function wbDelTask(id){WB.tasks=WB.tasks.filter(function(t){return t.id!=id});wbRenderTasks();wbSave()}
+function wbSetFilter(f){WB.taskFilter=f;wbRenderTasks()}
+function wbClearDone(){WB.tasks=WB.tasks.filter(function(t){return !t.done});wbRenderTasks();wbSave()}
+function wbTaskSort(a,b){if(a.done!==b.done)return a.done?1:-1;var o={high:0,mid:1,low:2};return o[a.prio]-o[b.prio]}
 function wbRenderTasks(){
   var el=document.getElementById('wbTaskList');if(!el)return;
+  var pm={high:'高',mid:'中',low:'低'};
+  ['all','open','done'].forEach(function(k){var b=document.getElementById('wbF-'+k);if(b)b.className='wb-tab'+(WB.taskFilter===k?' active':'')});
   if(!WB.tasks.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">今天还没有安排，添加第一件要事吧 &#10022;</p>';}
   else{
-    var pm={high:'高',mid:'中',low:'低'};
-    el.innerHTML=WB.tasks.map(function(t){
+    var list=WB.tasks.slice().sort(wbTaskSort).filter(function(t){return WB.taskFilter==='all'||(WB.taskFilter==='done'?t.done:!t.done)});
+    if(!list.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">该分类下暂无要事</p>';}
+    else{el.innerHTML=list.map(function(t){
       return '<div class="wb-item'+(t.done?' done':'')+'"><input type="checkbox" '+(t.done?'checked':'')+' onchange="wbToggleTask('+t.id+')"><span class="t-name" onclick="wbToggleTask('+t.id+')">'+wbEsc(t.name)+'</span><span class="wb-prio '+t.prio+'">'+pm[t.prio]+'</span><span class="wb-del" title="删除" onclick="wbDelTask('+t.id+')">&#215;</span></div>';
-    }).join('');
+    }).join('');}
   }
   wbUpdateStats();
 }
+// ---- 项目推进 ----
 function wbAddProject(){
   var inp=document.getElementById('wbProjInput');if(!inp)return;
   var v=(inp.value||'').trim();if(!v)return;
-  WB.projects.push({id:Date.now(),name:v,progress:0});
+  WB.projects.push({id:Date.now(),name:v,progress:0,deadline:''});
   inp.value='';wbRenderProjects();wbSave();
 }
 function wbProjDelta(id,d){WB.projects.forEach(function(p){if(p.id==id)p.progress=Math.max(0,Math.min(100,p.progress+d))});wbRenderProjects();wbSave()}
+function wbSetProgress(id,el){var v=Math.max(0,Math.min(100,parseInt(el.value,10)||0));WB.projects.forEach(function(p){if(p.id==id)p.progress=v});wbRenderProjects();wbSave()}
+function wbSetDeadline(id,v){WB.projects.forEach(function(p){if(p.id==id)p.deadline=v});wbRenderProjects();wbSave()}
 function wbDelProject(id){WB.projects=WB.projects.filter(function(p){return p.id!=id});wbRenderProjects();wbSave()}
+function wbDeadlineText(p){
+  if(!p.deadline)return '<span class="wb-meta">未设截止 · 可添加日期</span>';
+  var d=new Date(p.deadline+'T23:59:59');var n=new Date();
+  var days=Math.ceil((d-n)/86400000);
+  if(days<0)return '<span class="wb-meta soon">已逾期 '+(-days)+' 天</span>';
+  if(days===0)return '<span class="wb-meta soon">今天截止</span>';
+  return '<span class="wb-meta">距截止 '+days+' 天</span>';
+}
 function wbRenderProjects(){
   var el=document.getElementById('wbProjList');if(!el)return;
   if(!WB.projects.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">暂无进行中的项目 &#10022;</p>';}
   else{
     el.innerHTML=WB.projects.map(function(p){
-      return '<div class="wb-proj"><div class="wb-proj-head"><span class="p-name">'+wbEsc(p.name)+'</span><span class="wb-del" title="进度-10" onclick="wbProjDelta('+p.id+',-10)">&#8722;</span><strong style="color:var(--gold);font-size:0.8rem;width:40px;text-align:center">'+p.progress+'%</strong><span class="wb-del" title="进度+10" onclick="wbProjDelta('+p.id+',10)">&#65291;</span><span class="wb-del" title="删除" onclick="wbDelProject('+p.id+')">&#215;</span></div><div class="wb-prog-wrap"><div class="wb-prog-fill" style="width:'+p.progress+'%"></div></div></div>';
+      return '<div class="wb-proj"><div class="wb-proj-head"><span class="p-name">'+wbEsc(p.name)+'</span><span class="wb-del" title="进度-5" onclick="wbProjDelta('+p.id+',-5)">&#8722;</span><input type="number" min="0" max="100" value="'+p.progress+'" class="wb-prog-num" onchange="wbSetProgress('+p.id+',this)"><span class="wb-del" title="进度+5" onclick="wbProjDelta('+p.id+',5)">&#65291;</span><span class="wb-del" title="删除" onclick="wbDelProject('+p.id+')">&#215;</span></div><div class="wb-prog-wrap"><div class="wb-prog-fill" style="width:'+p.progress+'%"></div></div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">'+wbDeadlineText(p)+'<input type="date" class="wb-date" value="'+(p.deadline||'')+'" onchange="wbSetDeadline('+p.id+',this.value)"></div></div>';
     }).join('');
   }
   wbUpdateStats();
 }
+// ---- 今日日程 ----
+function wbAddSched(){
+  var inp=document.getElementById('wbSchedInput');if(!inp)return;
+  var v=(inp.value||'').trim();if(!v)return;
+  var t=document.getElementById('wbSchedTime').value||'09:00';
+  WB.schedule.push({id:Date.now(),time:t,text:v});
+  inp.value='';wbRenderSched();wbSave();
+}
+function wbSchedTime(id,el){WB.schedule.forEach(function(x){if(x.id==id)x.time=el.value});wbRenderSched();wbSave()}
+function wbSchedText(id,el){var v=(el.value||'').trim();if(!v){wbRenderSched();return}WB.schedule.forEach(function(x){if(x.id==id)x.text=v});wbSave()}
+function wbDelSched(id){WB.schedule=WB.schedule.filter(function(x){return x.id!=id});wbRenderSched();wbSave()}
+function wbRenderSched(){
+  var el=document.getElementById('wbSchedList');if(!el)return;
+  if(!WB.schedule.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">还没有安排时段，规划一下今天的节奏 &#10022;</p>';return}
+  var list=WB.schedule.slice().sort(function(a,b){return a.time<b.time?-1:a.time>b.time?1:0});
+  el.innerHTML=list.map(function(x){
+    return '<div class="wb-sched-row"><input type="time" value="'+x.time+'" onchange="wbSchedTime('+x.id+',this)"><input type="text" value="'+wbEsc(x.text)+'" onchange="wbSchedText('+x.id+',this)"><span class="wb-habit-del" title="删除" onclick="wbDelSched('+x.id+')">&#215;</span></div>';
+  }).join('');
+}
+// ---- 本周目标 ----
+function wbGoalWeekCheck(){var wk=wbWeekKey();if(WB.goalsWeek!==wk){WB.goalsWeek=wk;WB.goals=[]}}
+function wbAddGoal(){
+  var inp=document.getElementById('wbGoalInput');if(!inp)return;
+  var v=(inp.value||'').trim();if(!v)return;
+  WB.goals.push({id:Date.now(),text:v,done:false});
+  inp.value='';wbRenderGoals();wbSave();
+}
+function wbToggleGoal(id){WB.goals.forEach(function(g){if(g.id==id)g.done=!g.done});wbRenderGoals();wbSave()}
+function wbDelGoal(id){WB.goals=WB.goals.filter(function(g){return g.id!=id});wbRenderGoals();wbSave()}
+function wbRenderGoals(){
+  var el=document.getElementById('wbGoalList');if(!el)return;
+  var done=0;WB.goals.forEach(function(g){if(g.done)done++});
+  var prog=document.getElementById('wbGoalProg');if(prog)prog.textContent=WB.goals.length?done+'/'+WB.goals.length:'';
+  if(!WB.goals.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">为本周定 1～3 个目标，每周自动清零重新开始 &#10022;</p>';}
+  else{el.innerHTML=WB.goals.map(function(g){
+    return '<div class="wb-goal-item'+(g.done?' done':'')+'"><input type="checkbox" '+(g.done?'checked':'')+' onchange="wbToggleGoal('+g.id+')"><span onclick="wbToggleGoal('+g.id+')">'+wbEsc(g.text)+'</span><span class="wb-habit-del" title="删除" onclick="wbDelGoal('+g.id+')">&#215;</span></div>';
+  }).join('');}
+  wbUpdateStats();
+}
+// ---- 习惯打卡 ----
+function wbAddHabit(){
+  var inp=document.getElementById('wbHabitInput');if(!inp)return;
+  var v=(inp.value||'').trim();if(!v)return;
+  WB.habits.push({id:Date.now(),name:v});
+  inp.value='';wbRenderHabits();wbSave();
+}
+function wbDelHabit(id){WB.habits=WB.habits.filter(function(h){return h.id!=id});wbRenderHabits();wbSave()}
+function wbHabitStreak(hid){
+  var n=0;var t=new Date();
+  for(;;){var k=wbDateKey(t);if(WB.habitLog[k]&&WB.habitLog[k][hid]){n++;t.setDate(t.getDate()-1)}else break}
+  return n;
+}
+function wbHabitToggle(hid,key){
+  var today=wbDateKey(new Date());
+  if(key>today)return;
+  WB.habitLog[key]=WB.habitLog[key]||{};
+  if(WB.habitLog[key][hid])delete WB.habitLog[key][hid];else WB.habitLog[key][hid]=1;
+  wbRenderHabits();wbSave();
+}
+function wbRenderHabits(){
+  var el=document.getElementById('wbHabitTable');if(!el)return;
+  var prog=document.getElementById('wbHabitToday');
+  if(!WB.habits.length){
+    if(prog)prog.textContent='';
+    el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">添加想养成的习惯，每天点亮它 &#10022;</p>';return;
+  }
+  var days=wbWeekDates();var today=wbDateKey(new Date());
+  var names=['一','二','三','四','五','六','日'];
+  var h='<table class="wb-habit-table"><thead><tr><th style="text-align:left">习惯</th>';
+  days.forEach(function(d,i){h+='<th>'+names[i]+'<br><span style="opacity:.6">'+(d.getMonth()+1)+'/'+d.getDate()+'</span></th>'});
+  h+='<th></th></tr></thead><tbody>';
+  var todayDone=0;
+  WB.habits.forEach(function(hb){
+    h+='<tr><td class="wb-habit-name">'+wbEsc(hb.name)+'<span class="wb-streak">连续'+wbHabitStreak(hb.id)+'天</span></td>';
+    days.forEach(function(d){
+      var k=wbDateKey(d);var on=WB.habitLog[k]&&WB.habitLog[k][hb.id];
+      if(on&&k===today)todayDone++;
+      h+='<td><span class="wb-dot'+(on?' on':'')+(k===today?' today':'')+'" onclick="wbHabitToggle('+hb.id+',\''+k+'\')">'+(on?'&#10003;':'&#183;')+'</span></td>';
+    });
+    h+='<td><span class="wb-habit-del" title="删除" onclick="wbDelHabit('+hb.id+')">&#215;</span></td></tr>';
+  });
+  h+='</tbody></table>';
+  el.innerHTML=h;
+  if(prog)prog.textContent='今日 '+todayDone+'/'+WB.habits.length;
+}
+// ---- 统计 ----
 function wbUpdateStats(){
   var done=0,high=0;
   WB.tasks.forEach(function(t){if(t.done)done++;else if(t.prio==='high')high++});
@@ -727,6 +865,8 @@ function wbUpdateStats(){
   if(e=document.getElementById('wbStatProj'))e.textContent=WB.projects.length;
   var avg=WB.projects.length?Math.round(WB.projects.reduce(function(s,p){return s+p.progress},0)/WB.projects.length):0;
   if(e=document.getElementById('wbStatAvg'))e.textContent=WB.projects.length?avg+'%':'—';
+  var gd=0;WB.goals.forEach(function(g){if(g.done)gd++});
+  if(e=document.getElementById('wbStatGoal'))e.textContent=gd+'/'+WB.goals.length;
 }
 var _wbNoteTimer=null;
 function wbNoteChange(){
