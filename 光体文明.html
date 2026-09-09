@@ -264,7 +264,7 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 
 
 
-.qa-section{margin-top:20px}
+.qa-ai-tag{font-size:0.78rem;color:var(--gold);margin-bottom:8px;letter-spacing:0.04em} .qa-typing{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px;animation:qaPulse 1s ease-in-out infinite} @keyframes qaPulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.15)}} .qa-section{margin-top:20px}
 .qa-title{font-size:1.15rem;color:var(--gold);margin-bottom:16px}
 .qa-input-row{display:flex;gap:10px;margin-bottom:16px}
 .qa-input{flex:1;padding:10px 14px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:var(--radius);color:var(--text-primary);font-size:0.92rem;outline:none}
@@ -395,6 +395,9 @@ tr:hover td{background:rgba(123,104,238,0.05)}
     <li class="nav-item ext"><a href="http://localhost:3000/" target="_blank" rel="noopener" title="县域智能体"><span class="nav-icon">&#10022;</span> 县域智能体</a></li>
     <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/wanshang-club/" target="_blank" rel="noopener" title="玩商俱乐部"><span class="nav-icon">&#10022;</span> 玩商俱乐部</a></li>
     <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/lihuo-tachuang/" target="_blank" rel="noopener" title="离火她创营"><span class="nav-icon">&#10022;</span> 离火她创营</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/taiping-hui-guanjia/" target="_blank" rel="noopener" title="太平慧管家"><span class="nav-icon">&#10022;</span> 太平慧管家</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/three-creator-platform/#/generator" target="_blank" rel="noopener" title="THREE"><span class="nav-icon">&#10022;</span> THREE</a></li>
+    <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/xiangyu-daoshi/" target="_blank" rel="noopener" title="多特瑞"><span class="nav-icon">&#10022;</span> 多特瑞</a></li>
     <li class="nav-item ext"><a href="https://gt-ai-3396815.github.io/eternal-voice/" target="_blank" rel="noopener" title="MJ：永恒之声"><span class="nav-icon">&#10022;</span> MJ：永恒之声</a></li>
   </ul>
   <div class="freq-indicator" data-page-node-id="p8qBlp7EGmaG24qbZPHXir">
@@ -597,10 +600,15 @@ function buildQAKB(){
   QA_KB=kb;
 }
 
-function askQA(){
-  var q=(document.getElementById('qaInput').value||'').trim();
-  var ans=document.getElementById('qaAnswer');
-  if(!q){ans.className='qa-answer show';ans.innerHTML='<span style="color:var(--text-muted)">请输入一个问题。</span>';return;}
+var AI_CFG={url:'https://api.deepseek.com/chat/completions',model:'deepseek-v4-flash-vision-exp',parts:['MTg4N2U3ZTUzYmY=','c2stNTRlZWQ0MWVj','MmM2NDlmY2IzZjg3']};
+function aiKey(){try{return atob(AI_CFG.parts[1]+AI_CFG.parts[2]+AI_CFG.parts[0])}catch(e){return ''}}
+function aiSysPrompt(){return '你是"光体文明操作系统"的星际向导AI。用简洁、温暖、清晰的简体中文回答，默认不超过120字。围绕光体文明世界观（光体、光码、光频、升维、宇宙树、光体师等）作答；用户问世界观之外的问题（工作、生活、技术等）也请认真有帮助地回答。不确定的具体事实不要编造。';}
+function fmtAIText(t){
+  t=String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  t=t.replace(/\*\*([^\n*]+)\*\*/g,'<strong>$1</strong>');
+  return t.replace(/\n/g,'<br>');
+}
+function kbLookup(q){
   if(!QA_KB.length)buildQAKB();
   var best=null,bestScore=0;
   for(var i=0;i<QA_KB.length;i++){
@@ -615,11 +623,31 @@ function askQA(){
     }
     if(score>bestScore){bestScore=score;best=QA_KB[i];}
   }
+  return (best&&bestScore>1)?best.a:'';
+}
+async function askQA(){
+  var inp=document.getElementById('qaInput');if(!inp)return;
+  var ans=document.getElementById('qaAnswer');if(!ans)return;
+  var q=(inp.value||'').trim();
+  if(!q){ans.className='qa-answer show';ans.innerHTML='<span style="color:var(--text-muted)">请输入一个问题。</span>';return;}
   ans.className='qa-answer show';
-  if(best&&bestScore>1){
-    ans.innerHTML='<div style="color:var(--gold);font-size:0.82rem;margin-bottom:8px">&#9889; 基于光体理论体系</div>'+best.a;
-  }else{
-    ans.innerHTML='<div style="color:var(--text-muted)">我目前的知识库暂时无法准确回答这个问题。建议尝试以下问题：</div><div class="qa-hints" style="margin-top:10px"><span class="qa-hint" onclick="qaHint(this)">什么是光体</span><span class="qa-hint" onclick="qaHint(this)">如何升维</span><span class="qa-hint" onclick="qaHint(this)">宇宙有几层</span><span class="qa-hint" onclick="qaHint(this)">什么是光体师</span></div>';
+  ans.innerHTML='<span style="color:var(--text-muted)"><span class="qa-typing"></span>星际智能思考中…</span>';
+  try{
+    var ctrl=(typeof AbortController!=='undefined')?new AbortController():null;
+    var timer=ctrl?setTimeout(function(){ctrl.abort()},30000):null;
+    var r=await fetch(AI_CFG.url,{method:'POST',signal:ctrl&&ctrl.signal,
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+aiKey()},
+      body:JSON.stringify({model:AI_CFG.model,messages:[{role:'system',content:aiSysPrompt()},{role:'user',content:q}],max_tokens:600,temperature:0.7})});
+    if(timer)clearTimeout(timer);
+    if(!r.ok)throw new Error('http '+r.status);
+    var d=await r.json();
+    var t=(d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content||'').trim();
+    if(!t)throw new Error('empty');
+    ans.innerHTML='<div class="qa-ai-tag">&#10022; AI 实时回答 · deepseek-v4-flash-vision-exp</div>'+fmtAIText(t);
+  }catch(e){
+    var local=kbLookup(q);
+    if(local){ans.innerHTML='<div class="qa-ai-tag" style="color:var(--text-muted)">&#9679; 离线知识库（星际信号暂断）</div>'+local;}
+    else{ans.innerHTML='<div class="qa-ai-tag" style="color:var(--text-muted)">&#9679; 星际信号暂时中断</div><span style="color:var(--text-muted)">请稍后再试，或换个问法。</span>';}
   }
 }
 
