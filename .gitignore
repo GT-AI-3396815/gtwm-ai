@@ -1,0 +1,15 @@
+# 环境变量与密钥 —— 绝不提交
+.env
+.env.*
+!.env.example
+*.local
+
+# 构建产物 / 缓存
+out/
+.next/
+node_modules/
+tsconfig.tsbuildinfo
+
+# 系统文件
+Thumbs.db
+.DS_Store
