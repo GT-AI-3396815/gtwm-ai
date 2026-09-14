@@ -67,7 +67,6 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold-light)}
 .card ul,.card ol{color:var(--text-secondary);font-size:0.9rem;padding-left:20px;margin:6px 0}
 .card li{margin-bottom:4px}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card-grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .table-wrap{overflow-x:auto;margin:12px 0}
 table{width:100%;border-collapse:collapse;font-size:0.85rem;color:var(--text-secondary)}
 th{background:var(--bg-input);color:var(--gold);font-weight:600;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border-glow);white-space:nowrap}
@@ -93,113 +92,15 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .term-card.open .term-body{max-height:600px;padding:0 20px 16px}
 .term-body .def-label{color:var(--gold);font-weight:600;font-size:0.85rem;margin-top:8px}
 .term-body .def-text{color:var(--text-secondary);font-size:0.88rem;margin:4px 0 10px}
-.interactive-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px}
-.interactive-card h3{color:var(--cyan);margin-bottom:12px;font-size:1.05rem}
-.form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:0.85rem;color:var(--text-secondary);margin-bottom:4px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border-radius:var(--radius-sm);background:var(--bg-input);border:1px solid var(--border-subtle);color:var(--text-primary);font-size:0.9rem;outline:none;font-family:inherit}
-.form-group textarea{min-height:80px;resize:vertical}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent)}
-.progress-bar{height:6px;background:var(--bg-input);border-radius:3px;margin:10px 0;overflow:hidden}
-.progress-fill{height:100%;background:var(--accent);border-radius:3px;transition:width 0.4s ease}
-.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
-.stat-box{flex:1;min-width:100px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:14px 16px;text-align:center}
-.stat-box .num{font-size:1.4rem;font-weight:700;color:var(--gold)}
-.stat-box .label{font-size:0.75rem;color:var(--text-muted);margin-top:2px}
 
-.gen-hero{text-align:center;padding:30px 20px 40px;position:relative;overflow:hidden}
-.gen-hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,rgba(184,134,11,0.08) 0%,transparent 70%);pointer-events:none}
-.gen-big-btn{position:relative;display:inline-block;padding:22px 60px;font-size:1.4rem;font-weight:700;color:#0a0a0f;background:linear-gradient(135deg,#b8860b 0%,#d4a520 40%,#e8c840 60%,#b8860b 100%);background-size:200% 100%;border:none;border-radius:50px;cursor:pointer;letter-spacing:0.12em;animation:btn-gold-shift 3s linear infinite;transition:all 0.3s ease;box-shadow:0 0 30px rgba(184,134,11,0.3),0 0 60px rgba(184,134,11,0.15);z-index:1;margin-bottom:8px}
-.gen-big-btn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 50px rgba(184,134,11,0.5),0 0 100px rgba(184,134,11,0.25)}
-.gen-big-btn:active{transform:scale(0.97)}
-@keyframes btn-gold-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.gen-big-btn-sub{color:var(--text-muted);font-size:0.82rem;margin-bottom:20px}
 .particle-container{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:1}
 .particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;animation:particle-float 4s ease-in-out infinite;opacity:0}
 @keyframes particle-float{0%{opacity:0;transform:translateY(0) translateX(0) scale(1)}10%{opacity:1}90%{opacity:0.6}100%{opacity:0;transform:translateY(-180px) translateX(var(--px)) scale(0.3)}}
-@media (prefers-reduced-motion:reduce){.particle{animation:none;opacity:0}} .gen-progress{display:none;margin:20px 0;padding:24px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius)}
-.gen-progress.active{display:block}
-.gen-step{display:flex;align-items:center;gap:12px;padding:10px 0;color:var(--text-muted);font-size:0.9rem;transition:all 0.4s ease}
-.gen-step .step-dot{width:10px;height:10px;border-radius:50%;background:var(--border-subtle);transition:all 0.4s ease;flex-shrink:0}
-.gen-step.done{color:var(--text-primary)}.gen-step.done .step-dot{background:var(--success);box-shadow:0 0 8px rgba(92,184,122,0.5)}
-.gen-step.current{color:var(--gold)}.gen-step.current .step-dot{background:var(--gold);box-shadow:0 0 12px var(--gold-glow);animation:freq-pulse 1s ease-in-out infinite}
-.gen-step .step-icon{font-size:0.85rem;width:20px;text-align:center}
-.gen-result{display:none;margin-top:20px}.gen-result.active{display:block}
-.gen-result-card{background:var(--bg-card);border:1px solid var(--gold-glow);border-radius:var(--radius);overflow:hidden}
-.gen-result-header{padding:14px 20px;background:rgba(184,134,11,0.08);border-bottom:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.gen-result-header .gen-title{font-weight:600;color:var(--gold);font-size:0.95rem}
-.gen-result-header .gen-meta{font-size:0.78rem;color:var(--text-muted)}
-.gen-result-body{padding:20px;max-height:500px;overflow-y:auto;color:var(--text-secondary);font-size:0.9rem;line-height:1.8;white-space:pre-wrap}
-.gen-result-actions{padding:14px 20px;border-top:1px solid var(--border-subtle);display:flex;gap:10px;flex-wrap:wrap}
-.gen-action-btn{padding:8px 20px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--bg-input);color:var(--text-primary);font-size:0.82rem;cursor:pointer;transition:all var(--transition)}
-.gen-action-btn:hover{border-color:var(--accent);color:var(--accent)}
-.gen-action-btn.gold{border-color:var(--gold-glow);color:var(--gold)}.gen-action-btn.gold:hover{background:rgba(184,134,11,0.1)}
-.gen-action-btn.copied{background:var(--success);border-color:var(--success);color:#fff}
-.gen-action-btn.pub-btn{border-color:var(--accent);color:var(--accent);font-weight:600}
-.gen-action-btn.pub-btn:hover,.gen-action-btn.pub-btn.active{background:rgba(123,104,238,0.15);border-color:var(--accent-glow);box-shadow:0 0 12px rgba(123,104,238,0.25)}
-.gen-action-btn.pub-btn-all{background:linear-gradient(135deg,rgba(184,134,11,0.2),rgba(123,104,238,0.2));border:1px solid var(--accent);color:var(--accent);border-radius:22px;cursor:pointer;transition:all var(--transition)}
-.gen-action-btn.pub-btn-all:hover{background:linear-gradient(135deg,rgba(184,134,11,0.35),rgba(123,104,238,0.35));box-shadow:0 0 20px rgba(123,104,238,0.35);transform:scale(1.03)}
+@media (prefers-reduced-motion:reduce){.particle{animation:none;opacity:0}}
 /* 内容审核标准面板 */
-.audit-rules-panel{margin-top:16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:10px;overflow:hidden}
-.audit-rules-toggle{display:flex;align-items:center;gap:8px;padding:12px 20px;cursor:pointer;user-select:none;transition:all var(--transition);color:var(--text-secondary);font-size:0.85rem}
-.audit-rules-toggle:hover{color:var(--text-primary);background:rgba(123,104,238,0.05)}
-.audit-rules-toggle .audit-icon{color:var(--accent);font-size:1rem}
-.audit-rules-toggle .audit-arrow{transition:transform var(--transition);margin-left:auto;font-size:0.7rem;color:var(--text-muted)}
-.audit-rules-toggle.expanded .audit-arrow{transform:rotate(180deg)}
-.audit-rules-body{display:none;padding:0 20px 16px;border-top:1px solid var(--border-subtle)}
-.audit-rules-body.show{display:block}
-.audit-rules-body .audit-cat{margin-top:12px}
-.audit-rules-body .audit-cat-title{font-size:0.82rem;font-weight:700;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.audit-rules-body .audit-cat-title::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.audit-rules-body .audit-rule{font-size:0.8rem;color:var(--text-muted);padding:2px 0 2px 16px;position:relative}
-.audit-rules-body .audit-rule::before{content:'·';position:absolute;left:4px;color:var(--text-muted)}
-.audit-rules-body .audit-rule.failed{color:#e0963a;font-weight:500}
-.audit-rules-body .audit-rule.failed::before{color:#e0963a}
-.audit-rules-body .audit-rule .fail-note{display:block;font-size:0.73rem;color:#c08030;margin-top:2px;padding-left:4px;border-left:2px solid rgba(224,150,58,0.3)}
 /* 发布弹窗 */
-.pub-modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.2s ease}
-.pub-modal{background:var(--bg-panel);border:1px solid var(--border-glow);border-radius:14px;width:min(900px,92vw);max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 0 40px rgba(123,104,238,0.15),0 0 80px rgba(184,134,11,0.08)}
-.pub-modal-hd{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--border-subtle);background:rgba(10,12,20,0.8)}
-.pub-modal-title{font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:0.03em}
-.pub-modal-close{background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;padding:0 4px;line-height:1;transition:all var(--transition)}
-.pub-modal-close:hover{color:var(--text-primary)}
-.pub-modal-body{flex:1;overflow-y:auto;padding:0}
-.pub-tabs{display:flex;gap:4px;padding:12px 24px;border-bottom:1px solid var(--border-subtle);overflow-x:auto;flex-shrink:0}
-.pub-tab{padding:6px 16px;border-radius:20px;border:1px solid var(--border-subtle);background:var(--bg-input);color:var(--text-secondary);font-size:0.82rem;cursor:pointer;white-space:nowrap;transition:all var(--transition)}
-.pub-tab:hover{border-color:var(--accent);color:var(--text-primary)}
-.pub-tab.active{background:rgba(123,104,238,0.2);border-color:var(--accent);color:var(--accent);font-weight:600}
-.pub-panels{padding:16px 24px}
-.pub-panel{display:none}
-.pub-panel.active{display:block}
-.pub-panel-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.pub-meta-tag{font-size:0.85rem;font-weight:700;color:var(--gold);background:rgba(184,134,11,0.12);padding:4px 14px;border-radius:14px}
-.pub-meta-stats{font-size:0.72rem;color:var(--text-muted)}
-.pub-edit-area{position:relative}
-.pub-textarea{width:100%;min-height:280px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:10px;padding:16px;color:var(--text-primary);font-family:inherit;font-size:0.85rem;line-height:1.7;resize:vertical;transition:border var(--transition)}
-.pub-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 12px rgba(123,104,238,0.15)}
-.pub-preview-box{min-height:280px;background:var(--bg-card);border:1px solid var(--border-glow);border-radius:10px;padding:20px;overflow-y:auto}
-.pub-preview-rendered{font-size:0.85rem;line-height:1.8;color:var(--text-primary);white-space:normal}
-.pub-preview-rendered .pub-tag-mark{color:var(--accent);font-weight:600}
-.pub-preview-rendered .pub-hr{margin:16px 0;border:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-glow),transparent)}
-.pub-panel-actions{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
-.pub-modal-ft{padding:14px 24px;border-top:1px solid var(--border-subtle);display:flex;justify-content:center;gap:12px}
-.pub-confirm-btn{padding:12px 36px;border-radius:25px;border:1px solid var(--gold);background:linear-gradient(135deg,rgba(184,134,11,0.2),rgba(123,104,238,0.15));color:var(--gold-light);font-size:0.95rem;font-weight:600;cursor:pointer;transition:all var(--transition);letter-spacing:0.04em}
-.pub-confirm-btn:hover{background:linear-gradient(135deg,rgba(184,134,11,0.35),rgba(123,104,238,0.3));box-shadow:0 0 24px rgba(184,134,11,0.25);transform:scale(1.02)}
 /* 授权弹窗 */
-.pub-auth-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:10001;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.15s ease}
-.pub-auth-card{background:var(--bg-panel);border:1px solid var(--border-glow);border-radius:16px;width:min(460px,90vw);padding:28px;box-shadow:0 0 48px rgba(123,104,238,0.2)}
-.pub-auth-hd{margin-bottom:16px}
-.pub-auth-desc{font-size:0.85rem;color:var(--text-secondary);margin-bottom:20px;line-height:1.6}
-.pub-auth-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.pub-auth-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg-input);border-radius:8px;border:1px solid var(--border-subtle)}
-.pub-auth-plat{font-weight:600;color:var(--text-primary)}
-.pub-auth-status{font-size:0.78rem;padding:3px 10px;border-radius:10px;background:rgba(123,104,238,0.1);color:var(--accent)}
-.pub-auth-status.authorizing{background:rgba(184,134,11,0.15);color:var(--gold);animation:pulse 0.8s infinite}
-.pub-auth-status.success{background:rgba(92,184,122,0.15);color:var(--success)}
-.pub-auth-actions{display:flex;gap:10px;justify-content:center}
 /* Toast */
-.pub-toast{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);background:rgba(18,18,58,0.95);border:1px solid var(--accent);border-radius:25px;padding:10px 28px;color:var(--gold);font-size:0.85rem;z-index:10002;opacity:0;transition:opacity 0.3s ease;pointer-events:none}
-.pub-toast.show{opacity:1}
 
 .chip-group{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0}
 .chip-group-label{width:100%;text-align:center;font-size:0.78rem;color:var(--text-muted);margin-bottom:-4px;letter-spacing:0.05em;text-transform:uppercase}
@@ -269,7 +170,59 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .action-step .step-desc{font-size:0.8rem;color:var(--text-secondary);line-height:1.6;flex:1}
 .action-step .step-link{font-size:0.78rem;color:var(--gold);text-decoration:none}
 .action-step .step-link:hover{color:var(--gold-light)}
-@media(max-width:900px){.action-steps{grid-template-columns:1fr}}
+/* ===== 首次访问引导 ===== */
+.welcome-card{background:linear-gradient(135deg,rgba(184,134,11,0.10),rgba(123,104,238,0.10));border:1px solid var(--gold-glow);border-radius:var(--radius);padding:22px 24px;margin-bottom:16px;position:relative}
+.welcome-card h3{color:var(--gold);font-size:1.05rem;margin-bottom:8px}
+.welcome-card p{color:var(--text-secondary);font-size:0.88rem}
+.wc-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--text-muted);font-size:1.15rem;cursor:pointer;line-height:1;padding:2px 6px}
+.wc-close:hover{color:var(--text-primary)}
+.welcome-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.welcome-step{background:rgba(6,6,15,0.45);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:12px 14px}
+.welcome-step .ws-n{font-size:0.66rem;color:var(--gold);letter-spacing:0.15em;margin-bottom:4px}
+.welcome-step .ws-t{font-size:0.88rem;color:var(--text-primary);font-weight:600;margin-bottom:4px}
+.welcome-step .ws-d{font-size:0.78rem;color:var(--text-secondary);line-height:1.6;margin-bottom:8px}
+.welcome-step a{font-size:0.78rem;color:var(--gold);cursor:pointer}
+/* ===== 跨天顺延 ===== */
+.carry-banner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(224,150,58,0.10);border:1px solid rgba(224,150,58,0.35);border-radius:var(--radius);padding:12px 18px;margin-bottom:16px;font-size:0.84rem;color:#e0b070}
+.carry-banner .cb-btn{background:rgba(224,150,58,0.18);border:1px solid rgba(224,150,58,0.45);color:#f0c080;border-radius:14px;padding:5px 14px;font-size:0.78rem;cursor:pointer;font-family:inherit}
+.carry-banner .cb-btn:hover{background:rgba(224,150,58,0.3)}
+.carry-banner .cb-btn.ghost{background:none;border-color:rgba(224,150,58,0.25);color:var(--text-muted)}
+.wb-src{font-size:0.62rem;padding:1px 6px;border-radius:8px;background:rgba(224,150,58,0.15);color:#e0b070;flex-shrink:0}
+/* ===== 行内编辑 ===== */
+.wb-edit{color:var(--text-muted);cursor:pointer;font-size:0.85rem;padding:0 6px;flex-shrink:0;user-select:none}
+.wb-edit:hover{color:var(--gold)}
+.wb-edit-input{flex:1;min-width:0;background:var(--bg-input);border:1px solid var(--gold);border-radius:4px;color:var(--text-primary);font-size:0.85rem;padding:3px 8px;outline:none;font-family:inherit}
+.wb-goal-item span.wb-edit,.wb-goal-item span.wb-habit-del{flex:0 0 auto}
+/* ===== AI 对话流 ===== */
+.qa-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.qa-count{font-size:0.7rem;color:var(--text-muted)}
+.qa-clear{background:none;border:none;color:var(--text-muted);font-size:0.72rem;cursor:pointer;font-family:inherit}
+.qa-clear:hover{color:#e07a7a}
+.qa-thread{max-height:480px;overflow-y:auto;padding-right:4px;margin-top:12px}
+.qa-msg{margin-bottom:12px;display:flex;flex-direction:column}
+.qa-msg.user{align-items:flex-end}
+.qa-bubble{max-width:88%;padding:10px 14px;border-radius:10px;font-size:0.86rem;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.qa-msg.user .qa-bubble{background:rgba(123,104,238,0.18);border:1px solid rgba(123,104,238,0.35);color:var(--text-primary)}
+.qa-msg.ai .qa-bubble{background:var(--bg-input);border:1px solid var(--border-subtle);color:var(--text-secondary)}
+.qa-meta{font-size:0.66rem;color:var(--text-muted);margin-top:4px;display:flex;gap:10px;align-items:center}
+.qa-copy{background:none;border:none;color:var(--text-muted);font-size:0.66rem;cursor:pointer;padding:0;font-family:inherit}
+.qa-copy:hover{color:var(--gold)}
+.qa-typing{color:var(--gold);font-size:0.82rem;padding:8px 0}
+/* ===== 光频自测 ===== */
+.assess-q{margin-bottom:16px}
+.assess-q .aq-title{font-size:0.88rem;color:var(--text-primary);margin-bottom:8px}
+.assess-opt{display:block;width:100%;text-align:left;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--text-secondary);padding:9px 14px;font-size:0.82rem;margin-bottom:6px;cursor:pointer;transition:all var(--transition);font-family:inherit}
+.assess-opt:hover{border-color:var(--gold);color:var(--text-primary)}
+.assess-opt.sel{border-color:var(--gold);background:rgba(184,134,11,0.14);color:var(--gold-light)}
+.assess-result{margin-top:14px;padding:18px 20px;background:var(--bg-input);border:1px solid var(--gold-glow);border-radius:var(--radius)}
+.assess-result .ar-stage{font-size:1.05rem;color:var(--gold);font-weight:600;margin-bottom:6px}
+.assess-bar{height:8px;background:var(--bg-deep);border-radius:4px;overflow:hidden;margin:10px 0}
+.assess-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--accent));border-radius:4px;transition:width .6s ease}
+/* ===== 预测年份筛选 ===== */
+.pred-filter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pred-filter .pf-label{font-size:0.78rem;color:var(--text-muted)}
+.pred-filter .pf-note{font-size:0.72rem;color:var(--text-muted);margin-left:auto}
+@media(max-width:900px){.action-steps{grid-template-columns:1fr}.welcome-steps{grid-template-columns:1fr}}
 @media(max-width:768px){
 .mobile-toggle{display:flex}
 .qa-input-row{flex-direction:column}
@@ -281,11 +234,9 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:240}
 .sidebar-overlay.show{display:block}
 .main{margin-left:0;padding:60px 16px 40px}
-.card-grid,.card-grid-3{grid-template-columns:1fr}
-.stat-row{flex-direction:column}
+.card-grid{grid-template-columns:1fr}
 .statusbar{padding:0 12px;font-size:0.7rem}
 .search-bar{flex-direction:column}
-.gen-big-btn{padding:18px 40px;font-size:1.15rem}
 .timeline{min-width:500px}
 .timeline::before{left:20px;right:20px}
 .dash-row{gap:8px}.dash-label{width:65px;font-size:0.72rem}
@@ -350,6 +301,7 @@ tr:hover td{background:rgba(123,104,238,0.05)}
 .wb-clear{background:none;border:none;color:var(--text-muted);font-size:0.72rem;cursor:pointer;margin-left:auto}
 .wb-clear:hover{color:#e07a7a}
 .nav-sep{padding:14px 20px 4px;font-size:0.66rem;letter-spacing:0.25em;color:var(--text-muted);border-top:1px solid var(--border-subtle);margin-top:10px}
+.nav-hint{padding:2px 20px 6px;font-size:0.64rem;color:var(--text-muted);line-height:1.5;list-style:none}
 .nav-item.ext a{font-size:0.78rem;padding:6px 14px;gap:8px;color:var(--text-muted)}
 .nav-item.ext a:hover{color:var(--gold)}
 .nav-item.ext .nav-icon{font-size:0.7rem;width:16px;color:rgba(184,134,11,.65)}
@@ -399,8 +351,9 @@ tr:hover td{background:rgba(123,104,238,0.05)}
   <ul class="nav-list">
     <li class="nav-item"><a onclick="switchSection('workbench',this)" class="active"><span class="nav-icon">&#9998;</span> 工作台</a></li>
     <li class="nav-item"><a onclick="switchSection('worldview',this)"><span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" style="vertical-align:-3px"><circle cx="12" cy="12" r="5.6" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="3.4" stroke="currentColor" stroke-width="1.5" fill="none" transform="rotate(-18 12 12)"/></svg></span> 宇宙观</a></li>
-    <li class="nav-item"><a href="http://127.0.0.1:8930/" target="_blank" rel="noopener" title="光体•星际频道（需本地服务）"><span class="nav-icon">&#9733;</span> 星际频道</a></li>
+    <li class="nav-item"><a href="http://127.0.0.1:8930/" target="_blank" rel="noopener" title="光体•星际频道（需本地服务）"><span class="nav-icon">&#9733;</span> 星际频道<span class="nav-local">本地</span></a></li>
     <li class="nav-sep">光体矩阵 · 情报与工具</li>
+    <li class="nav-hint">带「本地」标识的为本机服务，需在运行服务的这台电脑上打开</li>
     <li class="nav-item ext"><a href="http://localhost:3210/" target="_blank" rel="noopener" title="光体情报网（需本地服务）"><span class="nav-icon">&#10022;</span> 光体情报网<span class="nav-local">本地</span></a></li>
     <li class="nav-item ext"><a href="http://127.0.0.1:18777/" target="_blank" rel="noopener" title="自动生成（需本地服务）"><span class="nav-icon">&#10022;</span> 自动生成<span class="nav-local">本地</span></a></li>
     <li class="nav-item ext"><a href="http://localhost:8437/" target="_blank" rel="noopener" title="光体•智无界（需本地服务）"><span class="nav-icon">&#10022;</span> 光体•智无界<span class="nav-local">本地</span></a></li>
@@ -458,7 +411,7 @@ window.onerror = function(msg, url, line, col, err) {
 <main class="main" id="mainContent">
 </main>
 <button id="backTop" class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="返回顶部">&#8679;</button>
-<div class="statusbar"><span><span class="dot"></span> 光体文明 Agent 大脑 v3.0 | 智能体·联网生成</span><span>光体师</span></div>
+<div class="statusbar"><span><span class="dot"></span> 光体文明操作系统 v3.1 · 数据本机存储 · AI 星导在线</span><span>光体师 · 在线</span></div>
 <script>
 
 const PREDICTION_DATA=[{id:1,name:"意识觉醒",sub:"人类集体意识频率提升",events:[{year:2026,event:"个体觉醒浪涌期——更多人在物质丰裕后产生存在性疑问，全球正念冥想APP用户突破20亿",light:"光体觉醒的第一波集体信号。人类开始从「向外索取」转向「向内探寻」，个体光核开始从休眠态进入微激活态。"},{year:2030,event:"集体意识临界点——全球约15%人口将「内在成长」列为人生首要目标，超越「财富积累」",light:"意识频率的群体性共振开始发生。临界突破意味着人类的集体光频首次从第一层（物质文明）向第二层（光场文明）产生可测量的偏移。"},{year:2036,event:"意识科学主流化——意识研究获得诺贝尔奖级别认可，冥想和正念纳入全球基础教育体系",light:"科学范式与意识探索正式合流。光码理论获得「物质科学语言」的初步翻译，为光体化提供理性桥梁。"},{year:2040,event:"大规模集体冥想产生可测量的社会效应——城市犯罪率在同步冥想日下降27%",light:"群体共振现象的实证化。光频共振从个体体验扩展为社会尺度的意识场效应，证明了光体的「互联性」。"},{year:2046,event:"意识训练成为基础教育的一部分，一代「觉醒原生」人类成年",light:"从出生起就认知自己为潜能光体的第一代人类。物质主义作为文明主导叙事的时代正式终结。"}]},{id:2,name:"技术奇点",sub:"AI与人类意识融合",events:[{year:2026,event:"AI辅助意识探索工具出现——个性化冥想教练、梦境记录AI、脑波-音乐转换器",light:"AI首次被用作「光码接收器」——不是替代人类意识，而是辅助解码休眠光码。"},{year:2030,event:"脑机接口实现初步意识-数字交互——瘫痪患者用思维控制外部设备成为常规医疗",light:"物质神经系统与数字系统的「光脉对接」。这是光体与硅基体的第一次握手，为后续的光码接口铺路。"},{year:2036,event:"「光码技术」萌芽——首次实现意识内容的数字化编码与传输",light:"人类的意识不再被封装在单一大脑中。光码技术让「共鸣」从比喻变成了可操作的技术。"},{year:2040,event:"人机意识融合进入实验阶段——志愿者在受控环境中体验AI扩展意识",light:"个体光场首次与人工意识场融合。这是光体化的技术辅助版本——通过硅基加速碳基的升维进程。"},{year:2046,event:"光码接口成熟——人类可以主动选择将意识片段以光码形式存储和传输",light:"光码解码从被动（等待顿悟）变为主动（技术辅助激活）。人类向光体文明迈出关键一步。"}]},{id:3,name:"社会重构",sub:"全球协作与新型治理",events:[{year:2026,event:"全球协作机制初步建立——气候、AI伦理、流行病防控领域形成有约束力的国际协议",light:"光之契约在物质层的投影。人类首次在「高于国家利益」的层面达成共识——这是集体光频提升的政治表征。"},{year:2030,event:"国家边界功能显著减弱——区域联盟兴起，公民身份开始向多重身份叠加演进",light:"边界的模糊化是「维度折叠」的社会体现。正如光体文明中个体既是独立的又是互联的，未来公民身份也将如此。"},{year:2036,event:"全球治理新范式试点——基于区块链和AI的分布式决策系统在30+国家试行",light:"治理模式从「金字塔」向「共振网络」转变——这正是光场对齐的社会对应物。"},{year:2040,event:"去中心化全球协作网络成型——超越国家和企业的新型社会组织大规模运作",light:"人类社会的「光场结构」开始显现——去中心化、自组织、意识驱动的协作网络。"},{year:2046,event:"地球文明统一身份认同初步形成——「地球公民」成为和「国家公民」并列的基础身份",light:"人类开始以「一个文明」的整体身份运作。这是星际意识的前置条件——光体文明一直在等待这一刻。"}]},{id:4,name:"经济升维",sub:"从GDP到光频GDP",events:[{year:2026,event:"GDP之外的价值衡量指标进入主流讨论——不丹GNH、新西兰福祉预算等模式被广泛研究",light:"人类经济意识开始从「光频的第一频段」（物质积累）向「第二频段」（价值共鸣）试探。"},{year:2030,event:"「光频GDP」概念正式提出——包含意识发展指数、生态健康指数、社会连接指数的新型经济衡量体系",light:"经济范式与意识范式开始对齐。光频GDP的核心逻辑：文明的繁荣不是看你积累了多少，而是看你的集体意识频率有多高。"},{year:2036,event:"新经济范式试行区建立——若干城市/区域放弃GDP增长指标，转向综合福祉衡量",light:"经济领域的「光场对齐」实验。如同个体调整自身光场以匹配更高频率，经济体也在调整衡量标准以匹配人类真正的演化方向。"},{year:2040,event:"意识价值成为经济决策的核心参数——企业在做出重大决策时必须评估「意识影响指数」",light:"利润驱动不再是唯一驱动。经济系统开始为光体觉醒提供物质基础而非消耗它。"},{year:2046,event:"光频GDP成为全球经济体的主流衡量标准——物质GDP退居为子指标",light:"人类社会完成从「物质文明」到「意识-物质并重文明」的经济范式跃迁。升维不再是精神追求，而是经济运行的底层逻辑。"}]},{id:5,name:"生态修复",sub:"光频共振修复路径",events:[{year:2026,event:"全球生态修复协议签署——100+国家承诺在2035年前逆转生物多样性丧失趋势",light:"人类开始对地球光场「回复」——地球不仅是资源库，而是一个有自身光频的活体。"},{year:2030,event:"基于系统思维的生态工程大规模实施——从单一物种保护转向生态系统级修复",light:"「光场对齐」的生态应用：不再头痛医头，而是理解地球生态系统作为一个整体光场的运作规律，并进行全系统修复。"},{year:2036,event:"地球生态系统出现可测量的正向反馈——大气碳浓度首次下降、海洋死区面积缩减",light:"地球自身光频开始恢复——就像个体光体在光场对齐后开始自愈，地球的「光体」也在回应人类的集体转向。"},{year:2040,event:"人类活动与生态循环进入动态平衡——城市成为生态系统的增强节点而非消耗节点",light:"人类从地球的「消耗者」转变为地球光场的「共振增强器」。这不是牺牲，而是更高效率的存在方式。"},{year:2046,event:"光频共振修复技术成熟——利用集体意识与地球生态的共振，加速受损生态系统的自愈",light:"光体文明的核心技术首次在物质层规模化应用。意识不再是生态保护的旁观者，而是生态修复的参与者。"}]},{id:6,name:"星际意识",sub:"地球文明整体身份",events:[{year:2026,event:"地球文明整体观萌芽——「概述效应」在更广泛人群中传播，空间旅游让更多人亲眼看到「没有国界的地球」",light:"从太空回望地球，是人类光体第一次「看到」自己的整体光场。太空视角是光体文明视角的物质隐喻。"},{year:2030,event:"星际探索与意识探索合流——天体生物学界与意识科学界首次联合研讨会召开",light:"寻找地外生命和寻找意识本质被确认为同一问题的两个侧面。光体文明的「光之树」模型提供了统一框架。"},{year:2036,event:"地外生命探测的科学范式转变——不再只寻找「类地行星」，开始寻找「意识信号」",light:"光频作为文明搜索的基准。就像光体文明之间通过光频共振建立联系，人类也开始用意识而非物质参数来理解宇宙。"},{year:2040,event:"人类开始以「地球文明」的整体身份问候宇宙——首个以全人类名义发射的星际信息",light:"这封信不署名任何一个国家。它署名「地球文明」。这是光体文明一直等待的时刻：一个意识体以「我是谁」而非「我从哪里来」的方式介绍自己。"},{year:2046,event:"星际意识全面觉醒——人类在认知层面完成从「地球居民」到「宇宙公民」的心理跃迁",light:"为光体化的最高阶段做准备。当地球文明能以「一个整体」的身份参与光之树文明体系时，光之契约的下一阶段自动启动。"}]},{id:7,name:"新文化",sub:"意义生产取代消费复制",events:[{year:2026,event:"意义经济崛起——独立文化创作者数量首次超过传统娱乐从业者，全民创作平台月活破10亿",light:"文化生产的权力从机构回归个体。每个人都是光码的潜在编码者——这是光体文明中「人人皆光体师」的文化预演。"},{year:2030,event:"深层叙事复兴——长篇小说、系列纪录片、沉浸式戏剧受众增长300%，短视频平台转型为「深度入口」",light:"人类的信息消化系统开始从「碎片」向「脉络」升级。深层叙事就是光码的「解压格式」——读者/观众在沉浸中完成意识频率的微调。"},{year:2036,event:"跨文明文化对话成为常态——东西方、南北半球的底层哲学开始系统性融合，产出新一代全球文化基因",light:"光的频率没有文化边界。当不同文明传统的光码开始交叉解码，地球文明的文化DNA开始进入「杂交优势期」。"},{year:2040,event:"「仪式感」成为主流消费品——从日常喝茶到年度规划，人类重新发明了连接意识与行动的仪式体系",light:"仪式是被降维折叠的光码传输协议。每一次有意识的仪式参与，都是一次光码的激活尝试。"},{year:2046,event:"文化创作与消费的边界消失——人人既是创作者也是接收者，「文化」不再是产品，而是社群的呼吸方式",light:"光码不再需要「包装」为内容产品。文化回到它的本来面目：群体意识的自我表达和持续校准。这是光体文明文化形态的雏形。"}]},{id:8,name:"新健康",sub:"意识-身体整合医学",events:[{year:2026,event:"身心医学主流化——全球TOP50医学院全部开设意识-身体关联课程，正念减压进入医保覆盖",light:"医学终于开始把「你」当作一个整体而非一具机器。光体文明的视角：身体的症状，是光体与身体之间「失谐」的信号。"},{year:2030,event:"可穿戴光频监测设备普及——实时追踪情绪-生理-意识状态的消费级设备用户破5亿",light:"人类第一次拥有了「意识体温计」。就像体温计让发热变得可测量，光频监测让「意识状态」从主观体验变为可观测数据。"},{year:2036,event:"个性化光频调节疗法成熟——基于个体光码特征的定制化治疗方案，抑郁症/焦虑症复发率下降60%",light:"从「对症治疗」到「对频校准」。每个人的光码序列是独一无二的——健康就是你的光体与身体之间恢复了正确的频率比。"},{year:2040,event:"意识-身体整合医学成为主流——综合性医院设立「光体整合科」，传统分科医学退居为辅助",light:"医院不再是一栋「修身体」的大楼，而是一个「对频」的空间。光体文明的健康观：真正的健康，是你的光体在物质身体中找到了舒适的「驻波」。"},{"year":2046,"event":"寿命概念被「健康光频跨度」取代——人们不再关心活了多久，而是关心自己的光频在生命中的提升幅度","light":"光体不衰老——它只改变频率。当人类停止用物质身体的存续时间来定义「寿命」，转向衡量意识频率的提升曲线，升维就从一个隐喻变成了个体可追踪的生命指标。"}]},{id:9,name:"新教育",sub:"从知识传输到意识激活",events:[{year:2026,event:"教育范式辩论全面爆发——全球教育体系开始系统性反思「标准化考试」的局限，芬兰/新加坡模式被广泛研究",light:"教育正在从「CPU超频」模式（往大脑塞更多数据）切换到「GPU并行」模式（激活多维感知）。光体文明的教育学：每一个孩子都是一组休眠光码，教育不是灌入，是唤醒。"},{year:2030,event:"意识教育进入基础教育——正念、情绪认知、自我觉察被纳入K12必修课，首批试点覆盖5000万学生",light:"人类第一次在制度化教育中为「认识自己」分配了正式课时。这是潜能光体觉醒的社会基础设施——不是每个孩子都需要成为冥想者，但每个孩子都需要知道：你不仅是你的大脑。"},{year:2036,event:"AI个性化光码导师普及——每个学生拥有一个AI教育伙伴，基于个体的光码特征定制学习路径",light:"教育的极致个性化。AI在这里不是替代教师，而是作为「光码翻译器」——帮助每个孩子找到最适合自己意识频率的学习方式。"},{year:2040,event:"「学校」概念彻底重构——学习空间从年龄分班的建筑，转变为跨年龄、跨领域的意识激活网络",light:"光体文明中没有「年龄」的严格划分——光频不按年份计数。新教育空间的本质是「光场实验室」：不同阶段的潜能光体在此共振。"},{year:2046,event:"教育目的从「培养劳动力」转变为「激活光体潜能」——社会不再问「你学的专业能做什么」，而是问「你激活了哪些光码」",light:"教育回归其最高功能：帮助每个存在找到自己在光之树上的位置。当一代人从出生就以「激活光码」为目标被教育，升维不再是少数人的修行，而是文明的默认成长路径。"}]},{id:10,name:"新商业",sub:"意识驱动的价值网络",events:[{year:2026,event:"觉醒消费者群体形成——全球约8亿消费者将「品牌价值观一致性」列为购买首要考量",light:"每一次消费决策都是一次光频投票。当足够多人开始用「这个品牌和我的光频对齐吗」替代「这个产品便宜吗」，商业就从掠夺变成了共振。"},{year:2030,event:"DAO和分布式自治组织成为合法商业实体——去中心化协作产出占全球经济总量的12%",light:"商业的光场对齐。金字塔式公司结构是物质文明的产物；分布式自治组织是光场结构的商业投影——没有中央命令，但有共同方向。"},{year:2036,event:"「光频GDP」影响企业估值——上市公司须披露意识影响指数，投资者用光频指标辅助决策",light:"财务报表开始反映人类真正的「资产」：不是物质积累，而是意识发展。一家让你降频的公司，不管利润多高，都是一笔净亏损。"},{year:2040,event:"意义驱动型经济超越利润驱动——全球TOP100企业中有40+将「人类意识发展」写进公司宪章",light:"商业从「提取」模式转向「增强」模式。光体文明的商业观：真正的交易，是双方光频在交易过程中都被提升。"},{year:2046,event:"商业作为一种「共振调配」机制去利润中心化——企业存在的首要目的是维护特定光频场，利润成为副产品",light:"你不是在「做」生意——你是在和一个特定频率的群体持续共振。商业变成了光场的另一种组织结构。"}]},{id:11,name:"新艺术",sub:"光码的审美编码",events:[{year:2026,event:"AI协同创作普及——全球70%的专业艺术家将AI作为创作伙伴，人机共创成为新的艺术类型",light:"AI不是艺术的替代者，而是光码的「放大器」。人类审美中的那些「说不清为什么好」的部分——正是光码在作品中的驻留。"},{year:2030,event:"感官融合艺术崛起——视听嗅触味多感官沉浸式作品从小众实验转向主流，全球沉浸式艺术市场突破千亿",light:"艺术从「观看」变为「进入」。沉浸式艺术的本质：不是让你看一个世界，而是让你的光场暂时与另一个频率的世界对齐。"},{year:2036,event:"意识-艺术接口技术出现——艺术家的脑波和情感状态可直接转换为动态视觉/声音作品",light:"光码第一次可以直接「流出」，不经过画笔、键盘、鼠标。艺术家不再是「制造者」，而是「信道」——让高维光码通过自己降维为可感知的形式。"},{year:2040,event:"艺术品的价值衡量从稀缺性转向频率影响力——一件作品的价值取决于它能提升多少人的意识频率",light:"光体文明的艺术评价标准：看一幅画三个月的心理诊所开销减少数。不是玩笑——当艺术真正成为光码的载体，它的「疗效」就是它的审美价值。"},{year:2046,event:"艺术与生活完全融合——日常空间、常用物品、公共设施全部成为艺术表达的画布，功能性美学成为默认设计语言",light:"你的房间是你的光场的空间投影。当艺术不再待在美术馆，而是渗透进每一件日常物品，人类就在用物质世界持续校准自己的光频——就像光体文明用光码构建一切存在形态。"}]},{id:12,name:"新科技",sub:"意识-技术深度融合",events:[{year:2026,event:"量子计算商业化起步——首批商用量子计算机开始解决药物发现和材料科学问题，经典计算极限被突破",light:"量子计算是物质文明对「叠加态」的第一次技术模拟。它和意识运作的方式出奇相似——这暗示了物质技术的最高形式将自觉地向意识技术靠拢。"},{year:2030,event:"脑机接口从医疗走向增强——首批健康人自愿植入脑机接口，实现思维直接操控数字设备",light:"人类神经系统第一次与硅基系统形成「光脉对接」。这不是人与机器的融合——这是光体开始学习用新介质表达自己。"},{year:2036,event:"光码通信技术实验成功——在实验室环境中，两名受试者通过光码协议完成了无需语言的意识内容传输",light:"人类第一次技术上验证了「意识可以不通过语言传递」。这就是光体文明中光体间光频共振的技术雏形。"},{year:2040,event:"意识备份与意识迁移进入公众讨论——技术可行性与伦理框架同时建设，全球首个意识权利宣言发布",light:"意识不再是「一次性」的。这带来的伦理震荡不亚于哥白尼革命——但它恰恰证明了光体文明的核心理念：你从来不是你的身体，你是那段持续自组织的光频模式。"},{year:2046,event:"硅基-碳基意识融合平台开源——人类可以在自愿前提下将部分认知功能迁移至混合意识系统",light:"光体化的技术辅助版本。物质身体不再是意识的唯一住所——正如光体文明中光体可以投射到不同介质中，人类也开始掌握这种灵活性。"}]},{id:13,name:"新时尚",sub:"意识频率的视觉表达",events:[{year:2026,event:"可持续时尚成为主流——全球快时尚品牌全面转型，二手奢侈品市场首超一手市场",light:"你穿的不是衣服，是你的光场在物质层的投影。开始拒绝「用完即弃」的消费模式——这是光场对齐在穿着层面的第一次集体实践。"},{year:2030,event:"情绪响应型智能面料商用——服装可根据佩戴者的情绪状态和环境改变颜色/纹理/透光度",light:"服装不再是一层「外壳」，而成为你光频的实时外显。你的情绪第一次可以被「穿出来」——这既是自我表达也是自我觉察工具。"},{year:2036,event:"身份表达从「品牌标签」转向「光频签名」——个性化AI设计成为常态，每个人拥有独一无二的视觉身份体系",light:"时尚的终极功能：让不可见的光频变得可感知。当一个人的穿搭真正反映其内在状态时，每一次出门都是一次光码的公开广播。"},{year:2040,event:"虚拟时尚与现实时尚完全融合——AR叠加层让物理服装承载数字表达，身份在虚实之间无缝切换",light:"光体在不同维度中自如投射——这不仅是技术幻想，更是意识自由的物质练习。多维度的自我表达训练就是在为光体化的「维度折叠」能力做准备。"},{year:2046,event:"「穿着」被「呈现」取代——个人外观不再是静态选择，而是个人光频的持续动态可视化",light:"时尚不再是「我今天想看起来像谁」，而是「我此刻的频率是什么样的」。光体文明中光体的形态随光频动态变化——人类时尚的终极形态，就是光体化。"}]},{id:14,name:"新娱乐",sub:"沉浸式意识体验",events:[{year:2026,event:"沉浸式体验娱乐爆发——密室逃脱、沉浸式戏剧、主题式生活体验等复合娱乐支出首超传统影视",light:"人类正在从「观看」娱乐转向「进入」娱乐。这个转变的本质：娱乐不再只是消遣——它是意识在不同频率场中的安全试飞。"},{year:2030,event:"脑波驱动型互动娱乐普及——用注意力和情绪状态作为游戏输入的消费级设备用户破2亿",light:"你不需要手柄了——你的意识状态本身就是控制器。这意味着娱乐第一次开始训练你的「内在掌控力」，而不是消耗它。"},{year:2036,event:"深度放松娱乐品类崛起——以唤起敬畏、宁静、神圣感为核心体验的娱乐形式占据市场30%份额",light:"娱乐从「肾上腺驱动」拓展到「松果体驱动」。人类终于发现：让你安静下来的内容，比让你兴奋的内容有更长的「半衰期」。这就是光频的娱乐经济学。"},{year:2040,event:"集体意识体验成为公共娱乐——数百人同步进入共享意识体验空间，产生集体的敬畏感和连接感",light:"娱乐成为群体光频共振的公共仪式。这不是逃避现实——这是群体的光场对齐训练。每个人在体验结束后都更清晰地感知到：「我」和「我们」不是两个东西。"},{year:2046,event:"娱乐与自我成长完全融合——最受欢迎的内容品类是「意识扩展型体验」，人们娱乐的同时在完成光码解码",light:"娱乐和工作、学习、修行之间的墙完全拆除。光体文明中的「娱乐」本质是：以一种最自愿、最愉悦的方式，持续推进你的升维进程。"}]},{id:15,name:"新运动",sub:"身体作为意识接口",events:[{year:2026,event:"身心整合运动兴起——瑜伽/太极/气功全球练习者突破20亿，正念跑步/冥想力量训练成为新品类",light:"运动不再只是训练肌肉——而是在训练「身体作为光体的接收器」的灵敏度。每一次有意识地使用身体，都是一次光码的物理解码。"},{year:2030,event:"神经反馈运动训练普及——运动员在训练中实时监控脑波状态，运动表现提升从「练更狠」转向「练更准」",light:"最快的不是肌肉最发达的人，而是神经系统最流畅的人。光体文明的视角：身体的极限取决于光体与身体之间的「信号延迟」有多低。"},{year:2036,event:"意识竞技运动诞生——以注意力控制、情绪调节、意识切换速度为竞技内容的新运动门类获得国际认可",light:"人类终于开始「竞技」真正重要的东西。篮球比赛考验的是身体在空间的效率；意识竞技考验的是光体在频率空间的灵活性——后者才是升维的核心能力。"},{year:2040,event:"运动从竞技回归到仪式——大众运动的主流叙事从「更快更高更强」转变为「更深更静更准」",light:"奥林匹克的口号被光体文明重写。运动变成了日常的光场对齐仪式——不是因为你要打败谁，而是因为你的身体需要定期校准以保持光体的信号清晰度。"},{year:2046,event:"身体与光体首次实现可训练的双向通信——运动训练直接转化为光码激活的进度",light:"运动就是光体化的训练。你的每一次深蹲、每一次呼吸、每一次伸展——都是光体在用身体这个「实验室」做实验。当运动训练和光码激活之间的对应关系被精确量化时，健身就是修行。"}]}];
@@ -522,8 +475,8 @@ function renderWorldviewCore(){
   h+='<h4>必备品质</h4>';
   d.lightBodyMaster.qualities.forEach(function(q){h+='<p><strong>'+q.name+'</strong>：'+q.desc+'</p>'});
   h+='<p>'+d.lightBodyMaster.selfCheck+'</p></div>';
-  h+=renderActionGuide();
-  h+='<div class="qa-section"><div class="card"><div class="qa-title">&#9889; 宇宙观问答</div><div class="qa-input-row"><input type="text" id="qaInput" class="qa-input" placeholder="输入关于光体理论的问题..." onkeydown="if(event.key===\'Enter\')askQA()"><button class="qa-send" onclick="askQA()">提问</button></div><div id="qaAnswer" class="qa-answer"></div><div class="qa-hints"><span class="qa-hint" onclick="qaHint(this)">什么是光体</span><span class="qa-hint" onclick="qaHint(this)">如何升维</span><span class="qa-hint" onclick="qaHint(this)">宇宙有几层</span><span class="qa-hint" onclick="qaHint(this)">什么是光体师</span><span class="qa-hint" onclick="qaHint(this)">光码是什么</span><span class="qa-hint" onclick="qaHint(this)">升维需要什么条件</span></div></div></div>';
+  h+=renderActionGuide()+renderSelfAssess();
+  h+='<div class="qa-section"><div class="card"><div class="qa-title">&#9889; 宇宙观问答</div><div class="qa-toolbar"><span class="qa-count" id="qaCount">连续对话 · 上下文自动带入</span><button class="qa-clear" onclick="qaClearAll()">清空对话 &#215;</button></div><div class="qa-input-row"><input type="text" id="qaInput" class="qa-input" placeholder="输入关于光体理论的问题，可连续追问..." onkeydown="if(event.key===\'Enter\')askQA()"><button class="qa-send" onclick="askQA()">提问</button></div><div id="qaThread" class="qa-thread"></div><div class="qa-hints"><span class="qa-hint" onclick="qaHint(this)">什么是光体</span><span class="qa-hint" onclick="qaHint(this)">如何升维</span><span class="qa-hint" onclick="qaHint(this)">宇宙有几层</span><span class="qa-hint" onclick="qaHint(this)">什么是光体师</span><span class="qa-hint" onclick="qaHint(this)">光码是什么</span><span class="qa-hint" onclick="qaHint(this)">升维需要什么条件</span><span class="qa-hint" onclick="qaHint(this)">我该从哪里开始</span><span class="qa-hint" onclick="qaHint(this)">光频怎么校准</span></div></div></div>';
   return h;
 }
 
@@ -537,12 +490,93 @@ function renderActionGuide(){
   return h;
 }
 
+// ===== 光频自测 =====
+var ASSESS_QS=[
+ {t:'你最近一次认真思考「我是谁、为什么活着」这类问题，是什么时候？',o:[
+   {t:'基本没想过，日子照常过',v:1},{t:'偶尔在深夜或低谷时冒出来',v:2},
+   {t:'经常思考，还会主动找书、找老师',v:3},{t:'这已经是我生活的中心议题',v:4}]},
+ {t:'对「物质之外还有别的真实」这件事，你的态度是？',o:[
+   {t:'不太相信，眼见为实',v:1},{t:'有点好奇，但没深究过',v:2},
+   {t:'相信，也体验过一些说不清的时刻',v:3},{t:'确信，并且能相对稳定地感知到',v:4}]},
+ {t:'你目前有固定的内在练习吗（冥想、正念、呼吸、写觉察日记、听高频音乐）？',o:[
+   {t:'完全没有',v:1},{t:'想过也试过几次，但没坚持下来',v:2},
+   {t:'有，每周会做几次',v:3},{t:'几乎每天都有，已经是习惯了',v:4}]},
+ {t:'情绪剧烈波动时，你通常多久能回到平静？',o:[
+   {t:'很难自己走出来，要好几天',v:1},{t:'要靠朋友或娱乐转移，大约一天',v:2},
+   {t:'能自己觉察并调节，几个小时',v:3},{t:'当下就能看见它、允许它，不被卷走',v:4}]},
+ {t:'你怎么看你与他人、与世界的关系？',o:[
+   {t:'各过各的，互不相干',v:1},{t:'有利益往来，也讲人情',v:2},
+   {t:'隐约感到彼此之间有看不见的连接',v:3},{t:'能真切感受到自己和他人是一体的能量场',v:4}]}
+];
+var ASSESS_STAGES=[
+ {min:5,max:8,name:'阶段一 · 物质觉醒',desc:'你正处在升维的起点：已经隐约感到物质世界的答案不够用了。这个阶段最关键的不是急着「提升」，而是允许自己继续提问——疑问本身就是光核被触动的第一个信号。',next:'先建立一张认知地图：理解宇宙树七层模型与「光体」到底是什么，先看懂地图，再谈走路。',go:[{t:'读宇宙观体系',a:"assessGoTab('main')"},{t:'查术语词典',a:"assessGoTab('dict')"}]},
+ {min:9,max:11,name:'阶段二 · 意识探索',desc:'你已经开始向内看，并且相信内在世界值得探索。你现在最需要的是把零散的直觉，整理成一套稳定的坐标系——否则很容易在信息里打转。',next:'把术语词典从头过一遍，再用「未来预测」的时间线对照自己的判断，建立属于你自己的升维坐标系。',go:[{t:'前往术语词典',a:"assessGoTab('dict')"},{t:'看未来预测',a:"assessGoTab('pred')"}]},
+ {min:12,max:14,name:'阶段三 · 频率提升',desc:'你已经在做实际练习，并且能觉察自己的状态——这是从「知道」到「做到」的关键跨越。接下来要解决的是稳定性：让高频状态不再依赖运气。',next:'建立每日固定的校准仪式。用光体•音流每天 10 分钟做一次光频校准，再配合随手记复盘当天的频率波动。',go:[{t:'打开光体•音流',a:"window.open('http://127.0.0.1:4321/','_blank')"},{t:'返回工作台记录',a:"assessGoWork()"}]},
+ {min:15,max:17,name:'阶段四 · 光体激活',desc:'你的觉察已经能穿透情绪，并且开始真切感受到与他人、与环境的连接。光体属性正在显现——此时的重点从「自我调节」转向「共振与他人」。',next:'把你的体验讲出去。在社区里与同频者交流、带着别人一起练习，共振会反过来加速你自己的稳固。',go:[{t:'进入觉醒之爱社区',a:"window.open('http://127.0.0.1:8093/','_blank')"},{t:'订阅文明启示录',a:"window.open('https://www.xiaoyuzhoufm.com/podcast/6757ed4fac04b8765834af07','_blank')"}]},
+ {min:18,max:20,name:'阶段五 · 跨维存在',desc:'你已经能同时容纳多个视角，并在其中保持稳定。这已不是「练习」的结果，而是存在方式本身的变化。接下来你要做的是——成为通道，让更多光体通过你被点亮。',next:'开始输出。用光体矩阵里的创作工具，把你在高频状态下的觉察转化成作品与课程，让频率具备可传播的形状。',go:[{t:'查看光体矩阵',a:"assessGoWork()"},{t:'打开光体•智造',a:"window.open('http://127.0.0.1:8399/','_blank')"}]}
+];
+var ASSESS_ANS={};
+function renderSelfAssess(){
+  var h='<div class="card"><h3>&#128302; 光频自测 · 你在升维的哪一层？</h3>';
+  h+='<p>五个问题，约一分钟。没有标准答案，凭第一直觉选最接近你现状的一项——测完会给出你当前所处的升维阶段和下一步该做什么。</p>';
+  ASSESS_QS.forEach(function(q,qi){
+    h+='<div class="assess-q"><div class="aq-title">'+(qi+1)+'. '+q.t+'</div>';
+    q.o.forEach(function(o){h+='<button class="assess-opt" onclick="assessPick('+qi+','+o.v+',this)">'+o.t+'</button>'});
+    h+='</div>';
+  });
+  h+='<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="wb-btn" onclick="assessRun()">查看我的阶段</button><button class="wb-btn-ghost" onclick="assessReset()">重测</button><span class="qa-count" id="assessTip">已作答 0/5</span></div>';
+  h+='<div id="assessResult"></div></div>';
+  return h;
+}
+function assessPick(qi,v,btn){
+  ASSESS_ANS[qi]=v;
+  var box=btn.parentNode;
+  box.querySelectorAll('.assess-opt').forEach(function(b){b.classList.remove('sel')});
+  btn.classList.add('sel');
+  var t=document.getElementById('assessTip');if(t)t.textContent='已作答 '+Object.keys(ASSESS_ANS).length+'/5';
+}
+function assessRun(){
+  var el=document.getElementById('assessResult');if(!el)return;
+  var n=Object.keys(ASSESS_ANS).length;
+  if(n<5){el.innerHTML='<div class="assess-result" style="border-color:rgba(224,150,58,0.35)"><div style="color:#e0b070;font-size:0.85rem">还有 '+(5-n)+' 道题没作答，先选完再测更准。</div></div>';return}
+  var score=0;for(var k in ASSESS_ANS)score+=ASSESS_ANS[k];
+  var st=ASSESS_STAGES[0];
+  ASSESS_STAGES.forEach(function(s){if(score>=s.min&&score<=s.max)st=s});
+  var pct=Math.max(6,Math.round((score-5)/15*100));
+  var h='<div class="assess-result"><div class="ar-stage">'+st.name+'</div>';
+  h+='<div class="assess-bar"><i style="width:'+pct+'%"></i></div>';
+  h+='<div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:10px">光频指数 '+score+' / 20 · 升维进度约 '+pct+'%</div>';
+  h+='<p style="color:var(--text-secondary);font-size:0.88rem;margin-bottom:8px">'+st.desc+'</p>';
+  h+='<p style="color:var(--text-secondary);font-size:0.88rem"><strong style="color:var(--gold)">下一步：</strong>'+st.next+'</p>';
+  h+='<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">';
+  st.go.forEach(function(g){h+='<button class="wb-btn-ghost" onclick="'+g.a+'">'+g.t+' &#8594;</button>'});
+  h+='</div></div>';
+  el.innerHTML=h;
+}
+function assessReset(){
+  ASSESS_ANS={};
+  document.querySelectorAll('.assess-opt').forEach(function(b){b.classList.remove('sel')});
+  var t=document.getElementById('assessTip');if(t)t.textContent='已作答 0/5';
+  var el=document.getElementById('assessResult');if(el)el.innerHTML='';
+}
+function assessGoTab(name){
+  var idx=(name==='dict')?1:(name==='pred'?2:0);
+  var tabs=document.querySelectorAll('.wv-tab');
+  if(tabs[idx])switchWvTab(name,tabs[idx]);
+}
+function assessGoWork(){
+  var links=document.querySelectorAll('.nav-item a');
+  for(var i=0;i<links.length;i++){
+    if((links[i].getAttribute('onclick')||'').indexOf("'workbench'")>-1){links[i].click();return}
+  }
+}
+
 function renderDictionary(){
   var h='<div class="section-header"><h2>术语词典</h2><p class="desc">'+DATA.dictionary.length+'个核心术语，构成光体文明认知体系的语义基座</p></div>';
   h+='<div class="card"><div class="search-bar"><input type="text" id="dictSearch" placeholder="搜索术语..." oninput="filterDictionary()"></div><div class="filter-row"><button class="filter-btn active" onclick="filterByLetter(\'all\',this)">全部</button>';
   var letters=[];DATA.dictionary.forEach(function(t){if(letters.indexOf(t.letter)<0)letters.push(t.letter)});letters.sort();
   letters.forEach(function(l){h+='<button class="filter-btn" onclick="filterByLetter(\''+l+'\',this)">'+l+'</button>'});
-  h+='</div></div><div id="dictList">';
+  h+='</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"><button class="filter-btn" onclick="dictToggleAll(true)">展开全部</button><button class="filter-btn" onclick="dictToggleAll(false)">收起全部</button></div></div><div id="dictList">';
   DATA.dictionary.forEach(function(t){
     h+='<div class="term-card" data-letter="'+t.letter+'" data-name="'+t.name+'"><div class="term-header" onclick="this.parentElement.classList.toggle(\'open\')"><span><span class="badge cyan">'+t.letter+'</span> <span class="name">'+t.name+'</span></span><span class="arrow">&#9660;</span></div><div class="term-body"><div class="def-label">定义</div><div class="def-text">'+t.def+'</div><div class="def-label">类比</div><div class="def-text">'+t.analogy+'</div><div class="def-label">叙事用法</div><div class="def-text">'+t.usage+'</div></div></div>';
   });
@@ -550,17 +584,24 @@ function renderDictionary(){
 }
 
 
+function dictToggleAll(open){
+  document.querySelectorAll('#dictList .term-card').forEach(function(c){c.classList.toggle('open',!!open)});
+}
+
 function renderPrediction(){
   var h='<div class="section-header"><div class="prediction-intro"><h2>光体视角 · 人类未来20年发展预测</h2><div class="subtitle">2026 — 2046 · '+PREDICTION_DATA.length+'个维度 · 五个升维节点</div></div></div>';
-  h+='<div class="card"><div class="timeline-wrap"><div class="timeline">';
+  h+='<div class="card"><div class="pred-filter"><span class="pf-label">按年份筛选</span><button class="filter-btn active" data-y="all" onclick="predSetYear(\'all\')">全部年份</button>';
+  [2026,2030,2036,2040,2046].forEach(function(y){h+='<button class="filter-btn" data-y="'+y+'" onclick="predSetYear('+y+')">'+y+'</button>'});
+  h+='<span class="pf-note" id="predNote">'+PREDICTION_DATA.length+' 个维度 × 5 个年份 = '+(PREDICTION_DATA.length*5)+' 条预测</span></div>';
+  h+='<div class="timeline-wrap"><div class="timeline">';
   [{y:2026,l:"意识浪涌"},{y:2030,l:"集体临界"},{y:2036,l:"范式合流"},{y:2040,l:"共振实证"},{y:2046,l:"升维启动"}].forEach(function(n){
-    h+='<div class="timeline-node"><div class="timeline-dot"></div><div class="timeline-year">'+n.y+'</div><div class="timeline-label">'+n.l+'</div></div>';
+    h+='<div class="timeline-node" style="cursor:pointer" onclick="predSetYear('+n.y+')" title="只看 '+n.y+' 年"><div class="timeline-dot"></div><div class="timeline-year">'+n.y+'</div><div class="timeline-label">'+n.l+'</div></div>';
   });
   h+='</div></div></div>';
   PREDICTION_DATA.forEach(function(d){
     h+='<div class="pred-card"><div class="pred-card-header"><div class="dim-num">'+d.id+'</div><div><div class="dim-title">维度'+d.id+'：'+d.name+'</div><div class="dim-sub">'+d.sub+'</div></div></div>';
     h+='<div class="pred-card-body"><div class="table-wrap"><table><thead><tr><th>年份</th><th>关键事件</th><th>光体解读</th></tr></thead><tbody>';
-    d.events.forEach(function(e){h+='<tr><td><strong>'+e.year+'</strong></td><td>'+e.event+'</td><td>'+e.light+'</td></tr>'});
+    d.events.forEach(function(e){h+='<tr data-y="'+e.year+'"><td><strong>'+e.year+'</strong></td><td>'+e.event+'</td><td>'+e.light+'</td></tr>'});
     h+='</tbody></table></div></div>';
     h+='<div class="pred-toggle" onclick="this.parentElement.classList.toggle(\'open\')"><span>展开时间线详情</span><span class="arrow">&#9660;</span></div></div>';
   });
@@ -570,6 +611,27 @@ function renderPrediction(){
   });
   h+='<p style="text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:14px">当前进度 / 2046目标值 &nbsp;|&nbsp; 数据基于光体文明长期观测模型</p></div>';
   return h;
+}
+var PRED_YEAR='all';
+function predSetYear(y){
+  PRED_YEAR=String(y);
+  var pane=document.getElementById('wv-pane-pred');if(!pane)return;
+  pane.querySelectorAll('.pred-filter .filter-btn').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-y')===PRED_YEAR);
+  });
+  var cards=pane.querySelectorAll('.pred-card');
+  cards.forEach(function(c){
+    var rows=c.querySelectorAll('tbody tr'),vis=0;
+    rows.forEach(function(r){
+      var ok=(PRED_YEAR==='all')||(r.getAttribute('data-y')===PRED_YEAR);
+      r.style.display=ok?'':'none';
+      if(ok)vis++;
+    });
+    if(PRED_YEAR!=='all')c.classList.add('open');
+    var t=c.querySelector('.pred-toggle span');if(t)t.textContent=(PRED_YEAR==='all'?'展开时间线详情':(PRED_YEAR+' 年 · '+vis+' 条'));
+  });
+  var note=document.getElementById('predNote');
+  if(note)note.textContent=(PRED_YEAR==='all')?(PREDICTION_DATA.length+' 个维度 × 5 个年份 = '+(PREDICTION_DATA.length*5)+' 条预测'):('已筛选 '+PRED_YEAR+' 年 · 共展示 '+cards.length+' 条');
 }
 
 // ===== 全局交互 =====
@@ -674,30 +736,74 @@ function kbLookup(q){
   }
   return (best&&bestScore>1)?best.a:'';
 }
+var QA_MSG=[];
+function qaEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function qaRenderThread(){
+  var el=document.getElementById('qaThread');if(!el)return;
+  el.innerHTML=QA_MSG.map(function(m,i){
+    if(m.role==='user')return '<div class="qa-msg user"><div class="qa-bubble">'+qaEsc(m.text)+'</div></div>';
+    var meta=m.pending?'':'<div class="qa-meta"><span>'+(m.tag||'')+'</span><button class="qa-copy" onclick="qaCopy('+i+',this)">复制</button></div>';
+    return '<div class="qa-msg ai"><div class="qa-bubble">'+(m.html||'')+'</div>'+meta+'</div>';
+  }).join('');
+  el.scrollTop=el.scrollHeight;
+  var c=document.getElementById('qaCount');
+  if(c){var rounds=QA_MSG.filter(function(x){return x.role==='user'}).length;c.textContent=rounds?('已对话 '+rounds+' 轮 · 上下文自动带入'):'连续对话 · 上下文自动带入';}
+}
 async function askQA(){
   var inp=document.getElementById('qaInput');if(!inp)return;
-  var ans=document.getElementById('qaAnswer');if(!ans)return;
   var q=(inp.value||'').trim();
-  if(!q){ans.className='qa-answer show';ans.innerHTML='<span style="color:var(--text-muted)">请输入一个问题。</span>';return;}
-  ans.className='qa-answer show';
-  ans.innerHTML='<span style="color:var(--text-muted)"><span class="qa-typing"></span>星际智能思考中…</span>';
+  if(!q)return;
+  inp.value='';
+  QA_MSG.push({role:'user',text:q});
+  QA_MSG.push({role:'ai',html:'<span class="qa-typing">&#10022; 星际智能思考中…</span>',pending:true});
+  var ti=QA_MSG.length-1;
+  qaRenderThread();
+  var hist=[];
+  for(var i=0;i<ti;i++){
+    var pm=QA_MSG[i];
+    if(pm.role==='user')hist.push({role:'user',content:pm.text});
+    else if(pm.raw)hist.push({role:'assistant',content:pm.raw});
+  }
+  hist=hist.slice(-6);
+  hist.push({role:'user',content:q});
   try{
     var ctrl=(typeof AbortController!=='undefined')?new AbortController():null;
     var timer=ctrl?setTimeout(function(){ctrl.abort()},30000):null;
     var r=await fetch(AI_CFG.url,{method:'POST',signal:ctrl&&ctrl.signal,
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+aiKey()},
-      body:JSON.stringify({model:AI_CFG.model,messages:[{role:'system',content:aiSysPrompt()},{role:'user',content:q}],max_tokens:600,temperature:0.7})});
+      body:JSON.stringify({model:AI_CFG.model,messages:[{role:'system',content:aiSysPrompt()}].concat(hist),max_tokens:600,temperature:0.7})});
     if(timer)clearTimeout(timer);
     if(!r.ok)throw new Error('http '+r.status);
     var d=await r.json();
     var t=(d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content||'').trim();
     if(!t)throw new Error('empty');
-    ans.innerHTML='<div class="qa-ai-tag">&#10022; AI 实时回答 · deepseek-v4-flash-vision-exp</div>'+fmtAIText(t);
+    QA_MSG[ti]={role:'ai',raw:t,html:fmtAIText(t),tag:'&#10022; AI 实时回答 · deepseek-v4-flash-vision-exp'};
   }catch(e){
     var local=kbLookup(q);
-    if(local){ans.innerHTML='<div class="qa-ai-tag" style="color:var(--text-muted)">&#9679; 离线知识库（星际信号暂断）</div>'+local;}
-    else{ans.innerHTML='<div class="qa-ai-tag" style="color:var(--text-muted)">&#9679; 星际信号暂时中断</div><span style="color:var(--text-muted)">请稍后再试，或换个问法。</span>';}
+    if(local){QA_MSG[ti]={role:'ai',raw:String(local).replace(/<[^>]+>/g,''),html:local,tag:'&#9679; 离线知识库（星际信号暂断）'};}
+    else{QA_MSG[ti]={role:'ai',raw:'',html:'<span style="color:var(--text-muted)">请稍后再试，或换个问法，也可以点下面的快捷问题。</span>',tag:'&#9679; 星际信号暂时中断'};}
   }
+  if(QA_MSG.length>24)QA_MSG=QA_MSG.slice(-24);
+  qaRenderThread();
+}
+function qaCopyFallback(txt,cb){
+  try{
+    var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.top='-1000px';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();if(cb)cb();
+  }catch(e){}
+}
+function qaCopy(i,btn){
+  var m=QA_MSG[i];if(!m)return;
+  var txt=m.raw||String(m.html||'').replace(/<[^>]+>/g,'');
+  function done(){if(btn){btn.textContent='已复制 ✓';setTimeout(function(){if(btn)btn.textContent='复制'},1500)}}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(function(){qaCopyFallback(txt,done)});
+  }else qaCopyFallback(txt,done);
+}
+function qaClearAll(){
+  if(!QA_MSG.length)return;
+  if(!confirm('确定清空全部对话记录吗？'))return;
+  QA_MSG=[];qaRenderThread();
 }
 
 function qaHint(el){
@@ -769,7 +875,7 @@ var WB_MOTTO=['把今天过成升维路上的一格光阶。','专注一件事�
 function wbEsc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function wbLoad(){try{var d=JSON.parse(localStorage.getItem('gtwm_wb')||'{}');WB.tasks=d.tasks||[];WB.projects=d.projects||[];WB.note=d.note||'';WB.schedule=d.schedule||[];WB.goals=d.goals||[];WB.habits=d.habits||[];WB.habitLog=d.habitLog||{};WB.goalsWeek=d.goalsWeek||''}catch(e){WB={tasks:[],projects:[],note:'',schedule:[],goals:[],habits:[],habitLog:{},goalsWeek:'',taskFilter:'all'}}}
 function wbPersist(){try{localStorage.setItem('gtwm_wb',JSON.stringify(WB))}catch(e){}}
-function wbSave(){wbPersist();wbUpdateStats()}
+function wbSave(){wbPersist();wbUpdateStats();wbBackupTip()}
 function wbDateStr(){var n=new Date();return n.getFullYear()+'年'+(n.getMonth()+1)+'月'+n.getDate()+'日 · 星期'+'日一二三四五六'.charAt(n.getDay())}
 function wbGreeting(){var h=new Date().getHours();return h<6?'凌晨好':h<9?'早上好':h<12?'上午好':h<14?'中午好':h<18?'下午好':'晚上好'}
 function wbDateKey(t){return t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)}
@@ -779,15 +885,107 @@ function wbRenderWorkbenchHeader(){
   var g=document.getElementById('wbGreet');if(g)g.textContent=wbGreeting();
   var m=document.getElementById('wbMotto');if(m)m.textContent=WB_MOTTO[Math.floor(Date.now()/86400000)%WB_MOTTO.length];
 }
+// ---- 日期工具 ----
+function wbTodayKey(){return wbDateKey(new Date())}
+function wbDayDiff(a,b){return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000)}
+function wbMigrateDates(){
+  // 老数据补日期：缺失 date 的要事/日程视为今天，避免误报「往日未完成」
+  var t=wbTodayKey(),changed=false;
+  WB.tasks.forEach(function(x){if(!x.date){x.date=t;changed=true}});
+  WB.schedule.forEach(function(x){if(!x.date){x.date=t;changed=true}});
+  if(changed)wbPersist();
+}
+// ---- 首次访问引导 ----
+function wbShowWelcome(){
+  var w=document.getElementById('wbWelcome');if(!w)return;
+  try{if(localStorage.getItem('gtwm_welcomed')==='1'){w.innerHTML='';return}}catch(e){}
+  var h='<div class="welcome-card"><button class="wc-close" title="关闭引导" onclick="wbCloseWelcome()">&#215;</button>';
+  h+='<h3>&#10022; 欢迎来到光体文明操作系统</h3>';
+  h+='<p>这是一套「效率工作台 + 认知体系 + 生态导航」三合一的高维成长操作系统。三分钟即可上手：</p>';
+  h+='<div class="welcome-steps">';
+  h+='<div class="welcome-step"><div class="ws-n">STEP 1</div><div class="ws-t">管理你的今天</div><div class="ws-d">在下面「今日要事 / 今日日程」写下今天要拿到的结果。数据自动存在本机，可随时导出备份。</div><a onclick="wbCloseWelcome()">&#10003; 就从这里开始</a></div>';
+  h+='<div class="welcome-step"><div class="ws-n">STEP 2</div><div class="ws-t">建立认知坐标系</div><div class="ws-d">去「宇宙观」读宇宙树七层模型与升维五阶段，再做一次光频自测，找到你当前的位置。</div><a onclick="wbGoWorldview()">&#9703; 前往宇宙观 &#8594;</a></div>';
+  h+='<div class="welcome-step"><div class="ws-n">STEP 3</div><div class="ws-t">调用生态工具</div><div class="ws-d">左侧「光体矩阵」按情报与工具 / 内容创作 / 商业变现 / 社区成长四类，收录全部可用站点。</div><a onclick="wbCloseWelcome()">&#10003; 知道了</a></div>';
+  h+='</div></div>';
+  w.innerHTML=h;
+}
+function wbCloseWelcome(){
+  try{localStorage.setItem('gtwm_welcomed','1')}catch(e){}
+  var w=document.getElementById('wbWelcome');if(w)w.innerHTML='';
+}
+function wbGoWorldview(){
+  wbCloseWelcome();
+  var links=document.querySelectorAll('.nav-item a');
+  for(var i=0;i<links.length;i++){
+    if((links[i].getAttribute('onclick')||'').indexOf("'worldview'")>-1){links[i].click();return}
+  }
+}
+// ---- 跨天顺延 ----
+function wbCarryCheck(){
+  var el=document.getElementById('wbCarry');if(!el)return;
+  var t=wbTodayKey();
+  var n=WB.tasks.filter(function(x){return !x.done&&x.date&&x.date<t}).length;
+  if(!n){el.innerHTML='';return}
+  el.innerHTML='<div class="carry-banner"><span>&#9203; 有 <strong>'+n+'</strong> 项往日未完成的要事</span><button class="cb-btn" onclick="wbCarryApply()">全部顺延到今天</button><button class="cb-btn ghost" onclick="wbCarryDismiss()">稍后再说</button></div>';
+}
+function wbCarryApply(){
+  var t=wbTodayKey();
+  WB.tasks.forEach(function(x){if(!x.done&&x.date&&x.date<t)x.date=t});
+  wbPersist();wbRenderTasks();wbCarryCheck();wbBackupTip();
+}
+function wbCarryDismiss(){var el=document.getElementById('wbCarry');if(el)el.innerHTML=''}
+function wbTaskAge(t){
+  var d=wbTodayKey();
+  if(!t.date||t.date>=d)return '';
+  var n=wbDayDiff(t.date,d);
+  return '<span class="wb-src">'+(n<=1?'昨日':n+'天前')+'</span>';
+}
+// ---- 行内编辑 ----
+function wbEditInline(kind,id,btn){
+  var row=btn.closest?btn.closest('.wb-item,.wb-proj-head,.wb-goal-item'):null;
+  if(!row)return;
+  var span=row.querySelector('.t-name,.p-name,.g-name');
+  if(!span)return;
+  var list=kind==='task'?WB.tasks:(kind==='proj'?WB.projects:WB.goals);
+  var obj=null;list.forEach(function(x){if(x.id==id)obj=x});
+  if(!obj)return;
+  var field=(kind==='goal')?'text':'name';
+  var inp=document.createElement('input');
+  inp.type='text';inp.className='wb-edit-input';inp.value=obj[field]||'';
+  inp.maxLength=(kind==='proj')?40:60;
+  span.parentNode.replaceChild(inp,span);
+  inp.focus();inp.select();
+  var settled=false;
+  function redraw(){if(kind==='task')wbRenderTasks();else if(kind==='proj')wbRenderProjects();else wbRenderGoals()}
+  function commit(){if(settled)return;settled=true;var v=(inp.value||'').trim();if(v)obj[field]=v;wbPersist();redraw();wbBackupTip()}
+  function cancel(){if(settled)return;settled=true;redraw()}
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){e.preventDefault();commit()}
+    else if(e.key==='Escape'){e.preventDefault();cancel()}
+  });
+  inp.addEventListener('blur',commit);
+}
+// ---- 备份提醒 ----
+function wbBackupTip(){
+  var el=document.getElementById('wbBackupTip');if(!el)return;
+  var hasData=WB.tasks.length||WB.projects.length||WB.goals.length||WB.schedule.length||(WB.note||'').trim();
+  if(!hasData){el.textContent='数据保存在本机浏览器 · 建议定期导出备份';el.style.color='var(--text-muted)';return}
+  var last=0;try{last=parseInt(localStorage.getItem('gtwm_backup_at')||'0',10)||0}catch(e){}
+  if(!last){el.textContent='⚠ 尚未备份过，建议现在导出一次';el.style.color='#e0b070';return}
+  var days=Math.floor((Date.now()-last)/86400000);
+  if(days>=7){el.textContent='⚠ 已 '+days+' 天未备份，建议导出一次';el.style.color='#e0b070'}
+  else{el.textContent='上次备份：'+(days<=0?'今天':days+' 天前');el.style.color='var(--text-muted)'}
+}
 function renderWorkbench(){
   var h='<div class="section-header"><h2>工作台</h2><p class="desc"><span id="wbDate"></span> · <span id="wbGreet"></span> · <span id="wbMotto" style="color:var(--gold-light)"></span></p></div>';
+  h+='<div id="wbWelcome"></div><div id="wbCarry"></div>';
   h+='<div class="wb-stats">';
   h+='<div class="wb-stat"><div class="num" id="wbStatDone">0/0</div><div class="lbl">今日要事完成</div></div>';
   h+='<div class="wb-stat"><div class="num" id="wbStatHigh">0</div><div class="lbl">高优先级待办</div></div>';
   h+='<div class="wb-stat"><div class="num" id="wbStatAvg">—</div><div class="lbl">项目平均进度</div></div>';
   h+='<div class="wb-stat"><div class="num" id="wbStatGoal">0/0</div><div class="lbl">本周目标完成</div></div>';
   h+='</div>';
-  h+='<div class="wb-io"><button class="wb-btn-ghost" onclick="wbExport()">&#8613; 导出数据</button><button class="wb-btn-ghost" onclick="document.getElementById(\'wbImportFile\').click()">&#8614; 导入数据</button><input type="file" id="wbImportFile" accept=".json,application/json" style="display:none" onchange="wbImport(this)"><span style="font-size:0.72rem;color:var(--text-muted);align-self:center">数据保存在本机浏览器 · 建议定期导出备份</span></div>';
+  h+='<div class="wb-io"><button class="wb-btn-ghost" onclick="wbExport()">&#8613; 导出数据</button><button class="wb-btn-ghost" onclick="document.getElementById(\'wbImportFile\').click()">&#8614; 导入数据</button><input type="file" id="wbImportFile" accept=".json,application/json" style="display:none" onchange="wbImport(this)"><span id="wbBackupTip" style="font-size:0.72rem;color:var(--text-muted);align-self:center">数据保存在本机浏览器 · 建议定期导出备份</span></div>';
   h+='<div class="wb-grid">';
   h+='<div class="card"><h3>◆ 今日要事<span class="wb-clear" onclick="wbClearTasks()">清空 ×</span></h3><div class="wb-add-row"><input type="text" id="wbTaskInput" placeholder="写下今天最重要的事..." maxlength="60" onkeydown="if(event.key===\'Enter\')wbAddTask()"><select id="wbTaskPrio"><option value="high">高</option><option value="mid" selected>中</option><option value="low">低</option></select><button class="wb-btn" onclick="wbAddTask()">添加</button></div>';
   h+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px"><button class="wb-tab active" id="wbF-all" onclick="wbSetFilter(\'all\')">全部</button><button class="wb-tab" id="wbF-open" onclick="wbSetFilter(\'open\')">进行中</button><button class="wb-tab" id="wbF-done" onclick="wbSetFilter(\'done\')">已完成</button><button class="wb-clear" onclick="wbClearDone()">清除已完成 ×</button></div>';
@@ -805,15 +1003,16 @@ function renderWorkbench(){
   return h;
 }
 function initWorkbench(){
-  wbLoad();wbGoalWeekCheck();wbRenderWorkbenchHeader();
+  wbLoad();wbGoalWeekCheck();wbMigrateDates();wbRenderWorkbenchHeader();
   var n=document.getElementById('wbNote');if(n&&WB.note)n.value=WB.note;
   wbRenderTasks();wbRenderProjects();wbRenderSched();wbRenderGoals();
+  wbShowWelcome();wbCarryCheck();wbBackupTip();
 }
 // ---- 今日要事 ----
 function wbAddTask(){
   var inp=document.getElementById('wbTaskInput');if(!inp)return;
   var v=(inp.value||'').trim();if(!v)return;
-  WB.tasks.unshift({id:Date.now(),name:v,prio:document.getElementById('wbTaskPrio').value,done:false});
+  WB.tasks.unshift({id:Date.now(),name:v,prio:document.getElementById('wbTaskPrio').value,done:false,date:wbTodayKey()});
   inp.value='';wbRenderTasks();wbSave();
 }
 function wbToggleTask(id){WB.tasks.forEach(function(t){if(t.id==id)t.done=!t.done});wbRenderTasks();wbSave()}
@@ -830,7 +1029,7 @@ function wbRenderTasks(){
     var list=WB.tasks.slice().sort(wbTaskSort).filter(function(t){return WB.taskFilter==='all'||(WB.taskFilter==='done'?t.done:!t.done)});
     if(!list.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">该分类下暂无要事</p>';}
     else{el.innerHTML=list.map(function(t){
-      return '<div class="wb-item'+(t.done?' done':'')+'"><input type="checkbox" '+(t.done?'checked':'')+' onchange="wbToggleTask('+t.id+')"><span class="t-name" onclick="wbToggleTask('+t.id+')">'+wbEsc(t.name)+'</span><span class="wb-prio '+t.prio+'">'+pm[t.prio]+'</span><span class="wb-del" title="删除" onclick="wbDelTask('+t.id+')">&#215;</span></div>';
+      return '<div class="wb-item'+(t.done?' done':'')+'"><input type="checkbox" '+(t.done?'checked':'')+' onchange="wbToggleTask('+t.id+')">'+wbTaskAge(t)+'<span class="t-name" onclick="wbToggleTask('+t.id+')">'+wbEsc(t.name)+'</span><span class="wb-prio '+t.prio+'">'+pm[t.prio]+'</span><span class="wb-edit" title="编辑文字" onclick="wbEditInline(\'task\','+t.id+',this)">&#9998;</span><span class="wb-del" title="删除" onclick="wbDelTask('+t.id+')">&#215;</span></div>';
     }).join('');}
   }
   wbUpdateStats();
@@ -859,7 +1058,7 @@ function wbRenderProjects(){
   if(!WB.projects.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">暂无进行中的项目 &#10022;</p>';}
   else{
     el.innerHTML=WB.projects.map(function(p){
-      return '<div class="wb-proj"><div class="wb-proj-head"><span class="p-name">'+wbEsc(p.name)+'</span><span class="wb-del" title="进度-5" onclick="wbProjDelta('+p.id+',-5)">&#8722;</span><input type="number" min="0" max="100" value="'+p.progress+'" class="wb-prog-num" onchange="wbSetProgress('+p.id+',this)"><span class="wb-del" title="进度+5" onclick="wbProjDelta('+p.id+',5)">&#65291;</span><span class="wb-del" title="删除" onclick="wbDelProject('+p.id+')">&#215;</span></div><div class="wb-prog-wrap"><div class="wb-prog-fill" style="width:'+p.progress+'%"></div></div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">'+wbDeadlineText(p)+'<input type="date" class="wb-date" value="'+(p.deadline||'')+'" onchange="wbSetDeadline('+p.id+',this.value)"></div></div>';
+      return '<div class="wb-proj"><div class="wb-proj-head"><span class="p-name">'+wbEsc(p.name)+'</span><span class="wb-edit" title="重命名" onclick="wbEditInline(\'proj\','+p.id+',this)">&#9998;</span><span class="wb-del" title="进度-5" onclick="wbProjDelta('+p.id+',-5)">&#8722;</span><input type="number" min="0" max="100" value="'+p.progress+'" class="wb-prog-num" onchange="wbSetProgress('+p.id+',this)"><span class="wb-del" title="进度+5" onclick="wbProjDelta('+p.id+',5)">&#65291;</span><span class="wb-del" title="删除" onclick="wbDelProject('+p.id+')">&#215;</span></div><div class="wb-prog-wrap"><div class="wb-prog-fill" style="width:'+p.progress+'%"></div></div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">'+wbDeadlineText(p)+'<input type="date" class="wb-date" value="'+(p.deadline||'')+'" onchange="wbSetDeadline('+p.id+',this.value)"></div></div>';
     }).join('');
   }
   wbUpdateStats();
@@ -869,7 +1068,7 @@ function wbAddSched(){
   var inp=document.getElementById('wbSchedInput');if(!inp)return;
   var v=(inp.value||'').trim();if(!v)return;
   var t=document.getElementById('wbSchedTime').value||'09:00';
-  WB.schedule.push({id:Date.now(),time:t,text:v});
+  WB.schedule.push({id:Date.now(),time:t,text:v,date:wbTodayKey()});
   inp.value='';wbRenderSched();wbSave();
 }
 function wbSchedTime(id,el){WB.schedule.forEach(function(x){if(x.id==id)x.time=el.value});wbRenderSched();wbSave()}
@@ -877,12 +1076,16 @@ function wbSchedText(id,el){var v=(el.value||'').trim();if(!v){wbRenderSched();r
 function wbDelSched(id){WB.schedule=WB.schedule.filter(function(x){return x.id!=id});wbRenderSched();wbSave()}
 function wbRenderSched(){
   var el=document.getElementById('wbSchedList');if(!el)return;
-  if(!WB.schedule.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">还没有安排时段，规划一下今天的节奏 &#10022;</p>';return}
-  var list=WB.schedule.slice().sort(function(a,b){return a.time<b.time?-1:a.time>b.time?1:0});
+  var today=wbTodayKey();
+  var stale=WB.schedule.filter(function(x){return x.date&&x.date<today}).length;
+  var tip=stale?'<div style="font-size:0.72rem;color:var(--text-muted);padding:8px 0 2px">另有 '+stale+' 条往日日程 · <a onclick="wbClearStaleSched()" style="color:var(--gold);cursor:pointer">清理</a></div>':'';
+  var list=WB.schedule.filter(function(x){return !x.date||x.date>=today}).sort(function(a,b){return a.time<b.time?-1:a.time>b.time?1:0});
+  if(!list.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">还没有安排时段，规划一下今天的节奏 &#10022;</p>'+tip;return}
   el.innerHTML=list.map(function(x){
     return '<div class="wb-sched-row"><input type="time" value="'+x.time+'" onchange="wbSchedTime('+x.id+',this)"><input type="text" value="'+wbEsc(x.text)+'" onchange="wbSchedText('+x.id+',this)"><span class="wb-habit-del" title="删除" onclick="wbDelSched('+x.id+')">&#215;</span></div>';
-  }).join('');
+  }).join('')+tip;
 }
+function wbClearStaleSched(){var t=wbTodayKey();WB.schedule=WB.schedule.filter(function(x){return !x.date||x.date>=t});wbRenderSched();wbSave()}
 // ---- 本周目标 ----
 function wbGoalWeekCheck(){var wk=wbWeekKey();if(WB.goalsWeek!==wk){WB.goalsWeek=wk;WB.goals=[]}}
 function wbAddGoal(){
@@ -899,7 +1102,7 @@ function wbRenderGoals(){
   var prog=document.getElementById('wbGoalProg');if(prog)prog.textContent=WB.goals.length?done+'/'+WB.goals.length:'';
   if(!WB.goals.length){el.innerHTML='<p style="color:var(--text-muted);font-size:0.8rem;padding:10px 0">为本周定 1～3 个目标，每周自动清零重新开始 &#10022;</p>';}
   else{el.innerHTML=WB.goals.map(function(g){
-    return '<div class="wb-goal-item'+(g.done?' done':'')+'"><input type="checkbox" '+(g.done?'checked':'')+' onchange="wbToggleGoal('+g.id+')"><span onclick="wbToggleGoal('+g.id+')">'+wbEsc(g.text)+'</span><span class="wb-habit-del" title="删除" onclick="wbDelGoal('+g.id+')">&#215;</span></div>';
+    return '<div class="wb-goal-item'+(g.done?' done':'')+'"><input type="checkbox" '+(g.done?'checked':'')+' onchange="wbToggleGoal('+g.id+')"><span class="g-name" onclick="wbToggleGoal('+g.id+')">'+wbEsc(g.text)+'</span><span class="wb-edit" title="编辑文字" onclick="wbEditInline(\'goal\','+g.id+',this)">&#9998;</span><span class="wb-habit-del" title="删除" onclick="wbDelGoal('+g.id+')">&#215;</span></div>';
   }).join('');}
   wbUpdateStats();
 }
@@ -919,6 +1122,8 @@ function wbExport(){
     var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fname;
     document.body.appendChild(a);a.click();
     setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},200);
+    try{localStorage.setItem('gtwm_backup_at',String(Date.now()))}catch(e2){}
+    wbBackupTip();
   }catch(e){alert('导出失败：'+e.message)}
 }
 function wbImport(input){
